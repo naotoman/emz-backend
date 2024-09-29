@@ -1,0 +1,10 @@
+{
+  "name": "scrape-stock",
+  "version": "1.0.0",
+  "dependencies": {
+    "playwright-core": "^1.47.2"
+  },
+  "devDependencies": {
+    "@sparticuz/chromium": "^127.0.0"
+  }
+}

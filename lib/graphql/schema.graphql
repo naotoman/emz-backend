@@ -1,0 +1,59 @@
+input Stock {
+  url: String!
+  imageUrls: [String!]!
+  price: Int!
+  jsonParams: String
+}
+
+input Ebay {
+  title: String!
+  category: [String!]!
+  storeCategory: [String!]!
+  condition: String!
+  conditionDescription: String
+  jsonParams: String
+}
+
+input RegisterItemInput {
+  shippingYen: Int!
+  stock: Stock!
+  ebay: Ebay!
+}
+
+input DeregisterItemInput {
+  url: String!
+}
+
+input BatchGetItemInput {
+  urls: [String!]!
+}
+
+input EditUserConfigInput {
+  paymentPolicy: String
+  returnPolicy: String
+  profitRate: Float
+}
+
+type Item {
+  isListed: Boolean!
+}
+
+type UserInfo {
+  itemCount: Int!
+  maxItemCount: Int!
+}
+
+type Mutation {
+  registerItem(input: RegisterItemInput!): String
+    @aws_auth(cognito_groups: ["USER"])
+  deregisterItem(input: DeregisterItemInput!): String
+    @aws_auth(cognito_groups: ["USER"])
+  editUserConfig(input: EditUserConfigInput!): String
+    @aws_auth(cognito_groups: ["USER"])
+}
+
+type Query {
+  getUserInfo: UserInfo! @aws_auth(cognito_groups: ["USER"])
+  batchGetItem(input: BatchGetItemInput!): [Item]!
+    @aws_auth(cognito_groups: ["USER"])
+}
