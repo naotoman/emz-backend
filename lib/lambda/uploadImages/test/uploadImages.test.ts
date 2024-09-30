@@ -46,7 +46,7 @@ describe("editImages", () => {
 });
 
 describe("uploadImagesToR2", () => {
-  // R2の代わりに、S3Clientを返すモックを使用
+  // Use a mock that returns S3Client instead of R2
   test("should upload images to R2", async () => {
     const s3Client = new S3Client({});
     (getR2Client as jest.Mock) = jest.fn().mockResolvedValue(s3Client);
