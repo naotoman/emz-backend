@@ -1,8 +1,8 @@
 import { ConfigParameters, getConfigType } from "./parameters.type";
 
 const devConfig: ConfigParameters = {
-  cdkStackId: "XXX-dev", // Used for Stack ID. Don't change this after deployment.
-  env: {
+  stackId: "XXX-dev", // Used for Stack ID. Don't change this after deployment.
+  awsEnv: {
     account: "999999999999",
     region: "region",
   },
@@ -26,7 +26,7 @@ const devConfig: ConfigParameters = {
 // };
 
 export const getConfig: getConfigType = (env) => {
-  if (env === "dev") return devConfig;
-  // else if (env === "prd") return prdConfig;
+  if (env === "dev" || env == null) return devConfig;
+  // if (env === "prd") return prdConfig;
   throw new Error(`${env} is not a proper environment name.`);
 };

@@ -16,7 +16,7 @@ export class AppSync extends Construct {
   constructor(scope: Construct, id: string, props: AppSyncProps) {
     super(scope, id);
 
-    const api = new appsync.GraphqlApi(this, "api", {
+    const api = new appsync.GraphqlApi(this, "Api", {
       name: props.apiName,
       definition: appsync.Definition.fromFile("lib/graphql/schema.graphql"),
       environmentVariables: {
@@ -37,7 +37,7 @@ export class AppSync extends Construct {
     });
 
     const sfnSource = api.addHttpDataSource(
-      "sfn",
+      "Sfn",
       "https://states.ap-northeast-1.amazonaws.com",
       {
         authorizationConfig: {

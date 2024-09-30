@@ -3,18 +3,18 @@ import { Construct } from "constructs";
 import { ConfigParameters } from "../../parameters.type";
 import { AppSync } from "../construct/appsync";
 import { Cognito } from "../construct/cognito";
+import { Database } from "../construct/database";
 import { Ecs } from "../construct/ecs";
 import { Sfn } from "../construct/stepfunction";
-import { Storage } from "../construct/storage";
 
 export class BackendStack extends Stack {
   constructor(scope: Construct, id: string, props: ConfigParameters) {
-    super(scope, id, { env: props.env });
+    super(scope, id, { env: props.awsEnv });
 
-    const storage = new Storage(this, `Storage`);
+    const storage = new Database(this, `Db`);
 
     const cognito = new Cognito(this, "Cognito", {
-      userPoolName: props.cdkStackId,
+      userPoolName: props.stackId,
     });
 
     const stateMachine = new Sfn(this, "Sfn", {
@@ -23,7 +23,7 @@ export class BackendStack extends Stack {
     });
 
     const appsync = new AppSync(this, "AppSync", {
-      apiName: props.cdkStackId,
+      apiName: props.stackId,
       table: storage.table,
       userPool: cognito.userPool,
       stateMachine: stateMachine.stateMachine,

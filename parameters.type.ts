@@ -1,8 +1,9 @@
-import { Environment } from "aws-cdk-lib";
-
 export interface ConfigParameters {
-  cdkStackId: string;
-  env: Environment;
+  stackId: string;
+  awsEnv: {
+    account: string;
+    region: string;
+  };
   vpcId: string;
   subnetIds: string[];
   chromiumLayerArn: string;
@@ -15,4 +16,4 @@ export interface ConfigParameters {
   };
 }
 
-export type getConfigType = (env: string) => ConfigParameters;
+export type getConfigType = (env: unknown) => ConfigParameters;

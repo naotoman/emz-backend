@@ -1,7 +1,7 @@
 import { aws_dynamodb } from "aws-cdk-lib";
 import { Construct } from "constructs";
 
-export class Storage extends Construct {
+export class Database extends Construct {
   public readonly table: aws_dynamodb.ITableV2;
 
   constructor(scope: Construct, id: string) {
