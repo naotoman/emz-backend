@@ -3,6 +3,7 @@ import { Construct } from "constructs";
 import { ConfigParameters } from "../../parameters.type";
 import { AppSync } from "../construct/appsync";
 import { Cognito } from "../construct/cognito";
+import { Ecs } from "../construct/ecs";
 import { Sfn } from "../construct/stepfunction";
 import { Storage } from "../construct/storage";
 
@@ -26,6 +27,10 @@ export class BackendStack extends Stack {
       table: storage.table,
       userPool: cognito.userPool,
       stateMachine: stateMachine.stateMachine,
+    });
+
+    const ecs = new Ecs(this, "Ecs", {
+      chromiumLayerArn: props.chromiumLayerArn,
     });
   }
 }

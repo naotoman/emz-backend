@@ -8,7 +8,9 @@ const devConfig: ConfigParameters = {
   },
   vpcId: "vpc-xxx",
   subnetIds: ["subnet-xxx", "subnet-yyy"],
-  chromiumLayerVersion: "99",
+  // https://github.com/shelfio/chrome-aws-lambda-layer
+  chromiumLayerArn:
+    "arn:aws:lambda:region:764866452798:layer:chrome-aws-lambda:99",
   r2: {
     ssmParamToken: "paramName",
     bucket: "bucketName",

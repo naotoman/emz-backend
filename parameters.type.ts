@@ -5,7 +5,7 @@ export interface ConfigParameters {
   env: Environment;
   vpcId: string;
   subnetIds: string[];
-  chromiumLayerVersion: string;
+  chromiumLayerArn: string;
   r2: {
     ssmParamToken: string;
     bucket: string;
