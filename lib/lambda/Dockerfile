@@ -1,11 +1,8 @@
-FROM public.ecr.aws/amazonlinux/amazonlinux:2023
+FROM node:20.17-alpine3.20
 
 ARG lambda
 
-RUN dnf install -y nodejs20 nodejs20-npm &&\ 
-alternatives --install /usr/bin/node node /usr/bin/node-20 90 &&\
-alternatives --install /usr/bin/npm npm /usr/bin/npm-20 90 &&\
-npm install -g esbuild
+RUN npm install -g esbuild
 
 WORKDIR /asset
 
