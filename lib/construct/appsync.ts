@@ -21,6 +21,7 @@ export class AppSync extends Construct {
       definition: appsync.Definition.fromFile("lib/graphql/schema.graphql"),
       environmentVariables: {
         TABLE_NAME: props.table.tableName,
+        SFN_ARN: props.stateMachine.stateMachineArn,
       },
       authorizationConfig: {
         defaultAuthorization: {

@@ -1,3 +1,5 @@
+// https://docs.aws.amazon.com/systems-manager/latest/userguide/ps-integration-lambda-extensions.html
+
 import http from "http";
 
 export const getSecureSsmParam = async (paramName: string): Promise<string> => {
