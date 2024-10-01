@@ -20,6 +20,10 @@ export class BackendStack extends Stack {
     const stateMachine = new Sfn(this, "Sfn", {
       table: storage.table,
       r2: props.r2,
+      s3: {
+        bucket: props.s3.bucket,
+        prefix: props.s3.prefix,
+      },
     });
 
     const appsync = new AppSync(this, "AppSync", {

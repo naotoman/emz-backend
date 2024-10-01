@@ -52,7 +52,7 @@ describe("uploadImagesToR2", () => {
     (getR2Client as jest.Mock) = jest.fn().mockResolvedValue(s3Client);
     const imagePaths = [path.join(__dirname, "srcImg.jpg")];
     const r2Bucket = "test-bucket-48309";
-    const r2Folder = "uploadImagesToR2/imgs";
+    const r2Folder = "emz/test-uploadImagesToR2/imgs";
     const result = await uploadImagesToR2(imagePaths, r2Bucket, r2Folder);
     expect(result).toEqual([`${r2Folder}/image-0.jpg`]);
   });
