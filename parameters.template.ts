@@ -18,6 +18,10 @@ const devConfig: ConfigParameters = {
     domain: "https://your-domain.com",
     endpoint: "https://your-endpoint.com",
   },
+  s3: {
+    bucket: "bucketName",
+    prefix: "prefix",
+  },
 };
 
 // const prdConfig: ConfigParameters = {

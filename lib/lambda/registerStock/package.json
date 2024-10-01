@@ -1,0 +1,9 @@
+{
+  "name": "register-stock",
+  "version": "1.0.0",
+  "devDependencies": {
+    "@aws-sdk/client-dynamodb": "^3.658.1",
+    "@aws-sdk/client-s3": "^3.658.1",
+    "@aws-sdk/util-dynamodb": "^3.658.1"
+  }
+}

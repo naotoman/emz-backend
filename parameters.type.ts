@@ -14,6 +14,10 @@ export interface ConfigParameters {
     domain: string;
     endpoint: string;
   };
+  s3: {
+    bucket: string;
+    prefix: string;
+  };
 }
 
 export type getConfigType = (env: unknown) => ConfigParameters;

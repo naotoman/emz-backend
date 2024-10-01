@@ -18,6 +18,10 @@ export interface SfnProps {
     domain: string;
     endpoint: string;
   };
+  s3: {
+    bucket: string;
+    prefix: string;
+  };
 }
 
 export class Sfn extends Construct {
@@ -32,7 +36,7 @@ export class Sfn extends Construct {
       code: lambda.Code.fromDockerBuild("lib/lambda", {
         buildArgs: { lambda: "uploadImages" },
       }),
-      memorySize: 1024,
+      memorySize: 256,
       environment: {
         R2_BUCKET: props.r2.bucket,
         R2_PREFIX: props.r2.prefix,
@@ -47,13 +51,37 @@ export class Sfn extends Construct {
           `arn:aws:lambda:ap-northeast-1:133490724326:layer:AWS-Parameters-and-Secrets-Lambda-Extension:12`
         ),
       ],
-      timeout: Duration.seconds(30),
+      timeout: Duration.seconds(20),
       logGroup: new logs.LogGroup(this, `UploadImagesLog`, {
         retention: logs.RetentionDays.THREE_MONTHS,
       }),
     });
     registerItemFn.role?.addManagedPolicy(
       iam.ManagedPolicy.fromAwsManagedPolicyName("AmazonSSMReadOnlyAccess")
+    );
+
+    const registerStockFn = new lambda.Function(this, `RegisterStock`, {
+      runtime: lambda.Runtime.NODEJS_20_X,
+      handler: "index.handler",
+      code: lambda.Code.fromDockerBuild("lib/lambda", {
+        buildArgs: { lambda: "registerStock" },
+      }),
+      memorySize: 256,
+      environment: {
+        S3_BUCKET: props.s3.bucket,
+        S3_PREFIX: props.s3.prefix,
+        TABLE_NAME: props.table.tableName,
+      },
+      timeout: Duration.seconds(20),
+      logGroup: new logs.LogGroup(this, `RegisterStockLog`, {
+        retention: logs.RetentionDays.THREE_MONTHS,
+      }),
+    });
+    registerStockFn.role?.addManagedPolicy(
+      iam.ManagedPolicy.fromAwsManagedPolicyName("AmazonDynamoDBFullAccess")
+    );
+    registerStockFn.role?.addManagedPolicy(
+      iam.ManagedPolicy.fromAwsManagedPolicyName("AmazonS3ReadOnlyAccess")
     );
 
     this.stateMachine = new sfn.StateMachine(this, "RegisterItem", {
@@ -69,7 +97,24 @@ export class Sfn extends Construct {
               distImageUrls: sfn.JsonPath.stringAt("$.Payload.distImageUrls"),
             },
           })
-        ).next(new sfn.Succeed(this, "Success"))
+        )
+          .next(
+            new sfnTasks.LambdaInvoke(this, "RegisterStockTask", {
+              lambdaFunction: registerStockFn,
+              payload: sfn.TaskInput.fromObject({
+                username: sfn.JsonPath.stringAt("$$.Execution.Input.username"),
+                itemId: sfn.JsonPath.stringAt("$$.Execution.Input.itemId"),
+                platform: sfn.JsonPath.stringAt("$$.Execution.Input.platform"),
+                shippingYen: sfn.JsonPath.stringAt(
+                  "$$.Execution.Input.shippingYen"
+                ),
+                stock: sfn.JsonPath.stringAt("$$.Execution.Input.stock"),
+                ebay: sfn.JsonPath.stringAt("$$.Execution.Input.ebay"),
+                distImageUrls: sfn.JsonPath.stringAt("$.distImageUrls"),
+              }),
+            })
+          )
+          .next(new sfn.Succeed(this, "Success"))
       ),
     });
   }
