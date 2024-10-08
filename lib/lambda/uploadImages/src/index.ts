@@ -7,8 +7,8 @@ import path from "path";
 import sharp from "sharp";
 
 interface Event {
-  itemId: string;
-  imageUrls: string[];
+  ebaySku: string;
+  orgImageUrls: string[];
 }
 
 const downloadImage = async (url: string, outPath: string) => {
@@ -102,7 +102,7 @@ export const handler = async (event: Event) => {
   console.log(JSON.stringify(event));
 
   const srcImages = await loadImages(
-    event.imageUrls,
+    event.orgImageUrls,
     fs.mkdtempSync("/tmp/src")
   );
   console.log({ srcImages });
@@ -113,7 +113,7 @@ export const handler = async (event: Event) => {
   const r2Images = await uploadImagesToR2(
     distImages,
     process.env.R2_BUCKET!,
-    path.join(process.env.R2_PREFIX!, event.itemId, `${Date.now()}`)
+    path.join(process.env.R2_PREFIX!, event.ebaySku, `${Date.now()}`)
   );
   console.log({ r2Images });
 
