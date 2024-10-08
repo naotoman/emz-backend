@@ -1,30 +1,25 @@
 import { DynamoDBClient, UpdateItemCommand } from "@aws-sdk/client-dynamodb";
 import { GetObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { marshall } from "@aws-sdk/util-dynamodb";
-import { getFormattedDate, jsonStringify } from "common/utils";
+import { getFormattedDate, log } from "common/utils";
 import path from "path";
 import { getCategoryId } from "./leafCategory";
 
-interface Event {
+interface User {
   username: string;
-  itemId: string;
-  platform: string;
-  shippingYen: number;
-  distImageUrls: string[];
-  stock: {
-    url: string;
-    imageUrls: string[];
-    price: number;
-    jsonParams?: string;
-  };
-  ebay: {
-    title: string;
-    category: string[];
-    storeCategory: string[];
-    condition: string;
-    conditionDescription?: string;
-    jsonParams?: string;
-  };
+}
+
+interface Item {
+  ebaySku: string;
+  ebayCategorySrc: string[];
+  ebayStoreCategorySrc: string[];
+  ebayConditionSrc: string;
+}
+
+interface Event {
+  item: Item;
+  user: User;
+  ebayImageUrls: string[];
 }
 
 interface ConditionMap {
@@ -98,11 +93,11 @@ const translateToEbayCondition = (conditionId: string) => {
 
 export const getEbayCondition = async (
   ebayCategory: string,
-  conditionExpr: string
+  ebayConditionSrc: string
 ) => {
   const conditionMap = await fetchConditionMap(ebayCategory);
   console.log({ conditionMap });
-  const conditionId = translateToConditionId(conditionMap, conditionExpr);
+  const conditionId = translateToConditionId(conditionMap, ebayConditionSrc);
   console.log({ conditionId });
   const ebayCondition = translateToEbayCondition(conditionId);
   return ebayCondition;
@@ -136,69 +131,58 @@ const makeDbArg = (
       UpdateExpression: "SET ",
     }
   );
+  log({ res });
   res.ExpressionAttributeValues = marshall(res.ExpressionAttributeValues);
   res.UpdateExpression = res.UpdateExpression.slice(0, -2);
   return res;
 };
 
 export const makeDbInput = (
-  event: Event,
-  ebayCategory: string,
-  ebayCondition: string,
-  createdAt: string
+  username: string,
+  ebaySku: string,
+  attrs: Record<string, unknown>
 ) => {
-  const keyVal = `ITEM#${event.username}#${event.itemId}`;
   const toUpdate = {
-    createdAt: createdAt,
+    createdAt: getFormattedDate(new Date()),
     isImageChanged: false,
-    username: event.username,
-    platform: event.platform,
-    shippingYen: event.shippingYen,
-    ebaySku: event.itemId,
-    ebayImageUrls: event.distImageUrls,
-    ebayTitle: event.ebay.title,
-    ebayCategory: ebayCategory,
-    ebayStoreCategory: event.ebay.storeCategory.join(" > "),
-    ebayCondition: ebayCondition,
-    orgUrl: event.stock.url,
-    orgImageUrls: event.stock.imageUrls,
-    orgPrice: event.stock.price,
-    ...JSON.parse(event.ebay.jsonParams || "{}"),
-    ...JSON.parse(event.stock.jsonParams || "{}"),
+    ...attrs,
   };
-
-  if (event.ebay.conditionDescription) {
-    toUpdate.ebayConditionDescription = event.ebay.conditionDescription;
-  }
 
   const noUpdate = {
     isListed: false,
-    isInStock: true,
+    isOrgLive: true,
   };
 
   return {
     TableName: process.env.TABLE_NAME!,
     Key: {
-      id: { S: keyVal },
+      id: { S: `ITEM#${username}#${ebaySku}` },
     },
     ...makeDbArg(toUpdate, noUpdate),
   };
 };
 
 export const handler = async (event: Event) => {
-  console.log(jsonStringify(event));
+  log(event);
 
-  const ebayCategory = getCategoryId(event.ebay.category);
-  console.log({ ebayCategory });
+  const ebayCategory = getCategoryId(event.item.ebayCategorySrc);
+  log({ ebayCategory });
   const ebayCondition = await getEbayCondition(
     ebayCategory,
-    event.ebay.condition
+    event.item.ebayConditionSrc
   );
-  console.log({ ebayCondition });
-  const createdAt = getFormattedDate(new Date());
+  log({ ebayCondition });
 
-  const input = makeDbInput(event, ebayCategory, ebayCondition, createdAt);
-  console.log(input);
+  const attrs = {
+    ebayCategory,
+    ebayStoreCategory: event.item.ebayStoreCategorySrc.join(" > "),
+    ebayCondition,
+    ebayImageUrls: event.ebayImageUrls,
+    username: event.user.username,
+    ...event.item,
+  };
+  const input = makeDbInput(event.user.username, event.item.ebaySku, attrs);
+  log(input);
 
   const ddbClient = new DynamoDBClient({});
   const command = new UpdateItemCommand(input);
