@@ -30,7 +30,7 @@ export class Sfn extends Construct {
   constructor(scope: Construct, id: string, props: SfnProps) {
     super(scope, id);
 
-    const registerItemFn = new lambda.Function(this, `UploadImages`, {
+    const uploadImagesFn = new lambda.Function(this, `UploadImages`, {
       runtime: lambda.Runtime.NODEJS_20_X,
       handler: "index.handler",
       code: lambda.Code.fromDockerBuild("lib/lambda", {
@@ -56,7 +56,7 @@ export class Sfn extends Construct {
         retention: logs.RetentionDays.THREE_MONTHS,
       }),
     });
-    registerItemFn.role?.addManagedPolicy(
+    uploadImagesFn.role?.addManagedPolicy(
       iam.ManagedPolicy.fromAwsManagedPolicyName("AmazonSSMReadOnlyAccess")
     );
 
@@ -88,13 +88,13 @@ export class Sfn extends Construct {
       definitionBody: sfn.DefinitionBody.fromChainable(
         sfn.Chain.start(
           new sfnTasks.LambdaInvoke(this, "UploadImagesTask", {
-            lambdaFunction: registerItemFn,
+            lambdaFunction: uploadImagesFn,
             payload: sfn.TaskInput.fromObject({
-              itemId: sfn.JsonPath.stringAt("$.itemId"),
-              imageUrls: sfn.JsonPath.stringAt("$.stock.imageUrls"),
+              ebaySku: sfn.JsonPath.stringAt("$.item.ebaySku"),
+              orgImageUrls: sfn.JsonPath.objectAt("$.item.orgImageUrls"),
             }),
             resultSelector: {
-              distImageUrls: sfn.JsonPath.stringAt("$.Payload.distImageUrls"),
+              ebayImageUrls: sfn.JsonPath.objectAt("$.Payload.distImageUrls"),
             },
           })
         )
@@ -102,15 +102,9 @@ export class Sfn extends Construct {
             new sfnTasks.LambdaInvoke(this, "RegisterStockTask", {
               lambdaFunction: registerStockFn,
               payload: sfn.TaskInput.fromObject({
-                username: sfn.JsonPath.stringAt("$$.Execution.Input.username"),
-                itemId: sfn.JsonPath.stringAt("$$.Execution.Input.itemId"),
-                platform: sfn.JsonPath.stringAt("$$.Execution.Input.platform"),
-                shippingYen: sfn.JsonPath.stringAt(
-                  "$$.Execution.Input.shippingYen"
-                ),
-                stock: sfn.JsonPath.stringAt("$$.Execution.Input.stock"),
-                ebay: sfn.JsonPath.stringAt("$$.Execution.Input.ebay"),
-                distImageUrls: sfn.JsonPath.stringAt("$.distImageUrls"),
+                user: sfn.JsonPath.objectAt("$$.Execution.Input.user"),
+                item: sfn.JsonPath.objectAt("$$.Execution.Input.item"),
+                ebayImageUrls: sfn.JsonPath.objectAt("$.ebayImageUrls"),
               }),
             })
           )

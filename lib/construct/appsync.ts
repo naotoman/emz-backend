@@ -36,6 +36,7 @@ export class AppSync extends Construct {
         retention: logs.RetentionDays.ONE_WEEK,
       },
     });
+    const ddbSource = api.addDynamoDbDataSource("dynamodbSource", props.table);
 
     const sfnSource = api.addHttpDataSource(
       "Sfn",
@@ -49,7 +50,33 @@ export class AppSync extends Construct {
     );
     props.stateMachine.grantStartExecution(sfnSource);
 
-    const ddbSource = api.addDynamoDbDataSource("dynamodbSource", props.table);
+    const prepRegisterItem = new appsync.AppsyncFunction(
+      this,
+      "PrepRegisterItem",
+      {
+        name: "prep_register_item",
+        api,
+        dataSource: ddbSource,
+        code: appsync.Code.fromAsset(
+          "lib/graphql/prepRegisterItem.resolver.js"
+        ),
+        runtime: appsync.FunctionRuntime.JS_1_0_0,
+      }
+    );
+
+    const startStepFunction = new appsync.AppsyncFunction(
+      this,
+      "StartStepFunction",
+      {
+        name: "start_step_function",
+        api,
+        dataSource: sfnSource,
+        code: appsync.Code.fromAsset(
+          "lib/graphql/startStepFunction.resolver.js"
+        ),
+        runtime: appsync.FunctionRuntime.JS_1_0_0,
+      }
+    );
 
     new appsync.Resolver(this, "BatchGetItemResolver", {
       api,
@@ -73,9 +100,9 @@ export class AppSync extends Construct {
       api,
       typeName: "Mutation",
       fieldName: "registerItem",
+      pipelineConfig: [prepRegisterItem, startStepFunction],
       code: appsync.Code.fromAsset("lib/graphql/registerItem.resolver.js"),
       runtime: appsync.FunctionRuntime.JS_1_0_0,
-      dataSource: sfnSource,
     });
   }
 }

@@ -1,23 +1,15 @@
-input Stock {
-  url: String!
-  imageUrls: [String!]!
-  price: Int!
-  jsonParams: String
-}
-
-input Ebay {
-  title: String!
-  category: [String!]!
-  storeCategory: [String!]!
-  condition: String!
-  conditionDescription: String
-  jsonParams: String
-}
-
 input RegisterItemInput {
   shippingYen: Int!
-  stock: Stock!
-  ebay: Ebay!
+  orgUrl: AWSURL!
+  orgImageUrls: [AWSURL!]!
+  orgPrice: Int!
+  ebayTitle: String!
+  ebayCategorySrc: [String!]!
+  ebayStoreCategorySrc: [String!]!
+  ebayConditionSrc: String!
+  ebayConditionDescription: String
+  ebayAspectParam: AWSJSON
+  ebayProductParam: AWSJSON
 }
 
 input DeregisterItemInput {
