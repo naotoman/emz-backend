@@ -1,3 +1,5 @@
+import * as util from "util";
+
 /**
  * Returns a formatted string of the date and time (JST).
  * ex. 2023-06-12 16:22:01
@@ -18,12 +20,9 @@ export const getFormattedDate = (date: Date): string => {
 };
 
 /**
- * Returns a stringified JSON object.
- * If the value is undefined, it will be replaced with "!!UNDEFINED!!".
- * @param obj - An object to be stringified.
- * @returns A stringified JSON object.
+ * Logs the object to the console.
+ * @param obj - An object to be logged.
  */
-export const jsonStringify = (obj: unknown) => {
-  if (obj == null) return JSON.stringify(obj);
-  return JSON.stringify(obj, (_, v) => (v === undefined ? "!!UNDEFINED!!" : v));
+export const log = (obj: unknown) => {
+  console.log(util.inspect(obj, { depth: null }));
 };
