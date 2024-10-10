@@ -4,19 +4,20 @@ export interface ConfigParameters {
     account: string;
     region: string;
   };
-  vpcId: string;
-  subnetIds: string[];
+  ecsVpcId: string;
+  ecsSubnetIds: string[];
   chromiumLayerArn: string;
-  r2: {
-    ssmParamToken: string;
-    bucket: string;
-    prefix: string;
-    domain: string;
-    endpoint: string;
-  };
-  s3: {
-    bucket: string;
-    prefix: string;
+  appParams: {
+    ebayIsSandbox: boolean;
+    ebayAppKeySsmParamName: string;
+    ebayUserTokenSsmParamPrefix: string;
+    r2KeySsmParamName: string;
+    r2Bucket: string;
+    r2Prefix: string;
+    r2Endpoint: string;
+    r2Domain: string;
+    s3Bucket: string;
+    s3Prefix: string;
   };
 }
 

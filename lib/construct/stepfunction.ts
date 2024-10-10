@@ -11,17 +11,6 @@ import { Construct } from "constructs";
 
 export interface SfnProps {
   table: dynamodb.ITableV2;
-  r2: {
-    ssmParamToken: string;
-    bucket: string;
-    prefix: string;
-    domain: string;
-    endpoint: string;
-  };
-  s3: {
-    bucket: string;
-    prefix: string;
-  };
 }
 
 export class Sfn extends Construct {
@@ -30,6 +19,12 @@ export class Sfn extends Construct {
   constructor(scope: Construct, id: string, props: SfnProps) {
     super(scope, id);
 
+    const awsSsmExtensionLayer = lambda.LayerVersion.fromLayerVersionArn(
+      this,
+      "ssmExtension",
+      `arn:aws:lambda:ap-northeast-1:133490724326:layer:AWS-Parameters-and-Secrets-Lambda-Extension:12`
+    );
+
     const uploadImagesFn = new lambda.Function(this, `UploadImages`, {
       runtime: lambda.Runtime.NODEJS_20_X,
       handler: "index.handler",
@@ -37,21 +32,8 @@ export class Sfn extends Construct {
         buildArgs: { lambda: "uploadImages" },
       }),
       memorySize: 256,
-      environment: {
-        R2_BUCKET: props.r2.bucket,
-        R2_PREFIX: props.r2.prefix,
-        R2_DOMAIN: props.r2.domain,
-        R2_ENDPOINT: props.r2.endpoint,
-        SSM_PARAM_R2_TOKENS: props.r2.ssmParamToken,
-      },
-      layers: [
-        lambda.LayerVersion.fromLayerVersionArn(
-          this,
-          "ssmExtension",
-          `arn:aws:lambda:ap-northeast-1:133490724326:layer:AWS-Parameters-and-Secrets-Lambda-Extension:12`
-        ),
-      ],
       timeout: Duration.seconds(20),
+      layers: [awsSsmExtensionLayer],
       logGroup: new logs.LogGroup(this, `UploadImagesLog`, {
         retention: logs.RetentionDays.THREE_MONTHS,
       }),
@@ -67,12 +49,10 @@ export class Sfn extends Construct {
         buildArgs: { lambda: "registerStock" },
       }),
       memorySize: 256,
+      timeout: Duration.seconds(20),
       environment: {
-        S3_BUCKET: props.s3.bucket,
-        S3_PREFIX: props.s3.prefix,
         TABLE_NAME: props.table.tableName,
       },
-      timeout: Duration.seconds(20),
       logGroup: new logs.LogGroup(this, `RegisterStockLog`, {
         retention: logs.RetentionDays.THREE_MONTHS,
       }),
@@ -82,6 +62,23 @@ export class Sfn extends Construct {
     );
     registerStockFn.role?.addManagedPolicy(
       iam.ManagedPolicy.fromAwsManagedPolicyName("AmazonS3ReadOnlyAccess")
+    );
+
+    const listingControlFn = new lambda.Function(this, `ListingControl`, {
+      runtime: lambda.Runtime.NODEJS_20_X,
+      handler: "index.handler",
+      code: lambda.Code.fromDockerBuild("lib/lambda", {
+        buildArgs: { lambda: "listingControl" },
+      }),
+      memorySize: 256,
+      timeout: Duration.seconds(20),
+      layers: [awsSsmExtensionLayer],
+      logGroup: new logs.LogGroup(this, `ListingControlLog`, {
+        retention: logs.RetentionDays.THREE_MONTHS,
+      }),
+    });
+    listingControlFn.role?.addManagedPolicy(
+      iam.ManagedPolicy.fromAwsManagedPolicyName("AmazonSSMReadOnlyAccess")
     );
 
     this.stateMachine = new sfn.StateMachine(this, "RegisterItem", {
@@ -103,8 +100,26 @@ export class Sfn extends Construct {
               lambdaFunction: registerStockFn,
               payload: sfn.TaskInput.fromObject({
                 user: sfn.JsonPath.objectAt("$$.Execution.Input.user"),
+                appParams: sfn.JsonPath.objectAt(
+                  "$$.Execution.Input.appParams"
+                ),
                 item: sfn.JsonPath.objectAt("$$.Execution.Input.item"),
                 ebayImageUrls: sfn.JsonPath.objectAt("$.ebayImageUrls"),
+              }),
+              resultSelector: {
+                item: sfn.JsonPath.objectAt("$.Payload"),
+              },
+            })
+          )
+          .next(
+            new sfnTasks.LambdaInvoke(this, "ListingControlTask", {
+              lambdaFunction: listingControlFn,
+              payload: sfn.TaskInput.fromObject({
+                user: sfn.JsonPath.objectAt("$$.Execution.Input.user"),
+                appParams: sfn.JsonPath.objectAt(
+                  "$$.Execution.Input.appParams"
+                ),
+                item: sfn.JsonPath.objectAt("$.item"),
               }),
             })
           )

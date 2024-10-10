@@ -6,21 +6,23 @@ const devConfig: ConfigParameters = {
     account: "999999999999",
     region: "region",
   },
-  vpcId: "vpc-xxx",
-  subnetIds: ["subnet-xxx", "subnet-yyy"],
+  ecsVpcId: "vpc-xxx",
+  ecsSubnetIds: ["subnet-xxx", "subnet-yyy"],
   // https://github.com/shelfio/chrome-aws-lambda-layer
   chromiumLayerArn:
     "arn:aws:lambda:region:764866452798:layer:chrome-aws-lambda:99",
-  r2: {
-    ssmParamToken: "paramName",
-    bucket: "bucketName",
-    prefix: "prefix",
-    domain: "https://your-domain.com",
-    endpoint: "https://your-endpoint.com",
-  },
-  s3: {
-    bucket: "bucketName",
-    prefix: "prefix",
+  // Data that are used inside Lambda functions.
+  appParams: {
+    ebayIsSandbox: true,
+    ebayAppKeySsmParamName: "/xxx/yyy/sandbox",
+    ebayUserTokenSsmParamPrefix: "/xxx/ebay-usertoken/",
+    r2KeySsmParamName: "paramName",
+    r2Bucket: "bucketName",
+    r2Prefix: "prefix",
+    r2Endpoint: "https://your-endpoint.com",
+    r2Domain: "https://your-domain.com",
+    s3Bucket: "bucketName",
+    s3Prefix: "prefix",
   },
 };
 

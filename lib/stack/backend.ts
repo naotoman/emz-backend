@@ -11,7 +11,7 @@ export class BackendStack extends Stack {
   constructor(scope: Construct, id: string, props: ConfigParameters) {
     super(scope, id, { env: props.awsEnv });
 
-    const storage = new Database(this, `Db`);
+    const storage = new Database(this, "Db", { appParams: props.appParams });
 
     const cognito = new Cognito(this, "Cognito", {
       userPoolName: props.stackId,
@@ -19,11 +19,6 @@ export class BackendStack extends Stack {
 
     const stateMachine = new Sfn(this, "Sfn", {
       table: storage.table,
-      r2: props.r2,
-      s3: {
-        bucket: props.s3.bucket,
-        prefix: props.s3.prefix,
-      },
     });
 
     const appsync = new AppSync(this, "AppSync", {
