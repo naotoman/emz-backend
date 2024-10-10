@@ -1,12 +1,7 @@
 import { S3Client } from "@aws-sdk/client-s3";
 import * as fs from "fs";
 import * as path from "path";
-import {
-  editImages,
-  getR2Client,
-  loadImages,
-  uploadImagesToR2,
-} from "../src/index";
+import { editImages, loadImages, uploadImagesToR2 } from "../src/index";
 
 describe("loadImages", () => {
   beforeEach(() => {
@@ -46,14 +41,18 @@ describe("editImages", () => {
 });
 
 describe("uploadImagesToR2", () => {
-  // Use a mock that returns S3Client instead of R2
+  // Use S3Client instead of R2
   test("should upload images to R2", async () => {
     const s3Client = new S3Client({});
-    (getR2Client as jest.Mock) = jest.fn().mockResolvedValue(s3Client);
     const imagePaths = [path.join(__dirname, "srcImg.jpg")];
     const r2Bucket = "test-bucket-48309";
-    const r2Folder = "emz/test-uploadImagesToR2/imgs";
-    const result = await uploadImagesToR2(imagePaths, r2Bucket, r2Folder);
-    expect(result).toEqual([`${r2Folder}/image-0.jpg`]);
+    const r2Prefix = "emz/test-uploadImagesToR2/item-images";
+    const result = await uploadImagesToR2(
+      s3Client,
+      imagePaths,
+      r2Bucket,
+      r2Prefix
+    );
+    expect(result).toEqual([`${r2Prefix}/image-0.jpg`]);
   });
 });
