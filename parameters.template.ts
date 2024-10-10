@@ -22,7 +22,7 @@ const devConfig: ConfigParameters = {
     r2Endpoint: "https://your-endpoint.com",
     r2Domain: "https://your-domain.com",
     s3Bucket: "bucketName",
-    s3Prefix: "prefix",
+    s3PathForEbayConditions: "path",
   },
 };
 

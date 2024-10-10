@@ -17,7 +17,7 @@ export interface ConfigParameters {
     r2Endpoint: string;
     r2Domain: string;
     s3Bucket: string;
-    s3Prefix: string;
+    s3PathForEbayConditions: string;
   };
 }
 
