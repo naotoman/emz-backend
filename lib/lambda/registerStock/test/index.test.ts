@@ -44,26 +44,25 @@ describe("makeDbInput", () => {
 });
 
 describe("getEbayCondition", () => {
-  const mockEnv = {
-    S3_BUCKET: "test-bucket-48309",
-    S3_PREFIX: "emz/test-getEbayCondition",
-  };
+  const s3Bucket = "test-bucket-48309";
+  const s3Path = "emz/test-getEbayCondition/conditions";
 
-  beforeAll(() => {
-    process.env.S3_BUCKET = mockEnv.S3_BUCKET;
-    process.env.S3_PREFIX = mockEnv.S3_PREFIX;
-  });
   it("should return the correct condition for a given input", async () => {
-    const result = await getEbayCondition("261068", "Used");
+    const result = await getEbayCondition("261068", "Used", s3Bucket, s3Path);
     expect(result).toBe("USED_EXCELLENT");
 
-    const result2 = await getEbayCondition("261581", "New other (see details)");
+    const result2 = await getEbayCondition(
+      "261581",
+      "New other (see details)",
+      s3Bucket,
+      s3Path
+    );
     expect(result2).toBe("NEW_OTHER");
   });
 
   it("should return undefined for an unknown condition", async () => {
-    await expect(getEbayCondition("261068", "nonexistent")).rejects.toThrow(
-      Error
-    );
+    await expect(
+      getEbayCondition("261068", "nonexistent", s3Bucket, s3Path)
+    ).rejects.toThrow(Error);
   });
 });

@@ -16,9 +16,15 @@ interface Item {
   ebayConditionSrc: string;
 }
 
+interface AppParams {
+  s3Bucket: string;
+  s3PathForEbayConditions: string;
+}
+
 interface Event {
   item: Item;
   user: User;
+  appParams: AppParams;
   ebayImageUrls: string[];
 }
 
@@ -31,20 +37,20 @@ interface ConditionMap {
   ];
 }
 
-const fetchConditionMap = async (ebayCategory: string) => {
+const fetchConditionMap = async (
+  ebayCategory: string,
+  s3Bucket: string,
+  s3Path: string
+) => {
   const client = new S3Client();
   const input = {
-    Bucket: process.env.S3_BUCKET!,
-    Key: path.join(
-      process.env.S3_PREFIX!,
-      "conditions",
-      `${ebayCategory}.json`
-    ),
+    Bucket: s3Bucket,
+    Key: path.join(s3Path, `${ebayCategory}.json`),
   };
   const command = new GetObjectCommand(input);
   const response = await client.send(command);
   const jsonStr = await response.Body?.transformToString();
-  console.log({ jsonStr });
+  log({ jsonStr });
   if (!jsonStr) {
     throw new Error("Failed to get condition map");
   }
@@ -93,9 +99,11 @@ const translateToEbayCondition = (conditionId: string) => {
 
 export const getEbayCondition = async (
   ebayCategory: string,
-  ebayConditionSrc: string
+  ebayConditionSrc: string,
+  s3Bucket: string,
+  s3Path: string
 ) => {
-  const conditionMap = await fetchConditionMap(ebayCategory);
+  const conditionMap = await fetchConditionMap(ebayCategory, s3Bucket, s3Path);
   console.log({ conditionMap });
   const conditionId = translateToConditionId(conditionMap, ebayConditionSrc);
   console.log({ conditionId });
@@ -169,12 +177,15 @@ export const handler = async (event: Event) => {
   log({ ebayCategory });
   const ebayCondition = await getEbayCondition(
     ebayCategory,
-    event.item.ebayConditionSrc
+    event.item.ebayConditionSrc,
+    event.appParams.s3Bucket,
+    event.appParams.s3PathForEbayConditions
   );
   log({ ebayCondition });
 
   const attrs = {
     ebayCategory,
+    // FIXME: ebayStoreCategorySrc is not valid
     ebayStoreCategory: event.item.ebayStoreCategorySrc.join(" > "),
     ebayCondition,
     ebayImageUrls: event.ebayImageUrls,
@@ -187,4 +198,5 @@ export const handler = async (event: Event) => {
   const ddbClient = new DynamoDBClient({});
   const command = new UpdateItemCommand(input);
   await ddbClient.send(command);
+  return { ...event.item, ebayImageUrls: event.ebayImageUrls };
 };
