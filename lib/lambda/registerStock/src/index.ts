@@ -185,8 +185,7 @@ export const handler = async (event: Event) => {
 
   const attrs = {
     ebayCategory,
-    // FIXME: ebayStoreCategorySrc is not valid
-    ebayStoreCategory: event.item.ebayStoreCategorySrc.join(" > "),
+    ebayStoreCategory: "/" + event.item.ebayStoreCategorySrc.join("/"),
     ebayCondition,
     ebayImageUrls: event.ebayImageUrls,
     username: event.user.username,
