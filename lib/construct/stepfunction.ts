@@ -87,8 +87,8 @@ export class Sfn extends Construct {
           new sfnTasks.LambdaInvoke(this, "UploadImagesTask", {
             lambdaFunction: uploadImagesFn,
             payload: sfn.TaskInput.fromObject({
-              ebaySku: sfn.JsonPath.stringAt("$.item.ebaySku"),
-              orgImageUrls: sfn.JsonPath.objectAt("$.item.orgImageUrls"),
+              item: sfn.JsonPath.objectAt("$$.Execution.Input.item"),
+              appParams: sfn.JsonPath.objectAt("$$.Execution.Input.appParams"),
             }),
             resultSelector: {
               ebayImageUrls: sfn.JsonPath.objectAt("$.Payload.distImageUrls"),
@@ -111,18 +111,18 @@ export class Sfn extends Construct {
               },
             })
           )
-          .next(
-            new sfnTasks.LambdaInvoke(this, "ListingControlTask", {
-              lambdaFunction: listingControlFn,
-              payload: sfn.TaskInput.fromObject({
-                user: sfn.JsonPath.objectAt("$$.Execution.Input.user"),
-                appParams: sfn.JsonPath.objectAt(
-                  "$$.Execution.Input.appParams"
-                ),
-                item: sfn.JsonPath.objectAt("$.item"),
-              }),
-            })
-          )
+          // .next(
+          //   new sfnTasks.LambdaInvoke(this, "ListingControlTask", {
+          //     lambdaFunction: listingControlFn,
+          //     payload: sfn.TaskInput.fromObject({
+          //       user: sfn.JsonPath.objectAt("$$.Execution.Input.user"),
+          //       appParams: sfn.JsonPath.objectAt(
+          //         "$$.Execution.Input.appParams"
+          //       ),
+          //       item: sfn.JsonPath.objectAt("$.item"),
+          //     }),
+          //   })
+          // )
           .next(new sfn.Succeed(this, "Success"))
       ),
     });

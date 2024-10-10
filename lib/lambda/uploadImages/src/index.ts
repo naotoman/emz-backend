@@ -8,8 +8,10 @@ import path from "path";
 import sharp from "sharp";
 
 interface Event {
-  ebaySku: string;
-  orgImageUrls: string[];
+  item: {
+    ebaySku: string;
+    orgImageUrls: string[];
+  };
   appParams: {
     r2KeySsmParamName: string;
     r2Bucket: string;
@@ -113,7 +115,7 @@ export const handler = async (event: Event) => {
   log({ event });
 
   const srcImages = await loadImages(
-    event.orgImageUrls,
+    event.item.orgImageUrls,
     fs.mkdtempSync("/tmp/src")
   );
   log({ srcImages });
@@ -133,7 +135,7 @@ export const handler = async (event: Event) => {
     path.join(
       event.appParams.r2Prefix,
       "item-images",
-      event.ebaySku,
+      event.item.ebaySku,
       `${Date.now()}`
     )
   );
