@@ -1,0 +1,7 @@
+{
+  "name": "listing-control",
+  "version": "1.0.0",
+  "devDependencies": {
+    "@aws-sdk/client-ssm": "^3.666.0"
+  }
+}
