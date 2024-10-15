@@ -29,7 +29,7 @@ export class Sfn extends Construct {
       runtime: lambda.Runtime.NODEJS_20_X,
       handler: "index.handler",
       code: lambda.Code.fromDockerBuild("lib/lambda", {
-        buildArgs: { lambda: "uploadImages" },
+        buildArgs: { lambda: "sfnUploadImages" },
       }),
       memorySize: 256,
       timeout: Duration.seconds(20),
@@ -46,7 +46,7 @@ export class Sfn extends Construct {
       runtime: lambda.Runtime.NODEJS_20_X,
       handler: "index.handler",
       code: lambda.Code.fromDockerBuild("lib/lambda", {
-        buildArgs: { lambda: "registerStock" },
+        buildArgs: { lambda: "sfnRegisterStock" },
       }),
       memorySize: 256,
       timeout: Duration.seconds(20),
@@ -68,7 +68,7 @@ export class Sfn extends Construct {
       runtime: lambda.Runtime.NODEJS_20_X,
       handler: "index.handler",
       code: lambda.Code.fromDockerBuild("lib/lambda", {
-        buildArgs: { lambda: "listingControl" },
+        buildArgs: { lambda: "sfnListingControl" },
       }),
       memorySize: 256,
       timeout: Duration.seconds(20),
