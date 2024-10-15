@@ -5,7 +5,15 @@ import {
 } from "@aws-sdk/client-ssm";
 import { getSecureSsmParam } from "common/ssmParamExtension";
 import { log } from "common/utils";
-import { mintAccessToken } from "./ebay";
+import {
+  createOffer,
+  createOrReplaceInventoryItem,
+  deleteInventoryItem,
+  getOffers,
+  mintAccessToken,
+  publishOffer,
+  updateOffer,
+} from "./ebay";
 
 interface User {
   username: string;
@@ -155,9 +163,53 @@ export const listItem = async (event: Event) => {
     event.appParams.ebayUserTokenSsmParamPrefix + user.username,
     event.appParams.ebayIsSandbox
   );
+  await createOrReplaceInventoryItem(
+    accessToken,
+    item.ebaySku,
+    inventoryPayload,
+    event.appParams.ebayIsSandbox
+  );
+
+  const offer = await getOffers(
+    accessToken,
+    item.ebaySku,
+    event.appParams.ebayIsSandbox
+  );
+  let offerId = offer.data.offerId;
+  if (offer.exist) {
+    await updateOffer(
+      accessToken,
+      offerId,
+      offerPayload,
+      event.appParams.ebayIsSandbox
+    );
+  } else {
+    offerId = await createOffer(
+      accessToken,
+      offerPayload,
+      event.appParams.ebayIsSandbox
+    );
+  }
+  const listing = await publishOffer(
+    accessToken,
+    offerId,
+    event.appParams.ebayIsSandbox
+  );
+  return listing.listingId;
 };
 
-export const withdrawItem = async (item: Item) => {};
+export const withdrawItem = async (event: Event) => {
+  const accessToken = await cacheGetAccessToken(
+    event.appParams.ebayAppKeySsmParamName,
+    event.appParams.ebayUserTokenSsmParamPrefix + event.user.username,
+    event.appParams.ebayIsSandbox
+  );
+  await deleteInventoryItem(
+    accessToken,
+    event.item.ebaySku,
+    event.appParams.ebayIsSandbox
+  );
+};
 
 export const handler = async (event: Event) => {
   const judge = judgeListing(event);
@@ -165,7 +217,7 @@ export const handler = async (event: Event) => {
   if (judge === "LIST") {
     await listItem(event);
   } else if (judge === "WITHDRAW") {
-    await withdrawItem(event.item);
+    await withdrawItem(event);
   }
   return judge;
 };
