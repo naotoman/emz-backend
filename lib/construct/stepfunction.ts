@@ -78,7 +78,7 @@ export class Sfn extends Construct {
       }),
     });
     listingControlFn.role?.addManagedPolicy(
-      iam.ManagedPolicy.fromAwsManagedPolicyName("AmazonSSMReadOnlyAccess")
+      iam.ManagedPolicy.fromAwsManagedPolicyName("AmazonSSMFullAccess")
     );
 
     this.stateMachine = new sfn.StateMachine(this, "RegisterItem", {
@@ -111,18 +111,41 @@ export class Sfn extends Construct {
               },
             })
           )
-          // .next(
-          //   new sfnTasks.LambdaInvoke(this, "ListingControlTask", {
-          //     lambdaFunction: listingControlFn,
-          //     payload: sfn.TaskInput.fromObject({
-          //       user: sfn.JsonPath.objectAt("$$.Execution.Input.user"),
-          //       appParams: sfn.JsonPath.objectAt(
-          //         "$$.Execution.Input.appParams"
-          //       ),
-          //       item: sfn.JsonPath.objectAt("$.item"),
-          //     }),
-          //   })
-          // )
+          .next(
+            new sfnTasks.LambdaInvoke(this, "ListingControlTask", {
+              lambdaFunction: listingControlFn,
+              payload: sfn.TaskInput.fromObject({
+                user: sfn.JsonPath.objectAt("$$.Execution.Input.user"),
+                appParams: sfn.JsonPath.objectAt(
+                  "$$.Execution.Input.appParams"
+                ),
+                item: sfn.JsonPath.objectAt("$.item"),
+              }),
+              resultSelector: {
+                listing: sfn.JsonPath.objectAt("$.Payload"),
+              },
+            })
+          )
+          .next(
+            new sfnTasks.DynamoUpdateItem(this, "UpdateItem", {
+              table: props.table,
+              key: {
+                id: sfnTasks.DynamoAttributeValue.fromString(
+                  sfn.JsonPath.stringAt("$$.Execution.Input.item.ebaySku")
+                ),
+              },
+              expressionAttributeValues: {
+                ":listingId": sfnTasks.DynamoAttributeValue.fromString(
+                  sfn.JsonPath.stringAt("$.listing.listingId")
+                ),
+                ":isListed": sfnTasks.DynamoAttributeValue.booleanFromJsonPath(
+                  sfn.JsonPath.stringAt("$.listing.isListed")
+                ),
+              },
+              updateExpression:
+                "SET listingId = :listingId, isListed = :isListed",
+            })
+          )
           .next(new sfn.Succeed(this, "Success"))
       ),
     });

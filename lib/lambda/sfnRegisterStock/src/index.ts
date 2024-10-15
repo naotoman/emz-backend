@@ -197,5 +197,10 @@ export const handler = async (event: Event) => {
   const ddbClient = new DynamoDBClient({});
   const command = new UpdateItemCommand(input);
   await ddbClient.send(command);
-  return { ...event.item, ebayImageUrls: event.ebayImageUrls };
+  return {
+    ...event.item,
+    ebayImageUrls: event.ebayImageUrls,
+    ebayCategory,
+    ebayCondition,
+  };
 };

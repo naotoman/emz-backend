@@ -5,6 +5,7 @@ input RegisterItemInput {
   orgImageUrls: [AWSURL!]!
   orgPrice: Int!
   ebayTitle: String!
+  ebayDescription: String!
   ebayCategorySrc: [String!]!
   ebayStoreCategorySrc: [String!]!
   ebayConditionSrc: String!

@@ -8,7 +8,6 @@ import { log } from "common/utils";
 import {
   createOffer,
   createOrReplaceInventoryItem,
-  deleteInventoryItem,
   getOffers,
   mintAccessToken,
   publishOffer,
@@ -19,7 +18,6 @@ interface User {
   username: string;
   fulfillmentPolicy: string;
   returnPolicy: string;
-  shippingPolicy: string;
   paymentPolicy: string;
   profitRatio: number;
   merchantLocationKey: string;
@@ -50,18 +48,6 @@ interface Event {
     usdJpy: number;
   };
 }
-
-type JudgeListing = "LIST" | "WITHDRAW" | "NOTHING";
-
-const calcFreeshipPrice = (
-  stockPrice: number,
-  usdJpy: number, //(USD/JPY)
-  profitRatio: number,
-  shipping: number,
-  salesFeeRatio = 0.17
-) => {
-  return (stockPrice + shipping) / (usdJpy * (1 - profitRatio - salesFeeRatio));
-};
 
 export const cacheGetAccessToken = async (
   ebayAppKeySsmParamName: string,
@@ -112,8 +98,8 @@ export const cacheGetAccessToken = async (
   return mintedToken.access_token;
 };
 
-export const judgeListing = (event: Event): JudgeListing => {
-  return "LIST";
+export const toBeListed = (event: Event) => {
+  return true;
 };
 
 export const listItem = async (event: Event) => {
@@ -175,8 +161,9 @@ export const listItem = async (event: Event) => {
     item.ebaySku,
     event.appParams.ebayIsSandbox
   );
-  let offerId = offer.data.offerId;
+  let offerId = "";
   if (offer.exist) {
+    offerId = offer.data.offerId;
     await updateOffer(
       accessToken,
       offerId,
@@ -184,11 +171,12 @@ export const listItem = async (event: Event) => {
       event.appParams.ebayIsSandbox
     );
   } else {
-    offerId = await createOffer(
+    const offer = await createOffer(
       accessToken,
       offerPayload,
       event.appParams.ebayIsSandbox
     );
+    offerId = offer.offerId;
   }
   const listing = await publishOffer(
     accessToken,
@@ -198,26 +186,10 @@ export const listItem = async (event: Event) => {
   return listing.listingId;
 };
 
-export const withdrawItem = async (event: Event) => {
-  const accessToken = await cacheGetAccessToken(
-    event.appParams.ebayAppKeySsmParamName,
-    event.appParams.ebayUserTokenSsmParamPrefix + event.user.username,
-    event.appParams.ebayIsSandbox
-  );
-  await deleteInventoryItem(
-    accessToken,
-    event.item.ebaySku,
-    event.appParams.ebayIsSandbox
-  );
-};
-
 export const handler = async (event: Event) => {
-  const judge = judgeListing(event);
-
-  if (judge === "LIST") {
-    await listItem(event);
-  } else if (judge === "WITHDRAW") {
-    await withdrawItem(event);
+  if (toBeListed(event)) {
+    const listingId = await listItem(event);
+    return { isListed: true, listingId };
   }
-  return judge;
+  return { isListed: false, listingId: "" };
 };
