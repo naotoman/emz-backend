@@ -1,17 +1,18 @@
 # TODO オプショナルな値を上書きする場合に、値が消去できるようにする
 input RegisterItemInput {
   shippingYen: Int!
-  orgUrl: AWSURL!
-  orgImageUrls: [AWSURL!]!
-  orgPrice: Int!
   ebayTitle: String!
   ebayDescription: String!
   ebayCategorySrc: [String!]!
   ebayStoreCategorySrc: [String!]!
-  ebayConditionSrc: String!
+  ebayCondition: String
+  ebayConditionSrc: String
   ebayConditionDescription: String
   ebayAspectParam: AWSJSON
-  ebayProductParam: AWSJSON
+  orgUrl: AWSURL!
+  orgImageUrls: [AWSURL!]!
+  orgPrice: Int!
+  orgExtraParam: AWSJSON
 }
 
 input DeregisterItemInput {

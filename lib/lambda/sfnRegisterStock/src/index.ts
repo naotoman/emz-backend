@@ -13,7 +13,8 @@ interface Item {
   ebaySku: string;
   ebayCategorySrc: string[];
   ebayStoreCategorySrc: string[];
-  ebayConditionSrc: string;
+  ebayCondition?: string;
+  ebayConditionSrc?: string;
 }
 
 interface AppParams {
@@ -63,7 +64,7 @@ const translateToConditionId = (
   conditionExpr: string
 ) => {
   const matched = conditionMap.itemConditions.find(
-    (c) => c.conditionDescription === conditionExpr
+    (c) => c.conditionDescription.toLowerCase() === conditionExpr.toLowerCase()
   );
   if (!matched) {
     throw new Error(`Condition not found: ${conditionExpr}`);
@@ -175,12 +176,15 @@ export const handler = async (event: Event) => {
 
   const ebayCategory = getCategoryId(event.item.ebayCategorySrc);
   log({ ebayCategory });
-  const ebayCondition = await getEbayCondition(
-    ebayCategory,
-    event.item.ebayConditionSrc,
-    event.appParams.s3Bucket,
-    event.appParams.s3PathForEbayConditions
-  );
+
+  const ebayCondition =
+    event.item.ebayCondition ||
+    (await getEbayCondition(
+      ebayCategory,
+      event.item.ebayConditionSrc!,
+      event.appParams.s3Bucket,
+      event.appParams.s3PathForEbayConditions
+    ));
   log({ ebayCondition });
 
   const attrs = {

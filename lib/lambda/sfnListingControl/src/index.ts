@@ -35,7 +35,7 @@ interface Item {
   ebayConditionDescription?: string;
   ebayImageUrls: string[];
   ebayAspectParam: Record<string, unknown>;
-  ebayProductParam: Record<string, unknown>;
+  orgExtraParam: Record<string, unknown>;
 }
 
 interface Event {
@@ -113,13 +113,15 @@ export const listItem = async (event: Event) => {
       },
     },
     condition: item.ebayCondition,
-    // conditionDescription: "This is a test listing.",
     product: {
       title: item.ebayTitle,
       description: item.ebayDescription,
       imageUrls: item.ebayImageUrls,
       aspects: item.ebayAspectParam,
     },
+    ...(item.ebayConditionDescription
+      ? { conditionDescription: item.ebayConditionDescription }
+      : {}),
   };
   log({ inventoryPayload });
 
