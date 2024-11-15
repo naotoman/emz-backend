@@ -21,15 +21,17 @@ export class BackendStack extends Stack {
       table: storage.table,
     });
 
-    const appsync = new AppSync(this, "AppSync", {
+    new AppSync(this, "AppSync", {
       apiName: props.stackId,
       table: storage.table,
       userPool: cognito.userPool,
       stateMachine: stateMachine.stateMachine,
     });
 
-    const ecs = new Ecs(this, "Ecs", {
+    new Ecs(this, "Ecs", {
       chromiumLayerArn: props.chromiumLayerArn,
+      ecsVpcId: props.ecsVpcId,
+      ecsSubnetIds: props.ecsSubnetIds,
     });
   }
 }
