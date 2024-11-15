@@ -32,7 +32,7 @@ export class Sfn extends Construct {
         buildArgs: { lambda: "sfnUploadImages" },
       }),
       memorySize: 256,
-      timeout: Duration.seconds(20),
+      timeout: Duration.seconds(40),
       layers: [awsSsmExtensionLayer],
       logGroup: new logs.LogGroup(this, `UploadImagesLog`, {
         retention: logs.RetentionDays.THREE_MONTHS,
