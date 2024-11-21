@@ -2,6 +2,7 @@ import { ConfigParameters, getConfigType } from "./parameters.type";
 
 const devConfig: ConfigParameters = {
   stackId: "XXX-dev", // Used for Stack ID. Don't change this after deployment.
+  isPrdEnv: false,
   awsEnv: {
     account: "999999999999",
     region: "region",

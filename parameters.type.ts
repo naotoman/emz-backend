@@ -1,5 +1,6 @@
 export interface ConfigParameters {
   stackId: string;
+  isPrdEnv: boolean;
   awsEnv: {
     account: string;
     region: string;

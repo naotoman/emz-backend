@@ -18,6 +18,7 @@ export interface EcsProps {
   ecsVpcId: string;
   ecsSubnetIds: string[];
   table: dynamodb.ITableV2;
+  isPrdEnv: boolean;
 }
 
 export class Ecs extends Construct {
@@ -122,7 +123,7 @@ export class Ecs extends Construct {
     new Rule(this, "ScheduleRule", {
       schedule: Schedule.rate(Duration.hours(24)),
       targets: [ecsTaskTarget],
-      enabled: true,
+      enabled: props.isPrdEnv ? true : false,
     });
   }
 }

@@ -33,6 +33,7 @@ export class BackendStack extends Stack {
       ecsVpcId: props.ecsVpcId,
       ecsSubnetIds: props.ecsSubnetIds,
       table: storage.table,
+      isPrdEnv: props.isPrdEnv,
     });
   }
 }
