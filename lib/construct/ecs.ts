@@ -1,5 +1,6 @@
 import {
   Duration,
+  aws_dynamodb as dynamodb,
   aws_ec2 as ec2,
   aws_ecs as ecs,
   aws_iam as iam,
@@ -16,11 +17,18 @@ export interface EcsProps {
   chromiumLayerArn: string;
   ecsVpcId: string;
   ecsSubnetIds: string[];
+  table: dynamodb.ITableV2;
 }
 
 export class Ecs extends Construct {
   constructor(scope: Construct, id: string, props: EcsProps) {
     super(scope, id);
+
+    const awsSsmExtensionLayer = lambda.LayerVersion.fromLayerVersionArn(
+      this,
+      "ssmExtension",
+      `arn:aws:lambda:ap-northeast-1:133490724326:layer:AWS-Parameters-and-Secrets-Lambda-Extension:12`
+    );
 
     const vpc = ec2.Vpc.fromLookup(this, "Vpc", {
       vpcId: props.ecsVpcId,
@@ -50,6 +58,23 @@ export class Ecs extends Construct {
       }),
     });
 
+    const listingControl = new lambda.Function(this, `ListingControl`, {
+      runtime: lambda.Runtime.NODEJS_20_X,
+      handler: "index.handler",
+      code: lambda.Code.fromDockerBuild("lib/lambda", {
+        buildArgs: { lambda: "ecsListingControl" },
+      }),
+      memorySize: 256,
+      timeout: Duration.seconds(20),
+      layers: [awsSsmExtensionLayer],
+      logGroup: new logs.LogGroup(this, `ListingControlLog`, {
+        retention: logs.RetentionDays.THREE_MONTHS,
+      }),
+    });
+    listingControl.role?.addManagedPolicy(
+      iam.ManagedPolicy.fromAwsManagedPolicyName("AmazonSSMFullAccess")
+    );
+
     const ecsTaskRole = new iam.Role(this, "EcsTaskRole", {
       assumedBy: new iam.ServicePrincipal("ecs-tasks.amazonaws.com"),
       managedPolicies: [
@@ -73,7 +98,11 @@ export class Ecs extends Construct {
       image: ecs.ContainerImage.fromAsset("lib/container/ecsTask", {
         platform: Platform.LINUX_AMD64,
       }),
-
+      environment: {
+        TABLE_NAME: props.table.tableName,
+        SCRAPE_LAMBDA_NAME: scraper.functionName,
+        LISTING_LAMBDA_NAME: listingControl.functionName,
+      },
       logging: ecs.LogDriver.awsLogs({
         streamPrefix: "ecs",
         logRetention: logs.RetentionDays.THREE_MONTHS,
@@ -87,10 +116,11 @@ export class Ecs extends Construct {
       subnetSelection: {
         subnetType: ec2.SubnetType.PUBLIC,
       },
+      retryAttempts: 0,
     });
 
     new Rule(this, "ScheduleRule", {
-      schedule: Schedule.rate(Duration.minutes(10)),
+      schedule: Schedule.rate(Duration.hours(24)),
       targets: [ecsTaskTarget],
       enabled: true,
     });

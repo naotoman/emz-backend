@@ -32,6 +32,7 @@ export class BackendStack extends Stack {
       chromiumLayerArn: props.chromiumLayerArn,
       ecsVpcId: props.ecsVpcId,
       ecsSubnetIds: props.ecsSubnetIds,
+      table: storage.table,
     });
   }
 }
