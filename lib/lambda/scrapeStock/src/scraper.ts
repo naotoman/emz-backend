@@ -1,9 +1,11 @@
 export interface StockCore {
+  url: string;
   imageUrls: string[];
   price: number;
+  title: string;
 }
 
-export interface Merc extends StockCore {
+export interface Merc {
   isPayOnDelivery: boolean;
   rateScore: number;
   rateCount: number;
@@ -14,7 +16,7 @@ export interface Merc extends StockCore {
   lastUpdated: string;
 }
 
-export interface Mshop extends StockCore {
+export interface Mshop {
   isPayOnDelivery: boolean;
   rateScore: number;
   rateCount: number;
@@ -25,14 +27,14 @@ export interface Mshop extends StockCore {
   lastUpdated: string;
 }
 
-export interface ScrapeResult<T extends StockCore> {
+export interface ScrapeResult<T> {
   stockStatus: "instock" | "outofstock";
-  stockData?: T;
+  stockData?: { core: StockCore; extra: T };
 }
 
-type Scraper<T extends StockCore> = () => Promise<ScrapeResult<T>>;
+type Scraper<T> = () => ScrapeResult<T>;
 
-export const scrapeMerc: Scraper<Merc> = async () => {
+export const scrapeMerc: Scraper<Merc> = () => {
   if (document.querySelector("#main div.merEmptyState")) {
     console.log("page is empty");
     return { stockStatus: "outofstock" };
@@ -46,12 +48,19 @@ export const scrapeMerc: Scraper<Merc> = async () => {
     return { stockStatus: "outofstock" };
   }
 
+  const url = location.href;
+  console.log({ url });
+
   const imageUrls = Array.from(
     document.querySelectorAll<HTMLImageElement>(
       'article div[data-testid^="image-"] img'
     )
   ).map((img) => img.src);
   console.log({ imageUrls: imageUrls.join(",") });
+
+  const title =
+    document.querySelector<HTMLHeadingElement>("#item-info h1")?.textContent;
+  console.log({ title });
 
   const priceSpans = document.querySelectorAll<HTMLSpanElement>(
     '#item-info div[data-testid="price"] span'
@@ -106,6 +115,7 @@ export const scrapeMerc: Scraper<Merc> = async () => {
   console.log({ rateCount });
 
   if (
+    !url ||
     !lastUpdated ||
     !shippingMethod ||
     !shippedFrom ||
@@ -116,12 +126,14 @@ export const scrapeMerc: Scraper<Merc> = async () => {
     price < 300 ||
     Number.isNaN(rateScore) ||
     Number.isNaN(rateCount) ||
-    imageUrls.length === 0
+    imageUrls.length === 0 ||
+    !title
   ) {
     throw new Error(
       "Scraping failed.\n" +
         JSON.stringify(
           {
+            url,
             lastUpdated,
             shippingMethod,
             shippedFrom,
@@ -132,6 +144,7 @@ export const scrapeMerc: Scraper<Merc> = async () => {
             rateScore,
             rateCount,
             imageUrls,
+            title,
           },
           (_, v) => (v === undefined ? "UNDEFINED!" : v)
         )
@@ -141,21 +154,27 @@ export const scrapeMerc: Scraper<Merc> = async () => {
   return {
     stockStatus: "instock",
     stockData: {
-      imageUrls: imageUrls,
-      price: price,
-      lastUpdated: lastUpdated,
-      isPayOnDelivery: isPayOnDelivery,
-      shippingMethod: shippingMethod,
-      shippedFrom: shippedFrom,
-      shippedWithin: shippedWithin,
-      sellerId: sellerId,
-      rateScore: rateScore,
-      rateCount: rateCount,
+      core: {
+        url: url,
+        imageUrls: imageUrls,
+        title: title,
+        price: price,
+      },
+      extra: {
+        lastUpdated: lastUpdated,
+        isPayOnDelivery: isPayOnDelivery,
+        shippingMethod: shippingMethod,
+        shippedFrom: shippedFrom,
+        shippedWithin: shippedWithin,
+        sellerId: sellerId,
+        rateScore: rateScore,
+        rateCount: rateCount,
+      },
     },
   };
 };
 
-export const scrapeMshop: Scraper<Mshop> = async () => {
+export const scrapeMshop: Scraper<Mshop> = () => {
   if (document.querySelector("#main div.merEmptyState")) {
     console.log("page is empty");
     return { stockStatus: "outofstock" };
@@ -169,12 +188,19 @@ export const scrapeMshop: Scraper<Mshop> = async () => {
     return { stockStatus: "outofstock" };
   }
 
+  const url = location.href;
+  console.log({ url });
+
   const imageUrls = Array.from(
     document.querySelectorAll<HTMLImageElement>(
       'article div[data-testid^="image-"] img'
     )
   ).map((img) => img.src);
   console.log({ imageUrls: imageUrls.join(",") });
+
+  const title =
+    document.querySelector<HTMLHeadingElement>("#item-info h1")?.textContent;
+  console.log({ title });
 
   const priceSpans = document.querySelectorAll<HTMLSpanElement>(
     '#product-info div[data-testid="product-price"] span'
@@ -229,6 +255,7 @@ export const scrapeMshop: Scraper<Mshop> = async () => {
   console.log({ rateCount });
 
   if (
+    !url ||
     !lastUpdated ||
     !shippingMethod ||
     !shippedFrom ||
@@ -239,12 +266,14 @@ export const scrapeMshop: Scraper<Mshop> = async () => {
     price < 300 ||
     Number.isNaN(rateScore) ||
     Number.isNaN(rateCount) ||
-    imageUrls.length === 0
+    imageUrls.length === 0 ||
+    !title
   ) {
     throw new Error(
       "Scraping failed.\n" +
         JSON.stringify(
           {
+            url,
             lastUpdated,
             shippingMethod,
             shippedFrom,
@@ -255,6 +284,7 @@ export const scrapeMshop: Scraper<Mshop> = async () => {
             rateScore,
             rateCount,
             imageUrls,
+            title,
           },
           (_, v) => (v === undefined ? "UNDEFINED!" : v)
         )
@@ -264,16 +294,22 @@ export const scrapeMshop: Scraper<Mshop> = async () => {
   return {
     stockStatus: "instock",
     stockData: {
-      imageUrls: imageUrls,
-      price: price,
-      lastUpdated: lastUpdated,
-      isPayOnDelivery: isPayOnDelivery,
-      shippingMethod: shippingMethod,
-      shippedFrom: shippedFrom,
-      shippedWithin: shippedWithin,
-      sellerId: sellerId,
-      rateScore: rateScore,
-      rateCount: rateCount,
+      core: {
+        url: url,
+        imageUrls: imageUrls,
+        price: price,
+        title: title,
+      },
+      extra: {
+        lastUpdated: lastUpdated,
+        isPayOnDelivery: isPayOnDelivery,
+        shippingMethod: shippingMethod,
+        shippedFrom: shippedFrom,
+        shippedWithin: shippedWithin,
+        sellerId: sellerId,
+        rateScore: rateScore,
+        rateCount: rateCount,
+      },
     },
   };
 };
