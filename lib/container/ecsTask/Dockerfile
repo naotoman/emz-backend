@@ -4,8 +4,8 @@ RUN npm install -g esbuild
 
 WORKDIR /root/app
 
-# COPY package*.json .
-# RUN npm ci
+COPY package*.json .
+RUN npm ci
 
 COPY src/ .
 RUN esbuild *.ts --outdir=. --target=es2022 --platform=node --format=cjs

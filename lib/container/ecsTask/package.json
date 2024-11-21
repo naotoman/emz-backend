@@ -1,0 +1,9 @@
+{
+  "name": "ecs",
+  "version": "1.0.0",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.696.0",
+    "@aws-sdk/client-lambda": "^3.697.0",
+    "@aws-sdk/util-dynamodb": "^3.696.0"
+  }
+}
