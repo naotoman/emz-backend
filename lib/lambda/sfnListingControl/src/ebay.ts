@@ -288,7 +288,6 @@ export const updateOffer = async (
 
   try {
     const res = await axios.put(url, payload, { headers, timeout: 7500 });
-    console.log(util.inspect(res, { depth: null }));
 
     if ([200, 204].includes(res.status)) {
       return;
