@@ -1,3 +1,11 @@
+input RegisterItemChatGptInput {
+  shippingYen: Int!
+  orgUrl: AWSURL!
+  orgImageUrls: [AWSURL!]!
+  orgPrice: Int!
+  orgExtraParam: AWSJSON
+}
+
 # TODO オプショナルな値を上書きする場合に、値が消去できるようにする
 input RegisterItemInput {
   shippingYen: Int!
@@ -39,6 +47,8 @@ type UserInfo {
 }
 
 type Mutation {
+  registerItemChatGpt(input: RegisterItemChatGptInput!): String
+    @aws_auth(cognito_groups: ["USER"])
   registerItem(input: RegisterItemInput!): String
     @aws_auth(cognito_groups: ["USER"])
   deregisterItem(input: DeregisterItemInput!): String

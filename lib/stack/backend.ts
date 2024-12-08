@@ -5,6 +5,7 @@ import { AppSync } from "../construct/appsync";
 import { Cognito } from "../construct/cognito";
 import { Database } from "../construct/database";
 import { Ecs } from "../construct/ecs";
+import { SfnGpt } from "../construct/gptStepfunction";
 import { Sfn } from "../construct/stepfunction";
 
 export class BackendStack extends Stack {
@@ -21,11 +22,16 @@ export class BackendStack extends Stack {
       table: storage.table,
     });
 
+    const stateMachineGpt = new SfnGpt(this, "SfnGpt", {
+      table: storage.table,
+    });
+
     new AppSync(this, "AppSync", {
       apiName: props.stackId,
       table: storage.table,
       userPool: cognito.userPool,
       stateMachine: stateMachine.stateMachine,
+      stateMachineGpt: stateMachineGpt.stateMachine,
     });
 
     new Ecs(this, "Ecs", {

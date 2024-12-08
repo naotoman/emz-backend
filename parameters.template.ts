@@ -24,6 +24,7 @@ const devConfig: ConfigParameters = {
     r2Domain: "https://your-domain.com",
     s3Bucket: "bucketName",
     s3PathForEbayConditions: "path",
+    chatGptKeySsmParamName: "paramName",
   },
 };
 

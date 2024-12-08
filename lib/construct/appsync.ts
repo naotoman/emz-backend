@@ -9,6 +9,7 @@ export interface AppSyncProps {
   table: dynamodb.ITableV2;
   userPool: cognito.IUserPool;
   stateMachine: sfn.IStateMachine;
+  stateMachineGpt: sfn.IStateMachine;
   apiName: string;
 }
 
@@ -48,6 +49,7 @@ export class AppSync extends Construct {
         },
       }
     );
+    props.stateMachineGpt.grantStartExecution(sfnSource);
     props.stateMachine.grantStartExecution(sfnSource);
 
     const prepRegisterItem = new appsync.AppsyncFunction(
@@ -78,6 +80,34 @@ export class AppSync extends Construct {
       }
     );
 
+    const prepRegisterItemChatGPt = new appsync.AppsyncFunction(
+      this,
+      "PrepRegisterItemChatGpt",
+      {
+        name: "prep_register_item_chatgpt",
+        api,
+        dataSource: ddbSource,
+        code: appsync.Code.fromAsset(
+          "lib/graphql/prepRegisterItemChatGpt.resolver.js"
+        ),
+        runtime: appsync.FunctionRuntime.JS_1_0_0,
+      }
+    );
+
+    const startStepFunctionChatGpt = new appsync.AppsyncFunction(
+      this,
+      "StartStepFunctionChatGpt",
+      {
+        name: "start_step_function_chatgpt",
+        api,
+        dataSource: sfnSource,
+        code: appsync.Code.fromAsset(
+          "lib/graphql/startStepFunctionChatGpt.resolver.js"
+        ),
+        runtime: appsync.FunctionRuntime.JS_1_0_0,
+      }
+    );
+
     new appsync.Resolver(this, "BatchGetItemResolver", {
       api,
       typeName: "Query",
@@ -102,6 +132,17 @@ export class AppSync extends Construct {
       fieldName: "registerItem",
       pipelineConfig: [prepRegisterItem, startStepFunction],
       code: appsync.Code.fromAsset("lib/graphql/registerItem.resolver.js"),
+      runtime: appsync.FunctionRuntime.JS_1_0_0,
+    });
+
+    new appsync.Resolver(this, "RegisterItemChatGptResolver", {
+      api,
+      typeName: "Mutation",
+      fieldName: "registerItemChatGpt",
+      pipelineConfig: [prepRegisterItemChatGPt, startStepFunctionChatGpt],
+      code: appsync.Code.fromAsset(
+        "lib/graphql/registerItemChatGpt.resolver.js"
+      ),
       runtime: appsync.FunctionRuntime.JS_1_0_0,
     });
   }
