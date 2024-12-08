@@ -178,8 +178,9 @@ export const handler = async (event: Event) => {
         gptResult.box_size.depth
       );
 
+  const { orgTitle, orgDescription, ...filteredItem } = event.item;
   return {
-    ...event.item,
+    ...filteredItem,
     shippingYen,
     ebayTitle: gptResult.title,
     ebayDescription:
