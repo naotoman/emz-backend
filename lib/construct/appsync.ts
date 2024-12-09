@@ -23,6 +23,7 @@ export class AppSync extends Construct {
       environmentVariables: {
         TABLE_NAME: props.table.tableName,
         SFN_ARN: props.stateMachine.stateMachineArn,
+        SFN_GPT_ARN: props.stateMachineGpt.stateMachineArn,
       },
       authorizationConfig: {
         defaultAuthorization: {

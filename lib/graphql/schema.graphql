@@ -4,6 +4,8 @@ input RegisterItemChatGptInput {
   orgImageUrls: [AWSURL!]!
   orgPrice: Int!
   orgExtraParam: AWSJSON
+  orgTitle: String!
+  orgDescription: String!
 }
 
 # TODO オプショナルな値を上書きする場合に、値が消去できるようにする

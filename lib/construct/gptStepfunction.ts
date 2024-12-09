@@ -123,10 +123,7 @@ export class SfnGpt extends Construct {
               }),
               resultPath: "$.resultPath",
               resultSelector: {
-                ebayImageUrls: sfn.JsonPath.objectAt(
-                  "$.resultPath.Payload.distImageUrls"
-                ),
-                item: sfn.JsonPath.objectAt("$.item"),
+                ebayImageUrls: sfn.JsonPath.objectAt("$.Payload.distImageUrls"),
               },
             })
           )
@@ -139,7 +136,9 @@ export class SfnGpt extends Construct {
                   "$$.Execution.Input.appParams"
                 ),
                 item: sfn.JsonPath.objectAt("$.item"),
-                ebayImageUrls: sfn.JsonPath.objectAt("$.ebayImageUrls"),
+                ebayImageUrls: sfn.JsonPath.objectAt(
+                  "$.resultPath.ebayImageUrls"
+                ),
               }),
               resultSelector: {
                 item: sfn.JsonPath.objectAt("$.Payload"),
