@@ -165,7 +165,11 @@ export class SfnGpt extends Construct {
               table: props.table,
               key: {
                 id: sfnTasks.DynamoAttributeValue.fromString(
-                  sfn.JsonPath.stringAt("$$.Execution.Input.item.ebaySku")
+                  sfn.JsonPath.format(
+                    "ITEM#{}#{}",
+                    sfn.JsonPath.stringAt("$$.Execution.Input.user.username"),
+                    sfn.JsonPath.stringAt("$$.Execution.Input.item.ebaySku")
+                  )
                 ),
               },
               expressionAttributeValues: {

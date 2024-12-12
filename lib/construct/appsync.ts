@@ -69,7 +69,7 @@ export class AppSync extends Construct {
 
     const startStepFunction = new appsync.AppsyncFunction(
       this,
-      "StartStepFunction",
+      "StartStepFunctionV2",
       {
         name: "start_step_function",
         api,
@@ -83,7 +83,7 @@ export class AppSync extends Construct {
 
     const prepRegisterItemChatGPt = new appsync.AppsyncFunction(
       this,
-      "PrepRegisterItemChatGpt",
+      "PrepRegisterItemChatGptV2",
       {
         name: "prep_register_item_chatgpt",
         api,
@@ -97,7 +97,7 @@ export class AppSync extends Construct {
 
     const startStepFunctionChatGpt = new appsync.AppsyncFunction(
       this,
-      "StartStepFunctionChatGpt",
+      "StartStepFunctionChatGptV2",
       {
         name: "start_step_function_chatgpt",
         api,
