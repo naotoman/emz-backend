@@ -23,7 +23,14 @@ export interface Item {
   orgUrl: string;
   orgImageUrls: string[];
   orgPrice: number;
-  orgExtraParam: unknown;
+  orgExtraParam: {
+    isPayOnDelivery?: boolean;
+    rateScore?: number;
+    rateCount?: number;
+    shippedFrom?: string;
+    shippedWithin?: string;
+    shippingMethod?: string;
+  };
 }
 
 export interface User {
@@ -54,16 +61,23 @@ export const shouldScrape = (item: Item): boolean =>
 export const shouldList = (item: Item): boolean => {
   const currentTime = Math.floor(Date.now() / 1000);
   return (
-    item.isOrgLive && !item.isImageChanged && item.orgPrice < 100000
-    // !item.isPayOnDelivery &&
-    // item.rateScore! > 4.8 &&
-    // item.rateCount! > 10 &&
-    // item.shippedFrom !== "沖縄県" &&
-    // !(
-    //   item.shippedWithin === "4~7日で発送" &&
-    //   item.shippingMethod!.includes("普通郵便")
-    // ) &&
-    // !(item.shippedWithin === "4~7日で発送" && item.shippingMethod === "未定") &&
+    item.isOrgLive &&
+    !item.isImageChanged &&
+    item.orgPrice < 100000 &&
+    !item.orgExtraParam.isPayOnDelivery &&
+    (item.orgExtraParam.rateScore == null ||
+      item.orgExtraParam.rateScore > 4.8) &&
+    (item.orgExtraParam.rateCount == null ||
+      item.orgExtraParam.rateCount > 10) &&
+    item.orgExtraParam.shippedFrom !== "沖縄県" &&
+    !(
+      item.orgExtraParam.shippedWithin === "4~7日で発送" &&
+      item.orgExtraParam.shippingMethod?.includes("普通郵便")
+    ) &&
+    !(
+      item.orgExtraParam.shippedWithin === "4~7日で発送" &&
+      item.orgExtraParam.shippingMethod === "未定"
+    )
     // item.lastUpdated !== "半年以上前" &&
     // 該当商品が売れた場合、売れてから仕入れるまでのラグを考慮して48時間経過するまでは再出品しない。
     // 売れた後、より安い商品が見つかった場合など必ずしも同一商品を仕入れない可能性があるので、再出品できる余地を残す。

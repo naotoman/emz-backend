@@ -35,7 +35,14 @@ interface Item {
   ebayConditionDescription?: string;
   ebayImageUrls: string[];
   ebayAspectParam: Record<string, unknown>;
-  orgExtraParam: Record<string, unknown>;
+  orgExtraParam: {
+    isPayOnDelivery?: boolean;
+    rateScore?: number;
+    rateCount?: number;
+    shippedFrom?: string;
+    shippedWithin?: string;
+    shippingMethod?: string;
+  };
 }
 
 interface Event {
@@ -99,7 +106,24 @@ export const cacheGetAccessToken = async (
 };
 
 export const toBeListed = (event: Event) => {
-  return true;
+  const item = event.item;
+  return (
+    item.orgPrice < 100000 &&
+    !item.orgExtraParam.isPayOnDelivery &&
+    (item.orgExtraParam.rateScore == null ||
+      item.orgExtraParam.rateScore > 4.8) &&
+    (item.orgExtraParam.rateCount == null ||
+      item.orgExtraParam.rateCount > 10) &&
+    item.orgExtraParam.shippedFrom !== "沖縄県" &&
+    !(
+      item.orgExtraParam.shippedWithin === "4~7日で発送" &&
+      item.orgExtraParam.shippingMethod?.includes("普通郵便")
+    ) &&
+    !(
+      item.orgExtraParam.shippedWithin === "4~7日で発送" &&
+      item.orgExtraParam.shippingMethod === "未定"
+    )
+  );
 };
 
 export const listItem = async (event: Event) => {
