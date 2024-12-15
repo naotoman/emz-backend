@@ -25,6 +25,9 @@ interface ChatGptResponse {
     characters: string[] | null;
     brand: string | null;
   };
+  condition: string;
+  promotion: string;
+  weight: number;
   box_size: {
     width: number;
     height: number;
@@ -44,6 +47,10 @@ const chatgpt = async (event: Event) => {
             type: "string",
             description:
               "eBay listing title (within 80 characters, including spaces)",
+          },
+          condition: {
+            type: "string",
+            description: "brief summary of the item's condition",
           },
           specifics: {
             type: "object",
@@ -69,9 +76,17 @@ const chatgpt = async (event: Event) => {
             required: ["franchise", "characters", "brand"],
             additionalProperties: false,
           },
+          promotion: {
+            type: "string",
+            description: "short promotional text for the item",
+          },
+          weight: {
+            type: "number",
+            description: "estimated weight of the item",
+          },
           box_size: {
             type: "object",
-            description: "estimated box size (cm) for packaging",
+            description: "estimated box size for packaging",
             properties: {
               width: {
                 type: "number",
@@ -90,7 +105,14 @@ const chatgpt = async (event: Event) => {
             additionalProperties: false,
           },
         },
-        required: ["title", "box_size", "specifics"],
+        required: [
+          "title",
+          "condition",
+          "promotion",
+          "weight",
+          "box_size",
+          "specifics",
+        ],
         additionalProperties: false,
       },
       strict: true,
@@ -109,7 +131,7 @@ const chatgpt = async (event: Event) => {
       {
         role: "system",
         content:
-          "You assist users in listing Japanese Mercari items on eBay. Based on item images, titles, and descriptions, provide an eBay listing title, item specifics, and an estimated box size (cm) for packaging.",
+          "You assist users in reselling Japanese Mercari items on eBay. Based on the item's images, titles, and descriptions, you provide an eBay listing title, item condition, item specifics, promotional text, an estimated weight (in grams), and an estimated box size (in centimeters) for packaging.",
       },
       {
         role: "user",
@@ -123,9 +145,9 @@ const chatgpt = async (event: Event) => {
           },
           {
             type: "text",
-            text: `#title
+            text: `[title]
 ${event.item.orgTitle}
-#description
+[description]
 ${event.item.orgDescription}`,
           },
         ],
@@ -145,21 +167,43 @@ ${event.item.orgDescription}`,
   }
 };
 
-const calcShippingFee = (width: number, height: number, depth: number) => {
-  if (width + height + depth <= 90) {
-    return 1670;
-  } else if ((width * height * depth) / 5000 < 0.5) {
-    return 3000;
-  } else if ((width * height * depth) / 5000 < 1) {
-    return 3300;
-  } else if ((width * height * depth) / 5000 < 2) {
-    return 3700;
-  } else if ((width * height * depth) / 5000 < 3) {
-    return 5000;
-  } else if ((width * height * depth) / 5000 < 4) {
-    return 5800;
-  } else if ((width * height * depth) / 5000 < 5) {
-    return 7100;
+const calcShippingFee = (
+  width: number,
+  height: number,
+  depth: number,
+  weight: number
+) => {
+  let japanPostFee = 100000;
+  if (
+    width + height + depth <= 90 &&
+    Math.max(width, height, depth) <= 60 &&
+    weight <= 2000
+  ) {
+    japanPostFee = Math.max(830, 830 + Math.ceil(2.1 * (weight - 100)));
+  }
+  const fedexVolumeWeight = Math.max(weight, (width * height * depth) / 5);
+  if (fedexVolumeWeight <= 500) {
+    return Math.min(japanPostFee, 3000);
+  } else if (fedexVolumeWeight <= 1000) {
+    return Math.min(japanPostFee, 3300);
+  } else if (fedexVolumeWeight <= 2000) {
+    return Math.min(japanPostFee, 3700);
+  } else if (fedexVolumeWeight <= 3000) {
+    return Math.min(japanPostFee, 5000);
+  } else if (fedexVolumeWeight <= 4000) {
+    return Math.min(japanPostFee, 5800);
+  } else if (fedexVolumeWeight <= 5000) {
+    return Math.min(japanPostFee, 7100);
+  } else if (fedexVolumeWeight <= 6000) {
+    return Math.min(japanPostFee, 8800);
+  } else if (fedexVolumeWeight <= 7000) {
+    return Math.min(japanPostFee, 9400);
+  } else if (fedexVolumeWeight <= 8000) {
+    return Math.min(japanPostFee, 10000);
+  } else if (fedexVolumeWeight <= 9000) {
+    return Math.min(japanPostFee, 10600);
+  } else if (fedexVolumeWeight <= 10000) {
+    return Math.min(japanPostFee, 13300);
   } else {
     throw new Error("too large");
   }
@@ -175,7 +219,8 @@ export const handler = async (event: Event) => {
     : calcShippingFee(
         gptResult.box_size.width,
         gptResult.box_size.height,
-        gptResult.box_size.depth
+        gptResult.box_size.depth,
+        gptResult.weight
       );
 
   const { orgTitle, orgDescription, ...filteredItem } = event.item;
@@ -183,8 +228,7 @@ export const handler = async (event: Event) => {
     ...filteredItem,
     shippingYen,
     ebayTitle: gptResult.title,
-    ebayDescription:
-      '<h3 style="color: rgb(51, 51, 51); font-family: Arial; margin-top: 1.6em;">Shipping</h3><ul style="color: rgb(51, 51, 51); font-family: Arial;"><li>Tracking numbers are provided to all orders.</li></ul><h3 style="color: rgb(51, 51, 51); font-family: Arial; margin-top: 1.6em;">Please Note</h3><ul style="color: rgb(51, 51, 51); font-family: Arial;"><li>Import duties, taxes, and charges are not included in the item price or shipping cost. Buyers are responsible for these charges.</li><li>These charges may be collected by the carrier when you receive the item. Do not confuse them with additional shipping cost.</li></ul>',
+    ebayDescription: `<div style="color: rgb(51, 51, 51); font-family: Arial;"><p>${gptResult.promotion}</p><h3 style="margin-top: 1.6em;">Condition</h3><p>${gptResult.condition}</p><h3 style="margin-top: 1.6em;">Shipping</h3><p>Tracking numbers are provided to all orders. The item will be carefully packed to ensure it arrives safely.</p><h3 style="margin-top: 1.6em;">Customs and import charges</h3><p>Import duties, taxes, and charges are not included in the item price or shipping cost. Buyers are responsible for these charges. These charges may be collected by the carrier when you receive the item.</p></div>`,
     ebayCategorySrc: [
       "Collectibles",
       "Animation Art & Merchandise",
@@ -193,6 +237,7 @@ export const handler = async (event: Event) => {
     ],
     ebayStoreCategorySrc: ["Anime Merchandise"],
     ebayConditionSrc: "Used",
+    ebayConditionDescription: gptResult.condition,
     ebayAspectParam: {
       ...(gptResult.specifics.franchise
         ? {
