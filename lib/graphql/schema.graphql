@@ -41,6 +41,7 @@ input EditUserConfigInput {
 
 type Item {
   isListed: Boolean!
+  isImageChanged: Boolean!
 }
 
 type UserInfo {
