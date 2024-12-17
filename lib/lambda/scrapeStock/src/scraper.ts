@@ -121,7 +121,7 @@ export const scrapeMerc: Scraper<Merc> = () => {
     price < 300 ||
     Number.isNaN(rateScore) ||
     Number.isNaN(rateCount) ||
-    imageUrls.length === 0 ||
+    imageUrls.length === 0
   ) {
     throw new Error(
       "Scraping failed.\n" +
@@ -254,7 +254,7 @@ export const scrapeMshop: Scraper<Mshop> = () => {
     price < 300 ||
     Number.isNaN(rateScore) ||
     Number.isNaN(rateCount) ||
-    imageUrls.length === 0 ||
+    imageUrls.length === 0
   ) {
     throw new Error(
       "Scraping failed.\n" +
