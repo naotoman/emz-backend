@@ -19,14 +19,14 @@ interface Event {
 }
 
 interface ChatGptResponse {
-  title: string;
-  specifics: {
+  listing_title: string;
+  item_condition: string;
+  item_specifics: {
     franchise: string | null;
     characters: string[] | null;
     brand: string | null;
   };
-  condition: string;
-  promotion: string;
+  promotional_text: string;
   weight: number;
   box_size: {
     width: number;
@@ -43,18 +43,18 @@ const chatgpt = async (event: Event) => {
       schema: {
         type: "object",
         properties: {
-          title: {
+          listing_title: {
             type: "string",
             description:
-              "eBay listing title (within 80 characters, including spaces)",
+              "eBay listing title (within 80 characters, including spaces).",
           },
-          condition: {
+          item_condition: {
             type: "string",
-            description: "brief summary of the item's condition",
+            description: "Brief summary of the item's condition.",
           },
-          specifics: {
+          item_specifics: {
             type: "object",
-            description: "item specifics",
+            description: "Item specifics.",
             properties: {
               franchise: {
                 type: ["string", "null"],
@@ -76,17 +76,18 @@ const chatgpt = async (event: Event) => {
             required: ["franchise", "characters", "brand"],
             additionalProperties: false,
           },
-          promotion: {
+          promotional_text: {
             type: "string",
-            description: "short promotional text for the item",
+            description: "Promotional text for the listing.",
           },
           weight: {
             type: "number",
-            description: "estimated weight of the item",
+            description: "An estimated weight (in grams) for shipping.",
           },
           box_size: {
             type: "object",
-            description: "estimated box size for packaging",
+            description:
+              "An estimated box size (in centimeters) for packaging.",
             properties: {
               width: {
                 type: "number",
@@ -106,12 +107,12 @@ const chatgpt = async (event: Event) => {
           },
         },
         required: [
-          "title",
-          "condition",
-          "promotion",
+          "listing_title",
+          "item_condition",
+          "item_specifics",
+          "promotional_text",
           "weight",
           "box_size",
-          "specifics",
         ],
         additionalProperties: false,
       },
@@ -131,7 +132,7 @@ const chatgpt = async (event: Event) => {
       {
         role: "system",
         content:
-          "You assist users in reselling Japanese Mercari items on eBay. Based on the item's images, titles, and descriptions, you provide an eBay listing title, item condition, item specifics, promotional text, an estimated weight (in grams), and an estimated box size (in centimeters) for packaging.",
+          "You assist users in reselling Japanese Mercari items on eBay. Unless otherwise stated, assume all items are pre-owned. Based on the provided item's image, title, and description, generate the information for an eBay listing. Ensure the responses are suitable for eBay's platform requirements.",
       },
       {
         role: "user",
@@ -219,8 +220,8 @@ export const handler = async (event: Event) => {
       gptResult.box_size.height,
       gptResult.box_size.depth,
     ],
-    ebayTitle: gptResult.title,
-    ebayDescription: `<div style="color: rgb(51, 51, 51); font-family: Arial;"><p>${gptResult.promotion}</p><h3 style="margin-top: 1.6em;">Condition</h3><p>${gptResult.condition}</p><h3 style="margin-top: 1.6em;">Shipping</h3><p>Tracking numbers are provided to all orders. The item will be carefully packed to ensure it arrives safely.</p><h3 style="margin-top: 1.6em;">Customs and import charges</h3><p>Import duties, taxes, and charges are not included in the item price or shipping cost. Buyers are responsible for these charges. These charges may be collected by the carrier when you receive the item.</p></div>`,
+    ebayTitle: gptResult.listing_title,
+    ebayDescription: `<div style="color: rgb(51, 51, 51); font-family: Arial;"><p>${gptResult.promotional_text}</p><h3 style="margin-top: 1.6em;">Condition</h3><p>${gptResult.item_condition}</p><h3 style="margin-top: 1.6em;">Shipping</h3><p>Tracking numbers are provided to all orders. The item will be carefully packed to ensure it arrives safely.</p><h3 style="margin-top: 1.6em;">Customs and import charges</h3><p>Import duties, taxes, and charges are not included in the item price or shipping cost. Buyers are responsible for these charges. These charges may be collected by the carrier when you receive the item.</p></div>`,
     ebayCategorySrc: [
       "Collectibles",
       "Animation Art & Merchandise",
@@ -229,19 +230,19 @@ export const handler = async (event: Event) => {
     ],
     ebayStoreCategorySrc: ["Anime Merchandise"],
     ebayConditionSrc: "Used",
-    ebayConditionDescription: gptResult.condition,
+    ebayConditionDescription: gptResult.item_condition,
     ebayAspectParam: {
-      ...(gptResult.specifics.franchise
+      ...(gptResult.item_specifics.franchise
         ? {
-            Franchise: [gptResult.specifics.franchise],
-            "TV Show": [gptResult.specifics.franchise],
+            Franchise: [gptResult.item_specifics.franchise],
+            "TV Show": [gptResult.item_specifics.franchise],
           }
         : {}),
-      ...(gptResult.specifics.brand
-        ? { Brand: [gptResult.specifics.brand] }
+      ...(gptResult.item_specifics.brand
+        ? { Brand: [gptResult.item_specifics.brand] }
         : {}),
-      ...(gptResult.specifics.characters
-        ? { Character: gptResult.specifics.characters }
+      ...(gptResult.item_specifics.characters
+        ? { Character: gptResult.item_specifics.characters }
         : {}),
       "Country/Region of Manufacture": ["Japan"],
       Theme: ["Anime & Manga"],
