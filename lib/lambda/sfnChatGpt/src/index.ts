@@ -181,32 +181,18 @@ const calcShippingFee = (
   ) {
     japanPostFee = Math.max(830, 830 + Math.ceil(2.1 * (weight - 100)));
   }
-  const fedexVolumeWeight = Math.max(weight, (width * height * depth) / 5);
-  if (fedexVolumeWeight <= 500) {
-    return Math.min(japanPostFee, 3000);
-  } else if (fedexVolumeWeight <= 1000) {
-    return Math.min(japanPostFee, 3300);
-  } else if (fedexVolumeWeight <= 2000) {
-    return Math.min(japanPostFee, 3700);
-  } else if (fedexVolumeWeight <= 3000) {
-    return Math.min(japanPostFee, 5000);
-  } else if (fedexVolumeWeight <= 4000) {
-    return Math.min(japanPostFee, 5800);
-  } else if (fedexVolumeWeight <= 5000) {
-    return Math.min(japanPostFee, 7100);
-  } else if (fedexVolumeWeight <= 6000) {
-    return Math.min(japanPostFee, 8800);
-  } else if (fedexVolumeWeight <= 7000) {
-    return Math.min(japanPostFee, 9400);
-  } else if (fedexVolumeWeight <= 8000) {
-    return Math.min(japanPostFee, 10000);
-  } else if (fedexVolumeWeight <= 9000) {
-    return Math.min(japanPostFee, 10600);
-  } else if (fedexVolumeWeight <= 10000) {
-    return Math.min(japanPostFee, 13300);
-  } else {
-    throw new Error("too large");
+  const fedexVolumeWeight = Math.max(
+    weight / 1000,
+    (width * height * depth) / 5000
+  );
+  if (fedexVolumeWeight > 12) {
+    throw new Error("too big");
   }
+  const fedexFee = Math.max(
+    2700,
+    (11300 * fedexVolumeWeight) / 11.5 + 25400 / 11.5
+  );
+  return Math.min(japanPostFee, fedexFee);
 };
 
 export const handler = async (event: Event) => {
@@ -227,6 +213,12 @@ export const handler = async (event: Event) => {
   return {
     ...filteredItem,
     shippingYen,
+    weightGram: gptResult.weight,
+    boxSizeCm: [
+      gptResult.box_size.width,
+      gptResult.box_size.height,
+      gptResult.box_size.depth,
+    ],
     ebayTitle: gptResult.title,
     ebayDescription: `<div style="color: rgb(51, 51, 51); font-family: Arial;"><p>${gptResult.promotion}</p><h3 style="margin-top: 1.6em;">Condition</h3><p>${gptResult.condition}</p><h3 style="margin-top: 1.6em;">Shipping</h3><p>Tracking numbers are provided to all orders. The item will be carefully packed to ensure it arrives safely.</p><h3 style="margin-top: 1.6em;">Customs and import charges</h3><p>Import duties, taxes, and charges are not included in the item price or shipping cost. Buyers are responsible for these charges. These charges may be collected by the carrier when you receive the item.</p></div>`,
     ebayCategorySrc: [
