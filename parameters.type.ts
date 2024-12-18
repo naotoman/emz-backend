@@ -19,6 +19,7 @@ export interface ConfigParameters {
     r2Domain: string;
     s3Bucket: string;
     s3PathForEbayConditions: string;
+    chatGptKeySsmParamName: string;
   };
 }
 

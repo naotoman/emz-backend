@@ -9,6 +9,7 @@ export interface AppSyncProps {
   table: dynamodb.ITableV2;
   userPool: cognito.IUserPool;
   stateMachine: sfn.IStateMachine;
+  stateMachineGpt: sfn.IStateMachine;
   apiName: string;
 }
 
@@ -22,6 +23,7 @@ export class AppSync extends Construct {
       environmentVariables: {
         TABLE_NAME: props.table.tableName,
         SFN_ARN: props.stateMachine.stateMachineArn,
+        SFN_GPT_ARN: props.stateMachineGpt.stateMachineArn,
       },
       authorizationConfig: {
         defaultAuthorization: {
@@ -48,6 +50,7 @@ export class AppSync extends Construct {
         },
       }
     );
+    props.stateMachineGpt.grantStartExecution(sfnSource);
     props.stateMachine.grantStartExecution(sfnSource);
 
     const prepRegisterItem = new appsync.AppsyncFunction(
@@ -66,13 +69,41 @@ export class AppSync extends Construct {
 
     const startStepFunction = new appsync.AppsyncFunction(
       this,
-      "StartStepFunction",
+      "StartStepFunctionV2",
       {
         name: "start_step_function",
         api,
         dataSource: sfnSource,
         code: appsync.Code.fromAsset(
           "lib/graphql/startStepFunction.resolver.js"
+        ),
+        runtime: appsync.FunctionRuntime.JS_1_0_0,
+      }
+    );
+
+    const prepRegisterItemChatGPt = new appsync.AppsyncFunction(
+      this,
+      "PrepRegisterItemChatGptV2",
+      {
+        name: "prep_register_item_chatgpt",
+        api,
+        dataSource: ddbSource,
+        code: appsync.Code.fromAsset(
+          "lib/graphql/prepRegisterItemChatGpt.resolver.js"
+        ),
+        runtime: appsync.FunctionRuntime.JS_1_0_0,
+      }
+    );
+
+    const startStepFunctionChatGpt = new appsync.AppsyncFunction(
+      this,
+      "StartStepFunctionChatGptV2",
+      {
+        name: "start_step_function_chatgpt",
+        api,
+        dataSource: sfnSource,
+        code: appsync.Code.fromAsset(
+          "lib/graphql/startStepFunctionChatGpt.resolver.js"
         ),
         runtime: appsync.FunctionRuntime.JS_1_0_0,
       }
@@ -102,6 +133,17 @@ export class AppSync extends Construct {
       fieldName: "registerItem",
       pipelineConfig: [prepRegisterItem, startStepFunction],
       code: appsync.Code.fromAsset("lib/graphql/registerItem.resolver.js"),
+      runtime: appsync.FunctionRuntime.JS_1_0_0,
+    });
+
+    new appsync.Resolver(this, "RegisterItemChatGptResolver", {
+      api,
+      typeName: "Mutation",
+      fieldName: "registerItemChatGpt",
+      pipelineConfig: [prepRegisterItemChatGPt, startStepFunctionChatGpt],
+      code: appsync.Code.fromAsset(
+        "lib/graphql/registerItemChatGpt.resolver.js"
+      ),
       runtime: appsync.FunctionRuntime.JS_1_0_0,
     });
   }

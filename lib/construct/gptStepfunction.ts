@@ -13,7 +13,7 @@ export interface SfnProps {
   table: dynamodb.ITableV2;
 }
 
-export class Sfn extends Construct {
+export class SfnGpt extends Construct {
   public readonly stateMachine: sfn.StateMachine;
 
   constructor(scope: Construct, id: string, props: SfnProps) {
@@ -23,6 +23,23 @@ export class Sfn extends Construct {
       this,
       "ssmExtension",
       `arn:aws:lambda:ap-northeast-1:133490724326:layer:AWS-Parameters-and-Secrets-Lambda-Extension:12`
+    );
+
+    const chatgptFn = new lambda.Function(this, `ChatGptFn`, {
+      runtime: lambda.Runtime.NODEJS_20_X,
+      handler: "index.handler",
+      code: lambda.Code.fromDockerBuild("lib/lambda", {
+        buildArgs: { lambda: "sfnChatGpt" },
+      }),
+      memorySize: 256,
+      timeout: Duration.seconds(40),
+      layers: [awsSsmExtensionLayer],
+      logGroup: new logs.LogGroup(this, `ChatgptFnLog`, {
+        retention: logs.RetentionDays.THREE_MONTHS,
+      }),
+    });
+    chatgptFn.role?.addManagedPolicy(
+      iam.ManagedPolicy.fromAwsManagedPolicyName("AmazonSSMReadOnlyAccess")
     );
 
     const uploadImagesFn = new lambda.Function(this, `UploadImages`, {
@@ -84,17 +101,32 @@ export class Sfn extends Construct {
     this.stateMachine = new sfn.StateMachine(this, "RegisterItem", {
       definitionBody: sfn.DefinitionBody.fromChainable(
         sfn.Chain.start(
-          new sfnTasks.LambdaInvoke(this, "UploadImagesTask", {
-            lambdaFunction: uploadImagesFn,
+          new sfnTasks.LambdaInvoke(this, "ChatGptFnTask", {
+            lambdaFunction: chatgptFn,
             payload: sfn.TaskInput.fromObject({
               item: sfn.JsonPath.objectAt("$$.Execution.Input.item"),
               appParams: sfn.JsonPath.objectAt("$$.Execution.Input.appParams"),
             }),
             resultSelector: {
-              ebayImageUrls: sfn.JsonPath.objectAt("$.Payload.distImageUrls"),
+              item: sfn.JsonPath.objectAt("$.Payload"),
             },
           })
         )
+          .next(
+            new sfnTasks.LambdaInvoke(this, "UploadImagesTask", {
+              lambdaFunction: uploadImagesFn,
+              payload: sfn.TaskInput.fromObject({
+                item: sfn.JsonPath.objectAt("$.item"),
+                appParams: sfn.JsonPath.objectAt(
+                  "$$.Execution.Input.appParams"
+                ),
+              }),
+              resultPath: "$.resultPath",
+              resultSelector: {
+                ebayImageUrls: sfn.JsonPath.objectAt("$.Payload.distImageUrls"),
+              },
+            })
+          )
           .next(
             new sfnTasks.LambdaInvoke(this, "RegisterStockTask", {
               lambdaFunction: registerStockFn,
@@ -103,8 +135,10 @@ export class Sfn extends Construct {
                 appParams: sfn.JsonPath.objectAt(
                   "$$.Execution.Input.appParams"
                 ),
-                item: sfn.JsonPath.objectAt("$$.Execution.Input.item"),
-                ebayImageUrls: sfn.JsonPath.objectAt("$.ebayImageUrls"),
+                item: sfn.JsonPath.objectAt("$.item"),
+                ebayImageUrls: sfn.JsonPath.objectAt(
+                  "$.resultPath.ebayImageUrls"
+                ),
               }),
               resultSelector: {
                 item: sfn.JsonPath.objectAt("$.Payload"),
