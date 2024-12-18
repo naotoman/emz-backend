@@ -7,6 +7,7 @@ interface Item {
   orgImageUrls: string[];
   orgTitle: string;
   orgDescription: string;
+  orgPrice: number;
 }
 
 interface AppParams {
@@ -172,28 +173,28 @@ const calcShippingFee = (
   width: number,
   height: number,
   depth: number,
-  weight: number
+  weight: number,
+  orgPrice: number
 ) => {
-  let japanPostFee = 100000;
-  if (
-    width + height + depth <= 90 &&
-    Math.max(width, height, depth) <= 60 &&
-    weight <= 2000
-  ) {
-    japanPostFee = Math.max(830, 830 + Math.ceil(2.1 * (weight - 100)));
-  }
   const fedexVolumeWeight = Math.max(
     weight / 1000,
     (width * height * depth) / 5000
   );
-  if (fedexVolumeWeight > 12) {
+  if (fedexVolumeWeight > 12 || Math.max(width, height, depth) > 120) {
     throw new Error("too big");
   }
-  const fedexFee = Math.max(
-    2700,
-    (11300 * fedexVolumeWeight) / 11.5 + 25400 / 11.5
-  );
-  return Math.min(japanPostFee, fedexFee);
+  const fedexFee = Math.max(2700, (11300 * fedexVolumeWeight + 25400) / 11.5);
+  const emsFee = Math.max(4000, 2800 + Math.ceil(2.4 * weight));
+  if (
+    width + height + depth <= 90 &&
+    Math.max(width, height, depth) <= 60 &&
+    weight <= 2000 &&
+    orgPrice <= 20000
+  ) {
+    const smallPacketFee = Math.max(1290, 1080 + Math.ceil(2.1 * weight));
+    return Math.min(fedexFee, emsFee, smallPacketFee);
+  }
+  return Math.min(fedexFee, emsFee);
 };
 
 export const handler = async (event: Event) => {
@@ -207,7 +208,8 @@ export const handler = async (event: Event) => {
         gptResult.box_size.width,
         gptResult.box_size.height,
         gptResult.box_size.depth,
-        gptResult.weight
+        gptResult.weight,
+        event.item.orgPrice
       );
 
   const { orgTitle, orgDescription, ...filteredItem } = event.item;
