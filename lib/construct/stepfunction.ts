@@ -81,20 +81,60 @@ export class Sfn extends Construct {
       iam.ManagedPolicy.fromAwsManagedPolicyName("AmazonSSMFullAccess")
     );
 
+    const chatgptFn = new lambda.Function(this, `ChatGptFn`, {
+      runtime: lambda.Runtime.NODEJS_20_X,
+      handler: "index.handler",
+      code: lambda.Code.fromDockerBuild("lib/lambda", {
+        buildArgs: { lambda: "sfnChatGpt" },
+      }),
+      memorySize: 256,
+      timeout: Duration.seconds(40),
+      layers: [awsSsmExtensionLayer],
+      logGroup: new logs.LogGroup(this, `ChatgptFnLog`, {
+        retention: logs.RetentionDays.THREE_MONTHS,
+      }),
+    });
+    chatgptFn.role?.addManagedPolicy(
+      iam.ManagedPolicy.fromAwsManagedPolicyName("AmazonSSMReadOnlyAccess")
+    );
+
     this.stateMachine = new sfn.StateMachine(this, "RegisterItem", {
       definitionBody: sfn.DefinitionBody.fromChainable(
         sfn.Chain.start(
-          new sfnTasks.LambdaInvoke(this, "UploadImagesTask", {
-            lambdaFunction: uploadImagesFn,
-            payload: sfn.TaskInput.fromObject({
-              item: sfn.JsonPath.objectAt("$$.Execution.Input.item"),
-              appParams: sfn.JsonPath.objectAt("$$.Execution.Input.appParams"),
-            }),
-            resultSelector: {
-              ebayImageUrls: sfn.JsonPath.objectAt("$.Payload.distImageUrls"),
-            },
-          })
+          new sfn.Choice(this, "IsChatgptEnabled")
+            .when(
+              sfn.Condition.booleanEquals("$.isChatgptEnabled", true),
+              new sfnTasks.LambdaInvoke(this, "ChatGptFnTask", {
+                lambdaFunction: chatgptFn,
+                payload: sfn.TaskInput.fromObject({
+                  item: sfn.JsonPath.objectAt("$$.Execution.Input.item"),
+                  appParams: sfn.JsonPath.objectAt(
+                    "$$.Execution.Input.appParams"
+                  ),
+                }),
+                resultSelector: {
+                  item: sfn.JsonPath.objectAt("$.Payload"),
+                },
+              })
+            )
+            .otherwise(new sfn.Pass(this, "ChatgptDisabled"))
+            .afterwards()
         )
+          .next(
+            new sfnTasks.LambdaInvoke(this, "UploadImagesTask", {
+              lambdaFunction: uploadImagesFn,
+              payload: sfn.TaskInput.fromObject({
+                item: sfn.JsonPath.objectAt("$.item"),
+                appParams: sfn.JsonPath.objectAt(
+                  "$$.Execution.Input.appParams"
+                ),
+              }),
+              resultPath: "$.resultPath",
+              resultSelector: {
+                ebayImageUrls: sfn.JsonPath.objectAt("$.Payload.distImageUrls"),
+              },
+            })
+          )
           .next(
             new sfnTasks.LambdaInvoke(this, "RegisterStockTask", {
               lambdaFunction: registerStockFn,
@@ -103,8 +143,10 @@ export class Sfn extends Construct {
                 appParams: sfn.JsonPath.objectAt(
                   "$$.Execution.Input.appParams"
                 ),
-                item: sfn.JsonPath.objectAt("$$.Execution.Input.item"),
-                ebayImageUrls: sfn.JsonPath.objectAt("$.ebayImageUrls"),
+                item: sfn.JsonPath.jsonMerge(
+                  sfn.JsonPath.objectAt("$.item"),
+                  sfn.JsonPath.objectAt("$.resultPath")
+                ),
               }),
               resultSelector: {
                 item: sfn.JsonPath.objectAt("$.Payload"),

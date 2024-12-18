@@ -26,7 +26,6 @@ interface Event {
   item: Item;
   user: User;
   appParams: AppParams;
-  ebayImageUrls: string[];
 }
 
 interface ConditionMap {
@@ -194,7 +193,6 @@ export const handler = async (event: Event) => {
     ebayCategory,
     ebayStoreCategory,
     ebayCondition,
-    ebayImageUrls: event.ebayImageUrls,
     username: event.user.username,
   };
   const input = makeDbInput(event.user.username, event.item.ebaySku, attrs);
@@ -208,6 +206,5 @@ export const handler = async (event: Event) => {
     ebayCategory,
     ebayStoreCategory,
     ebayCondition,
-    ebayImageUrls: event.ebayImageUrls,
   };
 };
