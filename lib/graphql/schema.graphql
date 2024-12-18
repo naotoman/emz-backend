@@ -51,7 +51,7 @@ type UserInfo {
 
 type Mutation {
   registerItemChatGpt(input: RegisterItemChatGptInput!): String
-    @aws_auth(cognito_groups: ["USER"])
+    @aws_auth(cognito_groups: ["GPT_USER"])
   registerItem(input: RegisterItemInput!): String
     @aws_auth(cognito_groups: ["USER"])
   deregisterItem(input: DeregisterItemInput!): String

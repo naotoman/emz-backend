@@ -32,5 +32,11 @@ export class Cognito extends Construct {
       description: "user",
       groupName: "USER",
     });
+
+    new cognito.CfnUserPoolGroup(this, "GptUserPoolGroup", {
+      userPoolId: this.userPool.userPoolId,
+      description: "users who can use chatGPT",
+      groupName: "GPT_USER",
+    });
   }
 }
