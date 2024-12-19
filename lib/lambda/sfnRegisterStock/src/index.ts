@@ -26,7 +26,6 @@ interface Event {
   item: Item;
   user: User;
   appParams: AppParams;
-  ebayImageUrls: string[];
 }
 
 interface ConditionMap {
@@ -187,13 +186,14 @@ export const handler = async (event: Event) => {
     ));
   log({ ebayCondition });
 
+  const ebayStoreCategory = "/" + event.item.ebayStoreCategorySrc.join("/");
+
   const attrs = {
-    ebayCategory,
-    ebayStoreCategory: "/" + event.item.ebayStoreCategorySrc.join("/"),
-    ebayCondition,
-    ebayImageUrls: event.ebayImageUrls,
-    username: event.user.username,
     ...event.item,
+    ebayCategory,
+    ebayStoreCategory,
+    ebayCondition,
+    username: event.user.username,
   };
   const input = makeDbInput(event.user.username, event.item.ebaySku, attrs);
   log(input);
@@ -203,8 +203,8 @@ export const handler = async (event: Event) => {
   await ddbClient.send(command);
   return {
     ...event.item,
-    ebayImageUrls: event.ebayImageUrls,
     ebayCategory,
+    ebayStoreCategory,
     ebayCondition,
   };
 };
