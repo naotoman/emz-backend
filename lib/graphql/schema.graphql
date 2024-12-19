@@ -22,6 +22,7 @@ input RegisterItemInput {
   orgUrl: AWSURL!
   orgImageUrls: [AWSURL!]!
   orgPrice: Int!
+  orgTitle: String!
   orgExtraParam: AWSJSON
 }
 

@@ -212,7 +212,7 @@ export const handler = async (event: Event) => {
         event.item.orgPrice
       );
 
-  const { orgTitle, orgDescription, ...filteredItem } = event.item;
+  const { orgDescription, ...filteredItem } = event.item;
   return {
     ...filteredItem,
     shippingYen,
