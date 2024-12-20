@@ -67,7 +67,7 @@ export const scrapeMerc: Scraper<Merc> = () => {
   );
   const priceStr = priceSpans[1]?.textContent?.replace(/,/g, "");
   console.log({ priceStr });
-  const price = Number(priceStr);
+  const price = priceStr === "???" ? 9999999 : Number(priceStr);
   console.log({ price });
 
   const lastUpdated = document
@@ -207,7 +207,8 @@ export const scrapeMshop: Scraper<Mshop> = () => {
   );
   const priceStr = priceSpans[1]?.textContent?.replace(/,/g, "");
   console.log({ priceStr });
-  const price = Number(priceStr);
+
+  const price = priceStr === "???" ? 9999999 : Number(priceStr);
   console.log({ price });
 
   const lastUpdated = document

@@ -21,8 +21,10 @@ const playMerc = async (page: Page): Promise<ScrapeResult<Merc>> => {
   const failureLocator = page.locator("div.merEmptyState");
   const priceLocator = page.locator('#item-info div[data-testid="price"]');
   const imageLocator = page.locator('article div[data-testid="image-0"] img');
+  const userLocator = page.locator("div.merUserObject");
   await failureLocator.or(priceLocator).waitFor({ timeout: 16000 });
-  await failureLocator.or(imageLocator).waitFor({ timeout: 8000 });
+  await failureLocator.or(imageLocator).waitFor({ timeout: 16000 });
+  await failureLocator.or(userLocator).waitFor({ timeout: 16000 });
 
   page.on("console", (msg) => console.log(msg.text()));
   const scrapeResult = await page.evaluate(scrapeMerc);
@@ -35,8 +37,10 @@ const playMshop = async (page: Page): Promise<ScrapeResult<Mshop>> => {
     '#product-info div[data-testid="product-price"]'
   );
   const imageLocator = page.locator('article div[data-testid="image-0"] img');
+  const userLocator = page.locator("div.merUserObject");
   await failureLocator.or(priceLocator).waitFor({ timeout: 16000 });
-  await failureLocator.or(imageLocator).waitFor({ timeout: 8000 });
+  await failureLocator.or(imageLocator).waitFor({ timeout: 16000 });
+  await failureLocator.or(userLocator).waitFor({ timeout: 16000 });
 
   page.on("console", (msg) => console.log(msg.text()));
   const scrapeResult = await page.evaluate(scrapeMshop);
