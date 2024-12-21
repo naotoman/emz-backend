@@ -8,6 +8,7 @@ import path from "path";
 import sharp from "sharp";
 
 interface Event {
+  enhanceImages: boolean;
   item: {
     ebaySku: string;
     orgImageUrls: string[];
@@ -113,6 +114,9 @@ export const uploadImagesToR2 = async (
 
 export const handler = async (event: Event) => {
   log({ event });
+  if (!event.enhanceImages) {
+    return { distImageUrls: event.item.orgImageUrls };
+  }
 
   const srcImages = await loadImages(
     event.item.orgImageUrls,

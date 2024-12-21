@@ -125,6 +125,9 @@ export class Sfn extends Construct {
             new sfnTasks.LambdaInvoke(this, "UploadImagesTask", {
               lambdaFunction: uploadImagesFn,
               payload: sfn.TaskInput.fromObject({
+                enhanceImages: sfn.JsonPath.objectAt(
+                  "$$.Execution.Input.enhanceImages"
+                ),
                 item: sfn.JsonPath.objectAt("$.item"),
                 appParams: sfn.JsonPath.objectAt(
                   "$$.Execution.Input.appParams"
