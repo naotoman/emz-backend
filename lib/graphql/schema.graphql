@@ -1,5 +1,4 @@
 input RegisterItemChatGptInput {
-  shippingYen: Int!
   orgUrl: AWSURL!
   orgImageUrls: [AWSURL!]!
   orgPrice: Int!
@@ -19,6 +18,7 @@ input RegisterItemInput {
   ebayConditionSrc: String
   ebayConditionDescription: String
   ebayAspectParam: AWSJSON
+  ebayFulfillmentPolicy: String!
   orgUrl: AWSURL!
   orgImageUrls: [AWSURL!]!
   orgPrice: Int!

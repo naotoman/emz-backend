@@ -3,7 +3,6 @@ import { log } from "common/utils";
 import OpenAI from "openai";
 
 interface Item {
-  shippingYen: number;
   orgImageUrls: string[];
   orgTitle: string;
   orgDescription: string;
@@ -14,8 +13,13 @@ interface AppParams {
   chatGptKeySsmParamName: string;
 }
 
+interface User {
+  fulfillmentPolicy: string;
+}
+
 interface Event {
   item: Item;
+  user: User;
   appParams: AppParams;
 }
 
@@ -202,19 +206,18 @@ export const handler = async (event: Event) => {
   //   chatgptで処理
   const gptResult = await chatgpt(event);
   // 入力を整形
-  const shippingYen = event.item.shippingYen
-    ? event.item.shippingYen
-    : calcShippingFee(
-        gptResult.box_size.width,
-        gptResult.box_size.height,
-        gptResult.box_size.depth,
-        gptResult.weight,
-        event.item.orgPrice
-      );
+  const shippingYen = calcShippingFee(
+    gptResult.box_size.width,
+    gptResult.box_size.height,
+    gptResult.box_size.depth,
+    gptResult.weight,
+    event.item.orgPrice
+  );
 
   const { orgDescription, ...filteredItem } = event.item;
   return {
     ...filteredItem,
+    ebayFulfillmentPolicy: event.user.fulfillmentPolicy,
     shippingYen,
     weightGram: gptResult.weight,
     boxSizeCm: [

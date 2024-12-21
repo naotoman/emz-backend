@@ -16,7 +16,6 @@ import {
 
 interface User {
   username: string;
-  fulfillmentPolicy: string;
   returnPolicy: string;
   paymentPolicy: string;
   profitRatio: number;
@@ -35,6 +34,7 @@ interface Item {
   ebayConditionDescription?: string;
   ebayImageUrls: string[];
   ebayAspectParam: Record<string, unknown>;
+  ebayFulfillmentPolicy: string;
   orgExtraParam: {
     isPayOnDelivery?: boolean;
     rateScore?: number;
@@ -160,7 +160,7 @@ export const listItem = async (event: Event) => {
     availableQuantity: 1,
     categoryId: item.ebayCategory,
     listingPolicies: {
-      fulfillmentPolicyId: user.fulfillmentPolicy,
+      fulfillmentPolicyId: item.ebayFulfillmentPolicy,
       paymentPolicyId: user.paymentPolicy,
       returnPolicyId: user.returnPolicy,
     },

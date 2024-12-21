@@ -111,6 +111,7 @@ export class Sfn extends Construct {
                   appParams: sfn.JsonPath.objectAt(
                     "$$.Execution.Input.appParams"
                   ),
+                  user: sfn.JsonPath.objectAt("$$.Execution.Input.user"),
                 }),
                 resultSelector: {
                   item: sfn.JsonPath.objectAt("$.Payload"),
