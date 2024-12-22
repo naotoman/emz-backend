@@ -45,9 +45,24 @@ type Item {
   isImageChanged: Boolean!
 }
 
+type FulfillmentPolicy {
+  policyId: String!
+  desc: String
+}
+
+type ShippingFee {
+  value: Int!
+  desc: String
+}
+
 type UserInfo {
-  itemCount: Int!
-  maxItemCount: Int!
+  listedCount: Int!
+  maxListedCount: Int!
+  fulfillmentPolicies: [FulfillmentPolicy!]!
+  paymentPolicy: String!
+  returnPolicy: String!
+  profitRatio: Float!
+  shippingFees: [ShippingFee!]!
 }
 
 type Mutation {
