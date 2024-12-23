@@ -31,7 +31,7 @@ export class Sfn extends Construct {
       code: lambda.Code.fromDockerBuild("lib/lambda", {
         buildArgs: { lambda: "sfnUploadImages" },
       }),
-      memorySize: 256,
+      memorySize: 512,
       timeout: Duration.seconds(40),
       layers: [awsSsmExtensionLayer],
       logGroup: new logs.LogGroup(this, `UploadImagesLog`, {
@@ -98,29 +98,67 @@ export class Sfn extends Construct {
       iam.ManagedPolicy.fromAwsManagedPolicyName("AmazonSSMReadOnlyAccess")
     );
 
+    const calcSfnSleepFn = new lambda.Function(this, `CalcSfnSleepFn`, {
+      runtime: lambda.Runtime.NODEJS_20_X,
+      handler: "index.handler",
+      code: lambda.Code.fromDockerBuild("lib/lambda", {
+        buildArgs: { lambda: "sfnCalcSfnSleep" },
+      }),
+      memorySize: 128,
+      timeout: Duration.seconds(10),
+      logGroup: new logs.LogGroup(this, `CalcSfnSleepFnLog`, {
+        retention: logs.RetentionDays.THREE_MONTHS,
+      }),
+    });
+    calcSfnSleepFn.role?.addManagedPolicy(
+      iam.ManagedPolicy.fromAwsManagedPolicyName(
+        "AWSStepFunctionsReadOnlyAccess"
+      )
+    );
+
     this.stateMachine = new sfn.StateMachine(this, "RegisterItem", {
       definitionBody: sfn.DefinitionBody.fromChainable(
         sfn.Chain.start(
-          new sfn.Choice(this, "IsChatgptEnabled")
-            .when(
-              sfn.Condition.booleanEquals("$.isChatgptEnabled", true),
-              new sfnTasks.LambdaInvoke(this, "ChatGptFnTask", {
-                lambdaFunction: chatgptFn,
-                payload: sfn.TaskInput.fromObject({
-                  item: sfn.JsonPath.objectAt("$$.Execution.Input.item"),
-                  appParams: sfn.JsonPath.objectAt(
-                    "$$.Execution.Input.appParams"
-                  ),
-                  user: sfn.JsonPath.objectAt("$$.Execution.Input.user"),
-                }),
-                resultSelector: {
-                  item: sfn.JsonPath.objectAt("$.Payload"),
-                },
-              })
-            )
-            .otherwise(new sfn.Pass(this, "ChatgptDisabled"))
-            .afterwards()
+          new sfnTasks.LambdaInvoke(this, "CalcSfnSleepTask", {
+            lambdaFunction: calcSfnSleepFn,
+            payload: sfn.TaskInput.fromObject({
+              stateMachineArn: sfn.JsonPath.stringAt("$$.StateMachine.Id"),
+            }),
+            resultSelector: {
+              sleepSec: sfn.JsonPath.objectAt("$.Payload"),
+              item: sfn.JsonPath.objectAt("$$.Execution.Input.item"),
+            },
+          })
         )
+          .next(
+            new sfn.Wait(this, "WaitBasedOnExecutions", {
+              time: sfn.WaitTime.secondsPath("$.sleepSec"),
+            })
+          )
+          .next(
+            new sfn.Choice(this, "IsChatgptEnabled")
+              .when(
+                sfn.Condition.booleanEquals(
+                  "$$.Execution.Input.isChatgptEnabled",
+                  true
+                ),
+                new sfnTasks.LambdaInvoke(this, "ChatGptFnTask", {
+                  lambdaFunction: chatgptFn,
+                  payload: sfn.TaskInput.fromObject({
+                    item: sfn.JsonPath.objectAt("$.item"),
+                    appParams: sfn.JsonPath.objectAt(
+                      "$$.Execution.Input.appParams"
+                    ),
+                    user: sfn.JsonPath.objectAt("$$.Execution.Input.user"),
+                  }),
+                  resultSelector: {
+                    item: sfn.JsonPath.objectAt("$.Payload"),
+                  },
+                })
+              )
+              .otherwise(new sfn.Pass(this, "ChatgptDisabled"))
+              .afterwards()
+          )
           .next(
             new sfnTasks.LambdaInvoke(this, "UploadImagesTask", {
               lambdaFunction: uploadImagesFn,
