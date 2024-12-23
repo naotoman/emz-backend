@@ -247,7 +247,7 @@ export const handler = async (event: Event) => {
         ? { Brand: [gptResult.item_specifics.brand] }
         : {}),
       ...(gptResult.item_specifics.characters
-        ? { Character: gptResult.item_specifics.characters }
+        ? { Character: gptResult.item_specifics.characters.slice(0, 30) }
         : {}),
       "Country/Region of Manufacture": ["Japan"],
       Theme: ["Anime & Manga"],
