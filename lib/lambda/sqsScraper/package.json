@@ -1,0 +1,11 @@
+{
+  "name": "sqs-scraper",
+  "version": "1.0.0",
+  "dependencies": {
+    "playwright-core": "^1.49.1"
+  },
+  "devDependencies": {
+    "@aws-sdk/client-sfn": "^3.716.0",
+    "@sparticuz/chromium": "^131.0.1"
+  }
+}
