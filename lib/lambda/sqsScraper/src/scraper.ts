@@ -10,6 +10,7 @@ export interface Merc {
   isPayOnDelivery: boolean;
   rateScore: number;
   rateCount: number;
+  itemCondition: string;
   shippedFrom: string;
   shippingMethod: string;
   shippedWithin: string;
@@ -19,6 +20,7 @@ export interface Merc {
 
 export interface Mshop {
   isPayOnDelivery: boolean;
+  itemCondition: string;
   rateScore: number;
   rateCount: number;
   shippedFrom: string;
@@ -81,6 +83,11 @@ export const scrapeMerc: Scraper<Merc> = () => {
     ?.querySelector("p.merText")?.textContent;
   console.log({ lastUpdated });
 
+  const itemCondition = document.querySelector(
+    '#item-info span[data-testid="商品の状態"]'
+  )?.textContent;
+  console.log({ itemCondition });
+
   const isPayOnDelivery = document
     .querySelector('#item-info span[data-testid="配送料の負担"]')
     ?.textContent?.includes("着払い");
@@ -123,6 +130,7 @@ export const scrapeMerc: Scraper<Merc> = () => {
   if (
     !url ||
     !lastUpdated ||
+    !itemCondition ||
     !shippingMethod ||
     !shippedFrom ||
     !shippedWithin ||
@@ -142,6 +150,7 @@ export const scrapeMerc: Scraper<Merc> = () => {
           {
             url,
             lastUpdated,
+            itemCondition,
             shippingMethod,
             shippedFrom,
             shippedWithin,
@@ -172,6 +181,7 @@ export const scrapeMerc: Scraper<Merc> = () => {
       extra: {
         lastUpdated: lastUpdated,
         isPayOnDelivery: isPayOnDelivery,
+        itemCondition: itemCondition,
         shippingMethod: shippingMethod,
         shippedFrom: shippedFrom,
         shippedWithin: shippedWithin,
@@ -229,6 +239,11 @@ export const scrapeMshop: Scraper<Mshop> = () => {
     ?.querySelector("p.merText")?.textContent;
   console.log({ lastUpdated });
 
+  const itemCondition = document.querySelector(
+    '#product-info span[data-testid="商品の状態"]'
+  )?.textContent;
+  console.log({ itemCondition });
+
   const isPayOnDelivery = document
     .querySelector('#product-info span[data-testid="配送料の負担"]')
     ?.textContent?.includes("着払い");
@@ -271,6 +286,7 @@ export const scrapeMshop: Scraper<Mshop> = () => {
   if (
     !url ||
     !lastUpdated ||
+    !itemCondition ||
     !shippingMethod ||
     !shippedFrom ||
     !shippedWithin ||
@@ -290,6 +306,7 @@ export const scrapeMshop: Scraper<Mshop> = () => {
           {
             url,
             lastUpdated,
+            itemCondition,
             shippingMethod,
             shippedFrom,
             shippedWithin,
@@ -326,6 +343,7 @@ export const scrapeMshop: Scraper<Mshop> = () => {
         sellerId: sellerId,
         rateScore: rateScore,
         rateCount: rateCount,
+        itemCondition: itemCondition,
       },
     },
   };

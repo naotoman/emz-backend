@@ -32,6 +32,7 @@ export class BackendStack extends Stack {
       userPool: cognito.userPool,
       stateMachine: stateMachine.stateMachine,
       sqsQueue: sqs.queue,
+      accountId: props.awsEnv.account,
     });
 
     new Ecs(this, "Ecs", {

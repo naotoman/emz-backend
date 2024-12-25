@@ -21,6 +21,7 @@ export class SqsQueue extends Construct {
     // Create Dead Letter Queue first
     const deadLetterQueue = new sqs.Queue(this, "ScraperDlq", {
       retentionPeriod: Duration.days(14),
+      fifo: true,
     });
 
     // Create main queue with DLQ configuration
@@ -57,6 +58,11 @@ export class SqsQueue extends Construct {
       iam.ManagedPolicy.fromAwsManagedPolicyName("AWSStepFunctionsFullAccess")
     );
 
-    sqsScraper.addEventSource(new SqsEventSource(this.queue));
+    sqsScraper.addEventSource(
+      new SqsEventSource(this.queue, {
+        batchSize: 1,
+        maxConcurrency: 2,
+      })
+    );
   }
 }

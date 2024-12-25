@@ -12,6 +12,7 @@ export interface AppSyncProps {
   stateMachine: sfn.IStateMachine;
   sqsQueue: sqs.IQueue;
   apiName: string;
+  accountId: string;
 }
 
 export class AppSync extends Construct {
@@ -26,6 +27,7 @@ export class AppSync extends Construct {
         SFN_ARN: props.stateMachine.stateMachineArn,
         SQS_URL: props.sqsQueue.queueUrl,
         SQS_NAME: props.sqsQueue.queueName,
+        ACCOUNT_ID: props.accountId,
       },
       authorizationConfig: {
         defaultAuthorization: {
@@ -124,7 +126,7 @@ export class AppSync extends Construct {
     const pushItemToSqs = new appsync.AppsyncFunction(this, "PushItemToSqs", {
       name: "push_item_to_sqs",
       api,
-      dataSource: sfnSource,
+      dataSource: sqsSource,
       code: appsync.Code.fromAsset("lib/graphql/pushItemToSqs.resolver.js"),
       runtime: appsync.FunctionRuntime.JS_1_0_0,
     });

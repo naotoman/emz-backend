@@ -19,6 +19,12 @@ interface AppParams {
 }
 
 interface Event {
+  Records: {
+    body: string;
+  }[];
+}
+
+interface Body {
   stateMachineArn: string;
   item: Item;
   user: User;
@@ -81,18 +87,25 @@ const playMshop = async (page: Page): Promise<ScrapeResult<Mshop>> => {
 };
 
 export const handler = async (event: Event) => {
+  console.log(event);
+  const bodyStr = event.Records[0]?.body;
+  if (bodyStr == null) {
+    throw new Error("body is null");
+  }
+  const body: Body = JSON.parse(bodyStr);
+
   const context = await getContext();
   const page = await context.newPage();
   let scrapeResult: ScrapeResult<Merc | Mshop>;
   try {
-    await page.goto(event.item.orgUrl);
+    await page.goto(body.item.orgUrl);
     const scraper = (() => {
-      if (event.item.orgPlatform === "merc") {
+      if (body.item.orgPlatform === "merc") {
         return playMerc;
-      } else if (event.item.orgPlatform === "mshop") {
+      } else if (body.item.orgPlatform === "mshop") {
         return playMshop;
       } else {
-        throw new Error(`invalid platform: ${event.item.orgPlatform}`);
+        throw new Error(`invalid platform: ${body.item.orgPlatform}`);
       }
     })();
     scrapeResult = await scraper(page);
@@ -100,21 +113,24 @@ export const handler = async (event: Event) => {
   } finally {
     await page.close();
   }
-  if (scrapeResult.stockStatus === "outofstock") {
+  if (
+    scrapeResult.stockStatus === "outofstock" ||
+    scrapeResult.stockData?.extra.itemCondition === "新品、未使用"
+  ) {
     return;
   } else if (scrapeResult.stockStatus === "instock") {
     const sfnClient = new SFNClient();
     const command = new StartExecutionCommand({
-      name: `${event.user.username}-${
-        event.item.ebaySku
+      name: `${body.user.username}-${
+        body.item.ebaySku
       }-${getFormattedDateTime()}`,
       input: JSON.stringify({
         isChatgptEnabled: true,
         enhanceImages: true,
-        user: event.user,
-        appParams: event.appParams,
+        user: body.user,
+        appParams: body.appParams,
         item: {
-          ...event.item,
+          ...body.item,
           orgImageUrls: scrapeResult.stockData?.core.imageUrls,
           orgPrice: scrapeResult.stockData?.core.price,
           orgTitle: scrapeResult.stockData?.core.title,
@@ -122,7 +138,7 @@ export const handler = async (event: Event) => {
           orgExtraParam: JSON.stringify(scrapeResult.stockData?.extra),
         },
       }),
-      stateMachineArn: event.stateMachineArn,
+      stateMachineArn: body.stateMachineArn,
     });
     await sfnClient.send(command);
   } else {
