@@ -24,12 +24,14 @@ interface Event {
 }
 
 interface ChatGptResponse {
+  violates_ebay_policy: boolean;
+  violation_reason: string | null;
   listing_title: string;
   item_condition: string;
   item_specifics: {
-    franchise: string | null;
+    franchises: string | null;
     characters: string[] | null;
-    brand: string | null;
+    brands: string | null;
   };
   promotional_text: string;
   weight: number;
@@ -44,10 +46,20 @@ const chatgpt = async (event: Event) => {
   const response_format = {
     type: "json_schema",
     json_schema: {
-      name: "transform_mercari_to_ebay",
+      name: "information_for_ebay_listing",
       schema: {
         type: "object",
         properties: {
+          violates_ebay_policy: {
+            type: "boolean",
+            description:
+              "Whether the item violates eBay's policies on prohibited or restricted items.",
+          },
+          violation_reason: {
+            type: ["string", "null"],
+            description:
+              "If the item violates eBay's policies on prohibited or restricted items, explain the reason why the item cannot be listed.",
+          },
           listing_title: {
             type: "string",
             description:
@@ -55,30 +67,36 @@ const chatgpt = async (event: Event) => {
           },
           item_condition: {
             type: "string",
-            description: "Brief summary of the item's condition.",
+            description: "Brief explatation of the item's current condition.",
           },
           item_specifics: {
             type: "object",
             description: "Item specifics.",
             properties: {
-              franchise: {
-                type: ["string", "null"],
-                description:
-                  "franchise of the product (ex. title of anime, game, etc)",
-              },
-              characters: {
+              franchises: {
                 type: ["array", "null"],
-                description: "characters relevant to the item",
+                description:
+                  "Franchises of the item (ex. title of anime, game, etc).",
                 items: {
                   type: "string",
                 },
               },
-              brand: {
-                type: ["string", "null"],
-                description: "brand of the item",
+              characters: {
+                type: ["array", "null"],
+                description: "Names of the characters related to the item.",
+                items: {
+                  type: "string",
+                },
+              },
+              brands: {
+                type: ["array", "null"],
+                description: "Brands of the item.",
+                items: {
+                  type: "string",
+                },
               },
             },
-            required: ["franchise", "characters", "brand"],
+            required: ["franchises", "characters", "brands"],
             additionalProperties: false,
           },
           promotional_text: {
@@ -112,6 +130,8 @@ const chatgpt = async (event: Event) => {
           },
         },
         required: [
+          "violates_ebay_policy",
+          "violation_reason",
           "listing_title",
           "item_condition",
           "item_specifics",
@@ -137,7 +157,7 @@ const chatgpt = async (event: Event) => {
       {
         role: "system",
         content:
-          "You assist users in reselling Japanese Mercari items on eBay. Unless otherwise stated, assume all items are pre-owned. Based on the provided item's image, title, and description, generate the information for an eBay listing. Ensure the responses are suitable for eBay's platform requirements.",
+          "You assist users in reselling Japanese Mercari items on eBay. Unless otherwise stated, assume all items are pre-owned. Based on the provided item's image, title, and description, generate the information for an eBay listing. Ensure the responses are suitable for eBay's platform requirements. Additionally, assess whether the item violates eBay's policies on prohibited or restricted items, and if so, explain the reason why the item cannot be listed.",
       },
       {
         role: "user",
@@ -146,7 +166,6 @@ const chatgpt = async (event: Event) => {
             type: "image_url",
             image_url: {
               url: event.item.orgImageUrls[0] as string,
-              detail: "low",
             },
           },
           {
@@ -205,6 +224,9 @@ export const handler = async (event: Event) => {
   log(event);
   //   chatgptで処理
   const gptResult = await chatgpt(event);
+  if (gptResult.violates_ebay_policy) {
+    throw new Error(gptResult.violation_reason || "unknown");
+  }
   // 入力を整形
   const shippingYen = calcShippingFee(
     gptResult.box_size.width,
@@ -237,16 +259,19 @@ export const handler = async (event: Event) => {
     ebayConditionSrc: "Used",
     ebayConditionDescription: gptResult.item_condition,
     ebayAspectParam: {
-      ...(gptResult.item_specifics.franchise
+      ...(gptResult.item_specifics.franchises &&
+      gptResult.item_specifics.franchises.length > 0
         ? {
-            Franchise: [gptResult.item_specifics.franchise],
-            "TV Show": [gptResult.item_specifics.franchise],
+            Franchise: [gptResult.item_specifics.franchises[0]],
+            "TV Show": [gptResult.item_specifics.franchises[0]],
           }
         : {}),
-      ...(gptResult.item_specifics.brand
-        ? { Brand: [gptResult.item_specifics.brand] }
+      ...(gptResult.item_specifics.brands &&
+      gptResult.item_specifics.brands.length > 0
+        ? { Brand: [gptResult.item_specifics.brands[0]] }
         : {}),
-      ...(gptResult.item_specifics.characters
+      ...(gptResult.item_specifics.characters &&
+      gptResult.item_specifics.characters.length > 0
         ? { Character: gptResult.item_specifics.characters.slice(0, 30) }
         : {}),
       "Country/Region of Manufacture": ["Japan"],
