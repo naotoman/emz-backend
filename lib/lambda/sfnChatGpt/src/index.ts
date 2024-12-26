@@ -63,7 +63,7 @@ const chatgpt = async (event: Event) => {
           listing_title: {
             type: "string",
             description:
-              "eBay listing title (within 80 characters, including spaces).",
+              "A concise and descriptive title optimized for eBay's search engine (within 80 characters, including spaces).",
           },
           item_condition: {
             type: "string",
@@ -156,8 +156,11 @@ const chatgpt = async (event: Event) => {
     messages: [
       {
         role: "system",
-        content:
-          "You assist users in reselling Japanese Mercari items on eBay. Unless otherwise stated, assume all items are pre-owned. Based on the provided item's image, title, and description, generate the information for an eBay listing. Ensure the responses are suitable for eBay's platform requirements. Additionally, assess whether the item violates eBay's policies on prohibited or restricted items, and if so, explain the reason why the item cannot be listed.",
+        content: `You assist users in reselling Japanese Mercari items on eBay. Based on the provided item's image, title, and description, generate the information for an eBay listing:
+- Assume all items are pre-owned and avoid using phrases like "like new" or similar terms to prevent confusion for buyers.
+- Ensure the response complies with eBay's platform requirements.
+
+Additionally, assess whether the item violates eBay's policies on prohibited or restricted items, and if so, explain the reason why the item cannot be listed.`,
       },
       {
         role: "user",

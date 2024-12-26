@@ -1,7 +1,0 @@
-{
-  "name": "sfn-calc-sfn-sleep",
-  "version": "1.0.0",
-  "devDependencies": {
-    "@aws-sdk/client-sfn": "^3.716.0"
-  }
-}

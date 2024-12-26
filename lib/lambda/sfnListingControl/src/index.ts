@@ -213,6 +213,7 @@ export const listItem = async (event: Event) => {
 };
 
 export const handler = async (event: Event) => {
+  log(event);
   if (toBeListed(event)) {
     const listingId = await listItem(event);
     return { isListed: true, listingId };
