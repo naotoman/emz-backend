@@ -1,13 +1,9 @@
 import { marshall } from "@aws-sdk/util-dynamodb";
 import {
   custom_resources as cr,
-  Duration,
   aws_dynamodb as dynamodb,
-  aws_iam as iam,
-  aws_lambda as lambda,
   aws_logs as logs,
 } from "aws-cdk-lib";
-import { DynamoEventSource } from "aws-cdk-lib/aws-lambda-event-sources";
 import { Construct } from "constructs";
 
 export interface DatabaseProps {
@@ -91,61 +87,5 @@ export class Database extends Construct {
         retention: logs.RetentionDays.THREE_MONTHS,
       }),
     });
-
-    const ddbStreamFunc = new lambda.Function(this, `DdbStreamFunc`, {
-      runtime: lambda.Runtime.NODEJS_20_X,
-      handler: "index.handler",
-      code: lambda.Code.fromDockerBuild("lib/lambda", {
-        buildArgs: { lambda: "ddbStream" },
-      }),
-      memorySize: 128,
-      timeout: Duration.seconds(10),
-      environment: {
-        TABLE_NAME: this.table.tableName,
-      },
-      logGroup: new logs.LogGroup(this, `DdbStreamLog`, {
-        retention: logs.RetentionDays.THREE_MONTHS,
-      }),
-    });
-    ddbStreamFunc.role?.addManagedPolicy(
-      iam.ManagedPolicy.fromAwsManagedPolicyName("AmazonDynamoDBFullAccess")
-    );
-
-    ddbStreamFunc.addEventSource(
-      new DynamoEventSource(this.table, {
-        enabled: false,
-        startingPosition: lambda.StartingPosition.TRIM_HORIZON,
-        filters: [
-          lambda.FilterCriteria.filter({
-            eventName: lambda.FilterRule.isEqual("MODIFY"),
-            dynamodb: {
-              Keys: {
-                id: { S: lambda.FilterRule.beginsWith("ITEM#") },
-              },
-              OldImage: {
-                isListed: { BOOL: lambda.FilterRule.isEqual(false) },
-              },
-              NewImage: {
-                isListed: { BOOL: lambda.FilterRule.isEqual(true) },
-              },
-            },
-          }),
-          lambda.FilterCriteria.filter({
-            eventName: lambda.FilterRule.isEqual("MODIFY"),
-            dynamodb: {
-              Keys: {
-                id: { S: lambda.FilterRule.beginsWith("ITEM#") },
-              },
-              OldImage: {
-                isListed: { BOOL: lambda.FilterRule.isEqual(true) },
-              },
-              NewImage: {
-                isListed: { BOOL: lambda.FilterRule.isEqual(false) },
-              },
-            },
-          }),
-        ],
-      })
-    );
   }
 }
