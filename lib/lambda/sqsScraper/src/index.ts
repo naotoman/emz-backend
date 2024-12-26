@@ -135,7 +135,7 @@ export const handler = async (event: Event) => {
           orgPrice: scrapeResult.stockData?.core.price,
           orgTitle: scrapeResult.stockData?.core.title,
           orgDescription: scrapeResult.stockData?.core.description,
-          orgExtraParam: JSON.stringify(scrapeResult.stockData?.extra),
+          orgExtraParam: scrapeResult.stockData?.extra,
         },
       }),
       stateMachineArn: body.stateMachineArn,
