@@ -7,19 +7,18 @@ import fs, { createReadStream } from "fs";
 import path from "path";
 import sharp from "sharp";
 
+interface Body {
+  orgImageUrls: string[];
+  r2Bucket: string;
+  r2ImagePaths: string[];
+  r2KeySsmParamName: string;
+  r2Endpoint: string;
+}
+
 interface Event {
-  enhanceImages: boolean;
-  item: {
-    ebaySku: string;
-    orgImageUrls: string[];
-  };
-  appParams: {
-    r2KeySsmParamName: string;
-    r2Bucket: string;
-    r2Prefix: string;
-    r2Endpoint: string;
-    r2Domain: string;
-  };
+  Records: {
+    body: string;
+  }[];
 }
 
 const downloadImage = async (url: string, outPath: string) => {
@@ -90,67 +89,52 @@ export const getR2Client = async (
 };
 
 export const uploadImagesToR2 = async (
-  r2Client: S3Client,
   imagePaths: string[],
+  r2Client: S3Client,
   r2Bucket: string,
-  r2Folder: string
+  r2Paths: string[]
 ) => {
-  const outPaths = [];
   for (const [i, imagePath] of imagePaths.entries()) {
-    const outPath = path.join(r2Folder, `image-${i}.jpg`);
     const upload = new Upload({
       client: r2Client,
       params: {
         Body: createReadStream(imagePath),
         Bucket: r2Bucket,
-        Key: outPath,
+        Key: r2Paths[i],
       },
     });
     await upload.done();
-    outPaths.push(outPath);
   }
-  return outPaths;
 };
 
 export const handler = async (event: Event) => {
   log({ event });
-  if (!event.enhanceImages) {
-    return { distImageUrls: event.item.orgImageUrls };
+  const bodyStr = event.Records[0]?.body;
+  if (bodyStr == null) {
+    throw new Error("body is null");
   }
+  const body: Body = JSON.parse(bodyStr);
 
-  const srcImages = await loadImages(
-    event.item.orgImageUrls,
-    fs.mkdtempSync("/tmp/src")
-  );
-  log({ srcImages });
+  const srcDir = fs.mkdtempSync("/tmp/src");
+  const distDir = fs.mkdtempSync("/tmp/dist");
+  try {
+    const srcImages = await loadImages(body.orgImageUrls, srcDir);
+    log({ srcImages });
 
-  const distImages = await editImages(srcImages, fs.mkdtempSync("/tmp/dist"));
-  log({ distImages });
+    const distImages = await editImages(srcImages, distDir);
+    log({ distImages });
 
-  const r2Client = await getR2Client(
-    event.appParams.r2KeySsmParamName,
-    event.appParams.r2Endpoint
-  );
+    const r2Client = await getR2Client(body.r2KeySsmParamName, body.r2Endpoint);
 
-  const r2Images = await uploadImagesToR2(
-    r2Client,
-    distImages,
-    event.appParams.r2Bucket,
-    path.join(
-      event.appParams.r2Prefix,
-      "item-images",
-      event.item.ebaySku,
-      `${Date.now()}`
-    )
-  );
-  log({ r2Images });
-
-  const r2ImageUrls = r2Images.map(
-    (image) => new URL(image, event.appParams.r2Domain).href
-  );
-  log({ r2ImageUrls });
-
-  return {
-    distImageUrls: r2ImageUrls,
-  };
+    await uploadImagesToR2(
+      distImages,
+      r2Client,
+      body.r2Bucket,
+      body.r2ImagePaths
+    );
+  } finally {
+    // Clean up temporary directories
+    fs.rmSync(srcDir, { recursive: true, force: true });
+    fs.rmSync(distDir, { recursive: true, force: true });
+  }
 };

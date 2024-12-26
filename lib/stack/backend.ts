@@ -5,7 +5,8 @@ import { AppSync } from "../construct/appsync";
 import { Cognito } from "../construct/cognito";
 import { Database } from "../construct/database";
 import { Ecs } from "../construct/ecs";
-import { SqsQueue } from "../construct/sqs";
+import { SqsR2 } from "../construct/sqsR2";
+import { SqsScraper } from "../construct/sqsScraper";
 import { Sfn } from "../construct/stepfunction";
 
 export class BackendStack extends Stack {
@@ -22,16 +23,20 @@ export class BackendStack extends Stack {
       table: storage.table,
     });
 
-    const sqs = new SqsQueue(this, "Sqs", {
+    const sqsR2 = new SqsR2(this, "SqsR2");
+
+    const sqsScraper = new SqsScraper(this, "SqsScraper", {
       chromiumLayerArn: props.chromiumLayerArn,
+      stateMachine: stateMachine.stateMachine,
+      r2Queue: sqsR2.queue,
     });
 
     new AppSync(this, "AppSync", {
       apiName: props.stackId,
       table: storage.table,
       userPool: cognito.userPool,
-      stateMachine: stateMachine.stateMachine,
-      sqsQueue: sqs.queue,
+      sqsQueue1: sqsScraper.queue1,
+      sqsQueue2: sqsScraper.queue2,
       accountId: props.awsEnv.account,
     });
 

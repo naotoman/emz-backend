@@ -2,27 +2,8 @@ input PushItemToSqsInput {
   orgUrl: AWSURL!
 }
 
-input RegisterItemChatGptInput {
-  orgUrl: AWSURL!
-  orgImageUrls: [AWSURL!]!
-  orgPrice: Int!
-  orgExtraParam: AWSJSON
-  orgTitle: String!
-  orgDescription: String!
-}
-
-input DeregisterItemInput {
-  url: String!
-}
-
 input BatchGetItemInput {
   urls: [String!]!
-}
-
-input EditUserConfigInput {
-  paymentPolicy: String
-  returnPolicy: String
-  profitRate: Float
 }
 
 type Item {
@@ -30,39 +11,14 @@ type Item {
   isImageChanged: Boolean!
 }
 
-type FulfillmentPolicy {
-  policyId: String!
-  desc: String
-}
-
-type ShippingFee {
-  value: Int!
-  desc: String
-}
-
-type UserInfo {
-  listedCount: Int!
-  maxListedCount: Int!
-  fulfillmentPolicies: [FulfillmentPolicy!]!
-  paymentPolicy: String!
-  returnPolicy: String!
-  profitRatio: Float!
-  shippingFees: [ShippingFee!]!
-}
-
 type Mutation {
-  pushItemToSqs(input: PushItemToSqsInput!): String
+  pushItemToSqs1(input: PushItemToSqsInput!): String
     @aws_auth(cognito_groups: ["GPT_USER"])
-  registerItemChatGpt(input: RegisterItemChatGptInput!): String
+  pushItemToSqs2(input: PushItemToSqsInput!): String
     @aws_auth(cognito_groups: ["GPT_USER"])
-  deregisterItem(input: DeregisterItemInput!): String
-    @aws_auth(cognito_groups: ["USER"])
-  editUserConfig(input: EditUserConfigInput!): String
-    @aws_auth(cognito_groups: ["USER"])
 }
 
 type Query {
-  getUserInfo: UserInfo! @aws_auth(cognito_groups: ["USER"])
   batchGetItem(input: BatchGetItemInput!): [Item]!
     @aws_auth(cognito_groups: ["USER"])
 }

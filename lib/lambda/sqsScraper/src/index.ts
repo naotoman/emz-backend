@@ -1,5 +1,7 @@
 import { SFNClient, StartExecutionCommand } from "@aws-sdk/client-sfn";
+import { SendMessageCommand, SQSClient } from "@aws-sdk/client-sqs";
 import chromium from "@sparticuz/chromium";
+import { log } from "common/utils";
 import { BrowserContext, Page, chromium as playwright } from "playwright-core";
 import { Merc, Mshop, scrapeMerc, scrapeMshop, ScrapeResult } from "./scraper";
 import { randomUserAgent } from "./useragent";
@@ -15,7 +17,11 @@ interface Item {
 }
 
 interface AppParams {
-  [key: string]: unknown;
+  r2Domain: string;
+  r2Endpoint: string;
+  r2Bucket: string;
+  r2Prefix: string;
+  r2KeySsmParamName: string;
 }
 
 interface Event {
@@ -29,17 +35,6 @@ interface Body {
   item: Item;
   user: User;
   appParams: AppParams;
-}
-
-function getFormattedDateTime() {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, "0");
-  const day = String(now.getDate()).padStart(2, "0");
-  const hour = String(now.getHours()).padStart(2, "0");
-  const minute = String(now.getMinutes()).padStart(2, "0");
-
-  return `${year}${month}${day}${hour}${minute}`;
 }
 
 // Reuse the browser context during warm starts
@@ -86,6 +81,55 @@ const playMshop = async (page: Page): Promise<ScrapeResult<Mshop>> => {
   return scrapeResult;
 };
 
+const sendToSqs = async (
+  body: Body,
+  scrapeResult: ScrapeResult<Merc | Mshop>,
+  r2ImagePaths: string[]
+) => {
+  const sqsClient = new SQSClient();
+  const sqsCommand = new SendMessageCommand({
+    QueueUrl: process.env.R2_QUEUE_URL,
+    MessageGroupId: process.env.QUEUE_ID,
+    MessageBody: JSON.stringify({
+      orgImageUrls: scrapeResult.stockData?.core.imageUrls,
+      r2Bucket: body.appParams.r2Bucket,
+      r2ImagePaths,
+      r2KeySsmParamName: body.appParams.r2KeySsmParamName,
+      r2Endpoint: body.appParams.r2Endpoint,
+    }),
+  });
+  await sqsClient.send(sqsCommand);
+};
+
+const startStepFunction = async (
+  body: Body,
+  scrapeResult: ScrapeResult<Merc | Mshop>,
+  timestamp: string,
+  r2ImagePaths: string[]
+) => {
+  const sfnClient = new SFNClient();
+  const sfnCommand = new StartExecutionCommand({
+    name: `${body.user.username}-${body.item.ebaySku}-${timestamp}`,
+    input: JSON.stringify({
+      user: body.user,
+      appParams: body.appParams,
+      item: {
+        ...body.item,
+        orgImageUrls: scrapeResult.stockData?.core.imageUrls,
+        orgPrice: scrapeResult.stockData?.core.price,
+        orgTitle: scrapeResult.stockData?.core.title,
+        orgDescription: scrapeResult.stockData?.core.description,
+        orgExtraParam: scrapeResult.stockData?.extra,
+        ebayImageUrls: r2ImagePaths.map(
+          (path) => new URL(path, body.appParams.r2Domain).href
+        ),
+      },
+    }),
+    stateMachineArn: process.env.SFN_ARN,
+  });
+  await sfnClient.send(sfnCommand);
+};
+
 export const handler = async (event: Event) => {
   console.log(event);
   const bodyStr = event.Records[0]?.body;
@@ -109,7 +153,7 @@ export const handler = async (event: Event) => {
       }
     })();
     scrapeResult = await scraper(page);
-    console.log({ scrapeResult });
+    log({ scrapeResult });
   } finally {
     await page.close();
   }
@@ -119,28 +163,17 @@ export const handler = async (event: Event) => {
   ) {
     return;
   } else if (scrapeResult.stockStatus === "instock") {
-    const sfnClient = new SFNClient();
-    const command = new StartExecutionCommand({
-      name: `${body.user.username}-${
-        body.item.ebaySku
-      }-${getFormattedDateTime()}`,
-      input: JSON.stringify({
-        isChatgptEnabled: true,
-        enhanceImages: true,
-        user: body.user,
-        appParams: body.appParams,
-        item: {
-          ...body.item,
-          orgImageUrls: scrapeResult.stockData?.core.imageUrls,
-          orgPrice: scrapeResult.stockData?.core.price,
-          orgTitle: scrapeResult.stockData?.core.title,
-          orgDescription: scrapeResult.stockData?.core.description,
-          orgExtraParam: scrapeResult.stockData?.extra,
-        },
-      }),
-      stateMachineArn: body.stateMachineArn,
-    });
-    await sfnClient.send(command);
+    const timestamp = Date.now().toString();
+    const r2ImagePaths = scrapeResult.stockData?.core.imageUrls.map(
+      (_, i) =>
+        `${body.appParams.r2Prefix}/item-images/${body.item.ebaySku}/${timestamp}/image-${i}.jpg`
+    );
+    log({ r2ImagePaths });
+    if (r2ImagePaths == null) {
+      throw new Error("r2ImagePaths is null");
+    }
+    await sendToSqs(body, scrapeResult, r2ImagePaths);
+    await startStepFunction(body, scrapeResult, timestamp, r2ImagePaths);
   } else {
     throw new Error(`invalid stock status: ${scrapeResult}`);
   }

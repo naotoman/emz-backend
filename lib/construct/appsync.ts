@@ -1,4 +1,3 @@
-import { aws_stepfunctions as sfn } from "aws-cdk-lib";
 import * as appsync from "aws-cdk-lib/aws-appsync";
 import * as cognito from "aws-cdk-lib/aws-cognito";
 import * as dynamodb from "aws-cdk-lib/aws-dynamodb";
@@ -9,8 +8,8 @@ import { Construct } from "constructs";
 export interface AppSyncProps {
   table: dynamodb.ITableV2;
   userPool: cognito.IUserPool;
-  stateMachine: sfn.IStateMachine;
-  sqsQueue: sqs.IQueue;
+  sqsQueue1: sqs.IQueue;
+  sqsQueue2: sqs.IQueue;
   apiName: string;
   accountId: string;
 }
@@ -24,9 +23,10 @@ export class AppSync extends Construct {
       definition: appsync.Definition.fromFile("lib/graphql/schema.graphql"),
       environmentVariables: {
         TABLE_NAME: props.table.tableName,
-        SFN_ARN: props.stateMachine.stateMachineArn,
-        SQS_URL: props.sqsQueue.queueUrl,
-        SQS_NAME: props.sqsQueue.queueName,
+        SQS_URL_1: props.sqsQueue1.queueUrl,
+        SQS_URL_2: props.sqsQueue2.queueUrl,
+        SQS_NAME_1: props.sqsQueue1.queueName,
+        SQS_NAME_2: props.sqsQueue2.queueName,
         ACCOUNT_ID: props.accountId,
       },
       authorizationConfig: {
@@ -44,18 +44,6 @@ export class AppSync extends Construct {
     });
     const ddbSource = api.addDynamoDbDataSource("dynamodbSource", props.table);
 
-    const sfnSource = api.addHttpDataSource(
-      "Sfn",
-      "https://states.ap-northeast-1.amazonaws.com",
-      {
-        authorizationConfig: {
-          signingRegion: "ap-northeast-1",
-          signingServiceName: "states",
-        },
-      }
-    );
-    props.stateMachine.grantStartExecution(sfnSource);
-
     const sqsSource = api.addHttpDataSource(
       "SqsSource",
       "https://sqs.ap-northeast-1.amazonaws.com",
@@ -66,7 +54,17 @@ export class AppSync extends Construct {
         },
       }
     );
-    props.sqsQueue.grantSendMessages(sqsSource);
+    props.sqsQueue1.grantSendMessages(sqsSource);
+    props.sqsQueue2.grantSendMessages(sqsSource);
+
+    new appsync.Resolver(this, "BatchGetItemResolver", {
+      api,
+      typeName: "Query",
+      fieldName: "batchGetItem",
+      code: appsync.Code.fromAsset("lib/graphql/batchGetItem.resolver.js"),
+      runtime: appsync.FunctionRuntime.JS_1_0_0,
+      dataSource: ddbSource,
+    });
 
     const prepRegisterItem = new appsync.AppsyncFunction(
       this,
@@ -81,61 +79,36 @@ export class AppSync extends Construct {
         runtime: appsync.FunctionRuntime.JS_1_0_0,
       }
     );
-
-    const startStepFunctionChatGpt = new appsync.AppsyncFunction(
-      this,
-      "StartStepFunctionChatGpt",
-      {
-        name: "start_step_function_chatgpt",
-        api,
-        dataSource: sfnSource,
-        code: appsync.Code.fromAsset(
-          "lib/graphql/startStepFunctionChatGpt.resolver.js"
-        ),
-        runtime: appsync.FunctionRuntime.JS_1_0_0,
-      }
-    );
-
-    new appsync.Resolver(this, "BatchGetItemResolver", {
+    const pushItemToSqs1 = new appsync.AppsyncFunction(this, "PushItemToSqs1", {
+      name: "push_item_to_sqs1",
       api,
-      typeName: "Query",
-      fieldName: "batchGetItem",
-      code: appsync.Code.fromAsset("lib/graphql/batchGetItem.resolver.js"),
+      dataSource: sqsSource,
+      code: appsync.Code.fromAsset("lib/graphql/pushItemToSqs1.resolver.js"),
       runtime: appsync.FunctionRuntime.JS_1_0_0,
-      dataSource: ddbSource,
     });
 
-    new appsync.Resolver(this, "GetUserInfoResolver", {
+    const pushItemToSqs2 = new appsync.AppsyncFunction(this, "PushItemToSqs2", {
+      name: "push_item_to_sqs2",
       api,
-      typeName: "Query",
-      fieldName: "getUserInfo",
-      code: appsync.Code.fromAsset("lib/graphql/getUserInfo.resolver.js"),
+      dataSource: sqsSource,
+      code: appsync.Code.fromAsset("lib/graphql/pushItemToSqs2.resolver.js"),
       runtime: appsync.FunctionRuntime.JS_1_0_0,
-      dataSource: ddbSource,
     });
 
-    new appsync.Resolver(this, "RegisterItemChatGptResolver", {
+    new appsync.Resolver(this, "PushItemToSqs1Resolver", {
       api,
       typeName: "Mutation",
-      fieldName: "registerItemChatGpt",
-      pipelineConfig: [prepRegisterItem, startStepFunctionChatGpt],
+      fieldName: "pushItemToSqs1",
+      pipelineConfig: [prepRegisterItem, pushItemToSqs1],
       code: appsync.Code.fromAsset("lib/graphql/registerItem.resolver.js"),
       runtime: appsync.FunctionRuntime.JS_1_0_0,
     });
 
-    const pushItemToSqs = new appsync.AppsyncFunction(this, "PushItemToSqs", {
-      name: "push_item_to_sqs",
-      api,
-      dataSource: sqsSource,
-      code: appsync.Code.fromAsset("lib/graphql/pushItemToSqs.resolver.js"),
-      runtime: appsync.FunctionRuntime.JS_1_0_0,
-    });
-
-    new appsync.Resolver(this, "PushItemToSqsResolver", {
+    new appsync.Resolver(this, "PushItemToSqs2Resolver", {
       api,
       typeName: "Mutation",
-      fieldName: "pushItemToSqs",
-      pipelineConfig: [prepRegisterItem, pushItemToSqs],
+      fieldName: "pushItemToSqs2",
+      pipelineConfig: [prepRegisterItem, pushItemToSqs2],
       code: appsync.Code.fromAsset("lib/graphql/registerItem.resolver.js"),
       runtime: appsync.FunctionRuntime.JS_1_0_0,
     });
