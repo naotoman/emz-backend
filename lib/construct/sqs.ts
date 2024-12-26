@@ -27,7 +27,6 @@ export class SqsQueue extends Construct {
     // Create main queue with DLQ configuration
     this.queue = new sqs.Queue(this, "ScraperQueue", {
       fifo: true,
-      contentBasedDeduplication: true,
       visibilityTimeout: Duration.seconds(35),
       deadLetterQueue: {
         queue: deadLetterQueue,
