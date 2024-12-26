@@ -113,6 +113,7 @@ export class Database extends Construct {
 
     ddbStreamFunc.addEventSource(
       new DynamoEventSource(this.table, {
+        enabled: false,
         startingPosition: lambda.StartingPosition.TRIM_HORIZON,
         filters: [
           lambda.FilterCriteria.filter({
