@@ -29,9 +29,9 @@ interface ChatGptResponse {
   listing_title: string;
   item_condition: string;
   item_specifics: {
-    franchises: string | null;
+    franchises: string[] | null;
     characters: string[] | null;
-    brands: string | null;
+    brands: string[] | null;
   };
   promotional_text: string;
   weight: number;
@@ -260,19 +260,37 @@ export const handler = async (event: Event) => {
     ebayConditionDescription: gptResult.item_condition,
     ebayAspectParam: {
       ...(gptResult.item_specifics.franchises &&
-      gptResult.item_specifics.franchises.length > 0
+      gptResult.item_specifics.franchises.filter((f) => f.trim() !== "")
+        .length > 0
         ? {
-            Franchise: [gptResult.item_specifics.franchises[0]],
-            "TV Show": [gptResult.item_specifics.franchises[0]],
+            Franchise: [
+              gptResult.item_specifics.franchises.filter(
+                (f) => f.trim() !== ""
+              )[0],
+            ],
+            "TV Show": [
+              gptResult.item_specifics.franchises.filter(
+                (f) => f.trim() !== ""
+              )[0],
+            ],
           }
         : {}),
       ...(gptResult.item_specifics.brands &&
-      gptResult.item_specifics.brands.length > 0
-        ? { Brand: [gptResult.item_specifics.brands[0]] }
+      gptResult.item_specifics.brands.filter((b) => b.trim() !== "").length > 0
+        ? {
+            Brand: [
+              gptResult.item_specifics.brands.filter((b) => b.trim() !== "")[0],
+            ],
+          }
         : {}),
       ...(gptResult.item_specifics.characters &&
-      gptResult.item_specifics.characters.length > 0
-        ? { Character: gptResult.item_specifics.characters.slice(0, 30) }
+      gptResult.item_specifics.characters.filter((c) => c.trim() !== "")
+        .length > 0
+        ? {
+            Character: gptResult.item_specifics.characters
+              .filter((c) => c.trim() !== "")
+              .slice(0, 30),
+          }
         : {}),
       "Country/Region of Manufacture": ["Japan"],
       Theme: ["Anime & Manga"],
