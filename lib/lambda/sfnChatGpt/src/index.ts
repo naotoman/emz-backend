@@ -1,6 +1,38 @@
 import { getSecureSsmParam } from "common/ssmParamExtension";
 import { log } from "common/utils";
+import fs from "fs";
 import OpenAI from "openai";
+import { ResponseFormatJSONSchema } from "openai/resources/shared.mjs";
+
+interface AspectConstraint {
+  aspectDataType: "STRING" | "NUMBER" | "DATE";
+  itemToAspectCardinality: "SINGLE" | "MULTI";
+  aspectMode: "FREE_TEXT" | "SELECTION_ONLY";
+  aspectRequired: boolean;
+}
+
+interface AspectValue {
+  localizedValue: string;
+}
+
+interface Aspect {
+  localizedAspectName: string;
+  aspectConstraint: AspectConstraint;
+  aspectValues: AspectValue[];
+}
+
+interface FormattedAspect {
+  type: string | string[];
+  description: string;
+  items?: {
+    type: "string" | "number";
+  };
+  enum?: string[];
+}
+
+interface FormattedAspects {
+  [key: string]: FormattedAspect;
+}
 
 interface Item {
   orgImageUrls: string[];
@@ -29,9 +61,7 @@ interface ChatGptResponse {
   listing_title: string;
   item_condition: string;
   item_specifics: {
-    franchises: string[] | null;
-    characters: string[] | null;
-    brands: string[] | null;
+    [key: string]: string | string[] | number | number[] | null;
   };
   promotional_text: string;
   weight: number;
@@ -42,7 +72,7 @@ interface ChatGptResponse {
   };
 }
 
-const chatgpt = async (event: Event) => {
+const chatgpt = async (event: Event, formattedAspects: FormattedAspects) => {
   const response_format = {
     type: "json_schema",
     json_schema: {
@@ -72,31 +102,8 @@ const chatgpt = async (event: Event) => {
           item_specifics: {
             type: "object",
             description: "Item specifics.",
-            properties: {
-              franchises: {
-                type: ["array", "null"],
-                description:
-                  "Franchises of the item (ex. title of anime, game, etc).",
-                items: {
-                  type: "string",
-                },
-              },
-              characters: {
-                type: ["array", "null"],
-                description: "Names of the characters related to the item.",
-                items: {
-                  type: "string",
-                },
-              },
-              brands: {
-                type: ["array", "null"],
-                description: "Brands of the item.",
-                items: {
-                  type: "string",
-                },
-              },
-            },
-            required: ["franchises", "characters", "brands"],
+            properties: formattedAspects,
+            required: Object.keys(formattedAspects),
             additionalProperties: false,
           },
           promotional_text: {
@@ -141,7 +148,6 @@ const chatgpt = async (event: Event) => {
         ],
         additionalProperties: false,
       },
-      strict: true,
     },
   };
 
@@ -155,7 +161,7 @@ const chatgpt = async (event: Event) => {
     model: "gpt-4o",
     messages: [
       {
-        role: "system",
+        role: "developer",
         content: `You assist users in reselling Japanese Mercari items on eBay. Based on the provided item's image, title, and description, generate the information for an eBay listing:
 - Assume all items are pre-owned and avoid using phrases like "like new" or similar terms to prevent confusion for buyers.
 - Ensure the response complies with eBay's platform requirements.
@@ -173,16 +179,17 @@ Additionally, assess whether the item violates eBay's policies on prohibited or 
           },
           {
             type: "text",
-            text: `[title]
+            text: `<title>
 ${event.item.orgTitle}
-[description]
-${event.item.orgDescription}`,
+</title>
+<description>
+${event.item.orgDescription}
+</description>`,
           },
         ],
       },
     ],
-    // @ts-ignore
-    response_format: response_format,
+    response_format: response_format as ResponseFormatJSONSchema,
   });
 
   const message = completion.choices[0]?.message;
@@ -223,10 +230,85 @@ const calcShippingFee = (
   return Math.min(fedexFee, emsFee);
 };
 
+export const transformAspects = (aspects: Aspect[]) => {
+  const transformType = (data: AspectConstraint) => {
+    if (data.itemToAspectCardinality === "MULTI") {
+      return "array";
+    } else if (data.aspectDataType === "NUMBER") {
+      return "number";
+    } else {
+      return "string";
+    }
+  };
+
+  const createDescription = (aspect: Aspect) => {
+    let desc = "";
+    if (aspect.aspectConstraint.aspectMode === "SELECTION_ONLY") {
+      desc += `A value for '${aspect.localizedAspectName}'. `;
+    } else {
+      desc += `Values for '${aspect.localizedAspectName}'. `;
+    }
+    if (
+      aspect.aspectConstraint.aspectMode === "FREE_TEXT" &&
+      aspect.aspectValues
+    ) {
+      desc +=
+        "(ex. " +
+        [...aspect.aspectValues]
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 20)
+          .map((v: AspectValue) => v.localizedValue)
+          .join(", ") +
+        ")";
+    }
+    return desc;
+  };
+
+  return aspects.reduce((acc: FormattedAspects, aspect: Aspect) => {
+    if (
+      aspect.localizedAspectName === "MPN" ||
+      aspect.localizedAspectName === "California Prop 65 Warning"
+    ) {
+      return acc;
+    }
+    const baseType = transformType(aspect.aspectConstraint);
+    acc[aspect.localizedAspectName] = {
+      type: aspect.aspectConstraint.aspectRequired
+        ? baseType
+        : [baseType, "null"],
+      description: createDescription(aspect),
+      ...(aspect.aspectConstraint.itemToAspectCardinality === "MULTI"
+        ? {
+            items: {
+              type:
+                aspect.aspectConstraint.aspectDataType === "NUMBER"
+                  ? "number"
+                  : "string",
+            },
+          }
+        : {}),
+      ...(aspect.aspectConstraint.aspectMode === "SELECTION_ONLY"
+        ? {
+            enum:
+              aspect.localizedAspectName === "Country/Region of Manufacture"
+                ? ["Japan"]
+                : aspect.aspectValues.map(
+                    (value: AspectValue) => value.localizedValue
+                  ),
+          }
+        : {}),
+    };
+    return acc;
+  }, {});
+};
+
 export const handler = async (event: Event) => {
   log(event);
+  const aspects = JSON.parse(fs.readFileSync("69528.json", "utf8")).aspects;
+  const formattedAspects = transformAspects(aspects);
+  log(formattedAspects);
   //   chatgptで処理
-  const gptResult = await chatgpt(event);
+  const gptResult = await chatgpt(event, formattedAspects);
   if (gptResult.violates_ebay_policy) {
     throw new Error(gptResult.violation_reason || "unknown");
   }
@@ -261,43 +343,18 @@ export const handler = async (event: Event) => {
     ebayStoreCategorySrc: ["Anime Merchandise"],
     ebayConditionSrc: "Used",
     ebayConditionDescription: gptResult.item_condition,
-    ebayAspectParam: {
-      ...(gptResult.item_specifics.franchises &&
-      gptResult.item_specifics.franchises.filter((f) => f.trim() !== "")
-        .length > 0
-        ? {
-            Franchise: [
-              gptResult.item_specifics.franchises.filter(
-                (f) => f.trim() !== ""
-              )[0],
-            ],
-            "TV Show": [
-              gptResult.item_specifics.franchises.filter(
-                (f) => f.trim() !== ""
-              )[0],
-            ],
+    ebayAspectParam: Object.fromEntries(
+      Object.entries(gptResult.item_specifics)
+        .filter(([_, value]) => {
+          if (value == null || value === "") return false;
+          if (Array.isArray(value)) {
+            return (
+              value.length > 0 && value.every((v) => v != null && v !== "")
+            );
           }
-        : {}),
-      ...(gptResult.item_specifics.brands &&
-      gptResult.item_specifics.brands.filter((b) => b.trim() !== "").length > 0
-        ? {
-            Brand: [
-              gptResult.item_specifics.brands.filter((b) => b.trim() !== "")[0],
-            ],
-          }
-        : {}),
-      ...(gptResult.item_specifics.characters &&
-      gptResult.item_specifics.characters.filter((c) => c.trim() !== "")
-        .length > 0
-        ? {
-            Character: gptResult.item_specifics.characters
-              .filter((c) => c.trim() !== "")
-              .slice(0, 30),
-          }
-        : {}),
-      "Country/Region of Manufacture": ["Japan"],
-      Theme: ["Anime & Manga"],
-      Signed: ["No"],
-    },
+          return true;
+        })
+        .map(([key, value]) => [key, Array.isArray(value) ? value : [value]])
+    ),
   };
 };

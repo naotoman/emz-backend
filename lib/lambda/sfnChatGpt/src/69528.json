@@ -1,0 +1,8372 @@
+{
+  "aspects": [
+    {
+      "localizedAspectName": "Franchise",
+      "aspectConstraint": {
+        "aspectDataType": "STRING",
+        "itemToAspectCardinality": "SINGLE",
+        "aspectMode": "FREE_TEXT",
+        "aspectRequired": false,
+        "aspectUsage": "RECOMMENDED",
+        "aspectEnabledForVariations": false,
+        "aspectApplicableTo": [
+          "PRODUCT"
+        ]
+      },
+      "aspectValues": [
+        {
+          "localizedValue": ".Hack//"
+        },
+        {
+          "localizedValue": "A Certain Scientific Railgun S"
+        },
+        {
+          "localizedValue": "Action Man"
+        },
+        {
+          "localizedValue": "Akira"
+        },
+        {
+          "localizedValue": "Alf"
+        },
+        {
+          "localizedValue": "Alias"
+        },
+        {
+          "localizedValue": "Alien"
+        },
+        {
+          "localizedValue": "Angel"
+        },
+        {
+          "localizedValue": "Angry Birds"
+        },
+        {
+          "localizedValue": "Animal Crossing"
+        },
+        {
+          "localizedValue": "Animaniacs"
+        },
+        {
+          "localizedValue": "Archer"
+        },
+        {
+          "localizedValue": "Arknights"
+        },
+        {
+          "localizedValue": "Arpeggio Of Blue Steel"
+        },
+        {
+          "localizedValue": "Astro Boy"
+        },
+        {
+          "localizedValue": "Attack on Titan"
+        },
+        {
+          "localizedValue": "Avatar"
+        },
+        {
+          "localizedValue": "Avatar: The Last Airbender"
+        },
+        {
+          "localizedValue": "Avengers"
+        },
+        {
+          "localizedValue": "Azur Lane"
+        },
+        {
+          "localizedValue": "Babylon 5"
+        },
+        {
+          "localizedValue": "Backyardigans"
+        },
+        {
+          "localizedValue": "Bad Taste Bears"
+        },
+        {
+          "localizedValue": "Bakugan Battle Brawlers"
+        },
+        {
+          "localizedValue": "Batman"
+        },
+        {
+          "localizedValue": "Battlestar Galactica"
+        },
+        {
+          "localizedValue": "Ben 10"
+        },
+        {
+          "localizedValue": "Berserk"
+        },
+        {
+          "localizedValue": "Betty Boop"
+        },
+        {
+          "localizedValue": "Beyblade"
+        },
+        {
+          "localizedValue": "Big Jim"
+        },
+        {
+          "localizedValue": "Black Clover"
+        },
+        {
+          "localizedValue": "Black Rock Shooter"
+        },
+        {
+          "localizedValue": "Blake's 7"
+        },
+        {
+          "localizedValue": "Bleach"
+        },
+        {
+          "localizedValue": "Bloodborne"
+        },
+        {
+          "localizedValue": "Boku wa Tomodachi ga Sukunai"
+        },
+        {
+          "localizedValue": "Bratz"
+        },
+        {
+          "localizedValue": "Buffy the Vampire Slayer"
+        },
+        {
+          "localizedValue": "Bugs Bunny"
+        },
+        {
+          "localizedValue": "Bungo Stray Dogs"
+        },
+        {
+          "localizedValue": "Cabbage Patch Kids"
+        },
+        {
+          "localizedValue": "Captain America"
+        },
+        {
+          "localizedValue": "Captain Scarlet"
+        },
+        {
+          "localizedValue": "Captain Tsubasa"
+        },
+        {
+          "localizedValue": "Cardcaptor Sakura"
+        },
+        {
+          "localizedValue": "Care Bears"
+        },
+        {
+          "localizedValue": "Case Closed"
+        },
+        {
+          "localizedValue": "Casper the Friendly Ghost"
+        },
+        {
+          "localizedValue": "Chantilly Lane"
+        },
+        {
+          "localizedValue": "Charmed"
+        },
+        {
+          "localizedValue": "Chicken Run"
+        },
+        {
+          "localizedValue": "Chobits"
+        },
+        {
+          "localizedValue": "Clamp"
+        },
+        {
+          "localizedValue": "Clash of the Titans"
+        },
+        {
+          "localizedValue": "Code Geass"
+        },
+        {
+          "localizedValue": "Cowboy Bebop"
+        },
+        {
+          "localizedValue": "Creature Comforts"
+        },
+        {
+          "localizedValue": "Curious George"
+        },
+        {
+          "localizedValue": "Daffy Duck"
+        },
+        {
+          "localizedValue": "Danganronpa"
+        },
+        {
+          "localizedValue": "Daredevil"
+        },
+        {
+          "localizedValue": "Darling In The Franxx"
+        },
+        {
+          "localizedValue": "DC Universe"
+        },
+        {
+          "localizedValue": "Dead or Alive"
+        },
+        {
+          "localizedValue": "Deadpool"
+        },
+        {
+          "localizedValue": "Death Note"
+        },
+        {
+          "localizedValue": "Demon Slayer: Kimetsu no Yaiba"
+        },
+        {
+          "localizedValue": "Devilman"
+        },
+        {
+          "localizedValue": "Diddl"
+        },
+        {
+          "localizedValue": "Digimon"
+        },
+        {
+          "localizedValue": "Disney"
+        },
+        {
+          "localizedValue": "Doctor Who"
+        },
+        {
+          "localizedValue": "Doraemon"
+        },
+        {
+          "localizedValue": "Dora the Explorer"
+        },
+        {
+          "localizedValue": "Dororo"
+        },
+        {
+          "localizedValue": "Dr. Seuss"
+        },
+        {
+          "localizedValue": "Dr. Stone"
+        },
+        {
+          "localizedValue": "Dragon"
+        },
+        {
+          "localizedValue": "Dragon Ball"
+        },
+        {
+          "localizedValue": "Dragon Ball Z"
+        },
+        {
+          "localizedValue": "Dragon Tales"
+        },
+        {
+          "localizedValue": "Duel Masters"
+        },
+        {
+          "localizedValue": "Dungeons & Dragons"
+        },
+        {
+          "localizedValue": "E.T. the Extra-Terrestrial"
+        },
+        {
+          "localizedValue": "Emily the Strange"
+        },
+        {
+          "localizedValue": "Escaflowne"
+        },
+        {
+          "localizedValue": "Exosquad"
+        },
+        {
+          "localizedValue": "Fairy Tail"
+        },
+        {
+          "localizedValue": "Family Guy"
+        },
+        {
+          "localizedValue": "Fantastic Four"
+        },
+        {
+          "localizedValue": "Farscape"
+        },
+        {
+          "localizedValue": "Fate/Stay Night"
+        },
+        {
+          "localizedValue": "Fate Apocrypha"
+        },
+        {
+          "localizedValue": "Fate Extella"
+        },
+        {
+          "localizedValue": "Felix the Cat"
+        },
+        {
+          "localizedValue": "Final Fantasy"
+        },
+        {
+          "localizedValue": "Fire Emblem"
+        },
+        {
+          "localizedValue": "Firefly"
+        },
+        {
+          "localizedValue": "Fire Force"
+        },
+        {
+          "localizedValue": "Fist of the North Star"
+        },
+        {
+          "localizedValue": "Foghorn Leghorn"
+        },
+        {
+          "localizedValue": "Food Wars"
+        },
+        {
+          "localizedValue": "Fortnite"
+        },
+        {
+          "localizedValue": "Fruits Basket"
+        },
+        {
+          "localizedValue": "Fullmetal Alchemist"
+        },
+        {
+          "localizedValue": "Full Metal Panic!"
+        },
+        {
+          "localizedValue": "Furby"
+        },
+        {
+          "localizedValue": "Fushigi Yuugi"
+        },
+        {
+          "localizedValue": "Futurama"
+        },
+        {
+          "localizedValue": "G.I. Joe"
+        },
+        {
+          "localizedValue": "Galilei Donna"
+        },
+        {
+          "localizedValue": "Game of Thrones"
+        },
+        {
+          "localizedValue": "Garbage Pail Kids"
+        },
+        {
+          "localizedValue": "Garfield"
+        },
+        {
+          "localizedValue": "Getter Robo"
+        },
+        {
+          "localizedValue": "Ghostbusters"
+        },
+        {
+          "localizedValue": "Ghost in the Shell"
+        },
+        {
+          "localizedValue": "Ghost Rider"
+        },
+        {
+          "localizedValue": "Gildeclowns"
+        },
+        {
+          "localizedValue": "Gin Tama"
+        },
+        {
+          "localizedValue": "Girls und Panzer"
+        },
+        {
+          "localizedValue": "Goblin Slayer"
+        },
+        {
+          "localizedValue": "God Eater"
+        },
+        {
+          "localizedValue": "Godzilla"
+        },
+        {
+          "localizedValue": "Gravity Falls"
+        },
+        {
+          "localizedValue": "Gremlins"
+        },
+        {
+          "localizedValue": "Guardians of the Galaxy"
+        },
+        {
+          "localizedValue": "Gundam"
+        },
+        {
+          "localizedValue": "Gurren Lagann"
+        },
+        {
+          "localizedValue": "Halo"
+        },
+        {
+          "localizedValue": "Hamtaro"
+        },
+        {
+          "localizedValue": "Happy Bunny"
+        },
+        {
+          "localizedValue": "Harry Potter"
+        },
+        {
+          "localizedValue": "Hatsune Miku"
+        },
+        {
+          "localizedValue": "Hellboy"
+        },
+        {
+          "localizedValue": "Hello Kitty"
+        },
+        {
+          "localizedValue": "Hellsing"
+        },
+        {
+          "localizedValue": "Heroes"
+        },
+        {
+          "localizedValue": "High School DxD"
+        },
+        {
+          "localizedValue": "Higurashi When They Cry"
+        },
+        {
+          "localizedValue": "Hikaru no Go"
+        },
+        {
+          "localizedValue": "Hong Kong Phooey"
+        },
+        {
+          "localizedValue": "Honkai Impact 3rd"
+        },
+        {
+          "localizedValue": "How Heavy Are the Dumbbells You Lift?"
+        },
+        {
+          "localizedValue": "Huckleberry Hound"
+        },
+        {
+          "localizedValue": "Hunter x Hunter"
+        },
+        {
+          "localizedValue": "Hyperdimension Neptunia"
+        },
+        {
+          "localizedValue": "Idolmaster"
+        },
+        {
+          "localizedValue": "In/Spectre"
+        },
+        {
+          "localizedValue": "Indiana Jones"
+        },
+        {
+          "localizedValue": "Infinite Stratos"
+        },
+        {
+          "localizedValue": "Initial D"
+        },
+        {
+          "localizedValue": "Inuyasha"
+        },
+        {
+          "localizedValue": "Invader Zim"
+        },
+        {
+          "localizedValue": "Iron Man"
+        },
+        {
+          "localizedValue": "Is It Wrong to Try to Pick Up Girls in a Dungeon?"
+        },
+        {
+          "localizedValue": "Jake and the Never Land Pirates"
+        },
+        {
+          "localizedValue": "James Bond"
+        },
+        {
+          "localizedValue": "Janosch"
+        },
+        {
+          "localizedValue": "Jetsons"
+        },
+        {
+          "localizedValue": "JoJo's Bizarre Adventure"
+        },
+        {
+          "localizedValue": "Jujutsu Kaisen"
+        },
+        {
+          "localizedValue": "Jurassic Park"
+        },
+        {
+          "localizedValue": "Justice League"
+        },
+        {
+          "localizedValue": "Kaguya-sama: Love is War"
+        },
+        {
+          "localizedValue": "Kamen Rider"
+        },
+        {
+          "localizedValue": "KanColle"
+        },
+        {
+          "localizedValue": "Katekyo Hitman Reborn!"
+        },
+        {
+          "localizedValue": "Keroro Gunso, Sgt. Frog"
+        },
+        {
+          "localizedValue": "Kill la Kill"
+        },
+        {
+          "localizedValue": "Kim Possible"
+        },
+        {
+          "localizedValue": "Kingdom Hearts"
+        },
+        {
+          "localizedValue": "King of Fighters"
+        },
+        {
+          "localizedValue": "Kin-iro Mosaic"
+        },
+        {
+          "localizedValue": "Kinnikuman"
+        },
+        {
+          "localizedValue": "Kino's Journey"
+        },
+        {
+          "localizedValue": "Kirby Adventures"
+        },
+        {
+          "localizedValue": "Kizumonogatari"
+        },
+        {
+          "localizedValue": "Kizuna AI"
+        },
+        {
+          "localizedValue": "K-On!"
+        },
+        {
+          "localizedValue": "Konosuba"
+        },
+        {
+          "localizedValue": "Kung Fu Panda"
+        },
+        {
+          "localizedValue": "Kuroko's Basketball"
+        },
+        {
+          "localizedValue": "Kyoukaisenjou no Horizon"
+        },
+        {
+          "localizedValue": "Lady Death"
+        },
+        {
+          "localizedValue": "Lalaloopsy"
+        },
+        {
+          "localizedValue": "Legend of the Five Rings"
+        },
+        {
+          "localizedValue": "LEGO"
+        },
+        {
+          "localizedValue": "Lexx"
+        },
+        {
+          "localizedValue": "Lil'Kinz"
+        },
+        {
+          "localizedValue": "Looney Tunes"
+        },
+        {
+          "localizedValue": "Lost"
+        },
+        {
+          "localizedValue": "Lost in Space"
+        },
+        {
+          "localizedValue": "Love Hina"
+        },
+        {
+          "localizedValue": "Love Live!"
+        },
+        {
+          "localizedValue": "Lucky Luke"
+        },
+        {
+          "localizedValue": "Lupin"
+        },
+        {
+          "localizedValue": "M.A.S.K."
+        },
+        {
+          "localizedValue": "M&M"
+        },
+        {
+          "localizedValue": "Macross/Robotech"
+        },
+        {
+          "localizedValue": "Madagascar"
+        },
+        {
+          "localizedValue": "Madoka Magica"
+        },
+        {
+          "localizedValue": "Magic: The Gathering"
+        },
+        {
+          "localizedValue": "Magical Girl Lyrical Nanoha"
+        },
+        {
+          "localizedValue": "Magic Knight Rayearth"
+        },
+        {
+          "localizedValue": "Mainzelmännchen"
+        },
+        {
+          "localizedValue": "Maisy"
+        },
+        {
+          "localizedValue": "Makai Tensho"
+        },
+        {
+          "localizedValue": "Maken-Ki!"
+        },
+        {
+          "localizedValue": "MapleStory"
+        },
+        {
+          "localizedValue": "Mars Attacks!"
+        },
+        {
+          "localizedValue": "Marvel (MCU)"
+        },
+        {
+          "localizedValue": "Marvin the Martian"
+        },
+        {
+          "localizedValue": "Masters of the Universe"
+        },
+        {
+          "localizedValue": "Maya the Bee"
+        },
+        {
+          "localizedValue": "Mazinger"
+        },
+        {
+          "localizedValue": "McFarlane"
+        },
+        {
+          "localizedValue": "Mega Man"
+        },
+        {
+          "localizedValue": "Mickey Mouse & Friends"
+        },
+        {
+          "localizedValue": "Minions"
+        },
+        {
+          "localizedValue": "Miss Kobayashi's Dragon Maid"
+        },
+        {
+          "localizedValue": "Mob Psycho 100"
+        },
+        {
+          "localizedValue": "Monchhichi"
+        },
+        {
+          "localizedValue": "Monster Girl Doctor"
+        },
+        {
+          "localizedValue": "Monster Hunter"
+        },
+        {
+          "localizedValue": "Movie Maniacs"
+        },
+        {
+          "localizedValue": "Muse Dash"
+        },
+        {
+          "localizedValue": "My Hero Academia"
+        },
+        {
+          "localizedValue": "My Little Pony"
+        },
+        {
+          "localizedValue": "My Teen Romantic Comedy"
+        },
+        {
+          "localizedValue": "Naruto"
+        },
+        {
+          "localizedValue": "Naruto Shippuden"
+        },
+        {
+          "localizedValue": "Neko Atsume: Kitty Collector"
+        },
+        {
+          "localizedValue": "Nekopara"
+        },
+        {
+          "localizedValue": "Neon Genesis Evangelion"
+        },
+        {
+          "localizedValue": "No Game No Life"
+        },
+        {
+          "localizedValue": "Oh My Goddess!"
+        },
+        {
+          "localizedValue": "Okami"
+        },
+        {
+          "localizedValue": "One Piece"
+        },
+        {
+          "localizedValue": "One Punch Man"
+        },
+        {
+          "localizedValue": "Oreimo"
+        },
+        {
+          "localizedValue": "Outer Limits"
+        },
+        {
+          "localizedValue": "Outlander"
+        },
+        {
+          "localizedValue": "Overlord"
+        },
+        {
+          "localizedValue": "Paddington Bear"
+        },
+        {
+          "localizedValue": "Patlabor"
+        },
+        {
+          "localizedValue": "Peanuts"
+        },
+        {
+          "localizedValue": "Pepe Le Pew"
+        },
+        {
+          "localizedValue": "Perplex City"
+        },
+        {
+          "localizedValue": "Persona"
+        },
+        {
+          "localizedValue": "Phineas and Ferb"
+        },
+        {
+          "localizedValue": "Pink Panther"
+        },
+        {
+          "localizedValue": "Pirates of the Caribbean"
+        },
+        {
+          "localizedValue": "Planet of the Apes"
+        },
+        {
+          "localizedValue": "Pokémon"
+        },
+        {
+          "localizedValue": "Pop Century"
+        },
+        {
+          "localizedValue": "Popeye"
+        },
+        {
+          "localizedValue": "Popples"
+        },
+        {
+          "localizedValue": "Pop Team Epic"
+        },
+        {
+          "localizedValue": "Porky Pig"
+        },
+        {
+          "localizedValue": "Pound Puppies"
+        },
+        {
+          "localizedValue": "Power Rangers"
+        },
+        {
+          "localizedValue": "Prince of Persia"
+        },
+        {
+          "localizedValue": "Promare"
+        },
+        {
+          "localizedValue": "Pucca"
+        },
+        {
+          "localizedValue": "Puella Magi Madoka Magica"
+        },
+        {
+          "localizedValue": "Puffalumps"
+        },
+        {
+          "localizedValue": "Puffkins"
+        },
+        {
+          "localizedValue": "Raggedy Ann & Andy"
+        },
+        {
+          "localizedValue": "Ranma"
+        },
+        {
+          "localizedValue": "Rascal Does Not Dream of Bunny Girl Senpai"
+        },
+        {
+          "localizedValue": "Ratatouille"
+        },
+        {
+          "localizedValue": "Rat Fink"
+        },
+        {
+          "localizedValue": "Re:Zero"
+        },
+        {
+          "localizedValue": "Redakai: Conquer the Kairu"
+        },
+        {
+          "localizedValue": "Red Dwarf"
+        },
+        {
+          "localizedValue": "Red Sonja"
+        },
+        {
+          "localizedValue": "Rent A Girlfriend"
+        },
+        {
+          "localizedValue": "Rick and Morty"
+        },
+        {
+          "localizedValue": "Road Runner & Wile E. Coyote"
+        },
+        {
+          "localizedValue": "RoboCop"
+        },
+        {
+          "localizedValue": "Robotech"
+        },
+        {
+          "localizedValue": "Rocky & Bullwinkle"
+        },
+        {
+          "localizedValue": "Rugrats"
+        },
+        {
+          "localizedValue": "Rurouni Kenshin"
+        },
+        {
+          "localizedValue": "RWBY"
+        },
+        {
+          "localizedValue": "Saekano: How To Raise A Boring Girlfriend"
+        },
+        {
+          "localizedValue": "Sailor Moon"
+        },
+        {
+          "localizedValue": "Saint Seiya"
+        },
+        {
+          "localizedValue": "Saiyuki"
+        },
+        {
+          "localizedValue": "Sakura Wars"
+        },
+        {
+          "localizedValue": "Sanrio"
+        },
+        {
+          "localizedValue": "San-X"
+        },
+        {
+          "localizedValue": "Scooby-Doo"
+        },
+        {
+          "localizedValue": "Sesame Street"
+        },
+        {
+          "localizedValue": "Shaman King"
+        },
+        {
+          "localizedValue": "Shining Hearts"
+        },
+        {
+          "localizedValue": "Shining Stars"
+        },
+        {
+          "localizedValue": "Shopkins"
+        },
+        {
+          "localizedValue": "Shrek"
+        },
+        {
+          "localizedValue": "Shugo Chara!"
+        },
+        {
+          "localizedValue": "Silent Hill"
+        },
+        {
+          "localizedValue": "Silver Surfer"
+        },
+        {
+          "localizedValue": "Slayers"
+        },
+        {
+          "localizedValue": "Sleepy Hollow"
+        },
+        {
+          "localizedValue": "Smallville"
+        },
+        {
+          "localizedValue": "Sonic the Hedgehog"
+        },
+        {
+          "localizedValue": "Soul Eater"
+        },
+        {
+          "localizedValue": "South Park"
+        },
+        {
+          "localizedValue": "Space: 1999"
+        },
+        {
+          "localizedValue": "Spawn"
+        },
+        {
+          "localizedValue": "Speed Racer"
+        },
+        {
+          "localizedValue": "Speedy Gonzales"
+        },
+        {
+          "localizedValue": "Spellfire"
+        },
+        {
+          "localizedValue": "Spider-Man"
+        },
+        {
+          "localizedValue": "Splatoon"
+        },
+        {
+          "localizedValue": "SpongeBob SquarePants"
+        },
+        {
+          "localizedValue": "Ssss Gridman"
+        },
+        {
+          "localizedValue": "Stargate"
+        },
+        {
+          "localizedValue": "Star Trek"
+        },
+        {
+          "localizedValue": "Star Wars"
+        },
+        {
+          "localizedValue": "Steins Gate"
+        },
+        {
+          "localizedValue": "Steven Universe"
+        },
+        {
+          "localizedValue": "Stranger Things"
+        },
+        {
+          "localizedValue": "Strawberry Shortcake"
+        },
+        {
+          "localizedValue": "Street Fighter"
+        },
+        {
+          "localizedValue": "Studio Ghibli"
+        },
+        {
+          "localizedValue": "Sumikko Gurashi"
+        },
+        {
+          "localizedValue": "Super Animals"
+        },
+        {
+          "localizedValue": "Supergirl"
+        },
+        {
+          "localizedValue": "Superman"
+        },
+        {
+          "localizedValue": "Super Mario Bros."
+        },
+        {
+          "localizedValue": "Supernatural"
+        },
+        {
+          "localizedValue": "Super Sonico"
+        },
+        {
+          "localizedValue": "Sweethearts"
+        },
+        {
+          "localizedValue": "Sword Art Online"
+        },
+        {
+          "localizedValue": "Tasmanian Devil"
+        },
+        {
+          "localizedValue": "Teddy Ruxpin"
+        },
+        {
+          "localizedValue": "Teenage Mutant Ninja Turtles"
+        },
+        {
+          "localizedValue": "Tekken"
+        },
+        {
+          "localizedValue": "Teletubbies"
+        },
+        {
+          "localizedValue": "Tenchi Muyo!"
+        },
+        {
+          "localizedValue": "Terminator"
+        },
+        {
+          "localizedValue": "That Time I Got Reincarnated As A Slime"
+        },
+        {
+          "localizedValue": "The Chronicles of Narnia"
+        },
+        {
+          "localizedValue": "The Fairly OddParents"
+        },
+        {
+          "localizedValue": "The Flintstones"
+        },
+        {
+          "localizedValue": "The Green Hornet"
+        },
+        {
+          "localizedValue": "The Land Before Time"
+        },
+        {
+          "localizedValue": "The Legend of Zelda"
+        },
+        {
+          "localizedValue": "The Lord of the Rings"
+        },
+        {
+          "localizedValue": "The Munsters"
+        },
+        {
+          "localizedValue": "The Muppets"
+        },
+        {
+          "localizedValue": "The Powerpuff Girls"
+        },
+        {
+          "localizedValue": "The Quintessential Quintuplets"
+        },
+        {
+          "localizedValue": "The Rising Of The Shield Hero"
+        },
+        {
+          "localizedValue": "The Simpsons"
+        },
+        {
+          "localizedValue": "The Smurfs"
+        },
+        {
+          "localizedValue": "The Three Stooges"
+        },
+        {
+          "localizedValue": "The Twilight Saga"
+        },
+        {
+          "localizedValue": "The Twilight Zone"
+        },
+        {
+          "localizedValue": "The Vampire Diaries"
+        },
+        {
+          "localizedValue": "The Walking Dead"
+        },
+        {
+          "localizedValue": "The Wiggles"
+        },
+        {
+          "localizedValue": "The Witcher"
+        },
+        {
+          "localizedValue": "The Wizard of Oz"
+        },
+        {
+          "localizedValue": "The X-Files"
+        },
+        {
+          "localizedValue": "Thor"
+        },
+        {
+          "localizedValue": "Thunderbirds"
+        },
+        {
+          "localizedValue": "Tintin"
+        },
+        {
+          "localizedValue": "To Heart"
+        },
+        {
+          "localizedValue": "Tokyo Ghoul"
+        },
+        {
+          "localizedValue": "Tom & Jerry"
+        },
+        {
+          "localizedValue": "Tomb Raider"
+        },
+        {
+          "localizedValue": "Toradora!"
+        },
+        {
+          "localizedValue": "Totoro"
+        },
+        {
+          "localizedValue": "Touhou Project"
+        },
+        {
+          "localizedValue": "Toy Soldiers"
+        },
+        {
+          "localizedValue": "Toy Story"
+        },
+        {
+          "localizedValue": "Transformers"
+        },
+        {
+          "localizedValue": "Trigun"
+        },
+        {
+          "localizedValue": "True Blood"
+        },
+        {
+          "localizedValue": "Tweety Bird"
+        },
+        {
+          "localizedValue": "Twin Peaks"
+        },
+        {
+          "localizedValue": "Undertale"
+        },
+        {
+          "localizedValue": "Universal Monsters"
+        },
+        {
+          "localizedValue": "Urusei Yatsura"
+        },
+        {
+          "localizedValue": "Uzaki-chan Wants to Hang Out!"
+        },
+        {
+          "localizedValue": "Vampire, the Eternal Struggle"
+        },
+        {
+          "localizedValue": "Vampire Knight"
+        },
+        {
+          "localizedValue": "Vampirella"
+        },
+        {
+          "localizedValue": "VeggieTales"
+        },
+        {
+          "localizedValue": "Veronica Mars"
+        },
+        {
+          "localizedValue": "Violetta"
+        },
+        {
+          "localizedValue": "Vivid Red Operation"
+        },
+        {
+          "localizedValue": "Vocaloid"
+        },
+        {
+          "localizedValue": "Voltron"
+        },
+        {
+          "localizedValue": "Wacky Packages"
+        },
+        {
+          "localizedValue": "Wacky Races"
+        },
+        {
+          "localizedValue": "Wallace & Gromit"
+        },
+        {
+          "localizedValue": "Walter Lantz/Woody Woodpecker"
+        },
+        {
+          "localizedValue": "Warlord: Saga of the Storm"
+        },
+        {
+          "localizedValue": "Watchmen"
+        },
+        {
+          "localizedValue": "Webkinz"
+        },
+        {
+          "localizedValue": "We Never Learn"
+        },
+        {
+          "localizedValue": "Werner"
+        },
+        {
+          "localizedValue": "Winnie the Pooh"
+        },
+        {
+          "localizedValue": "Winnie the Pooh & Friends"
+        },
+        {
+          "localizedValue": "Witchblade"
+        },
+        {
+          "localizedValue": "Wolf's Rain"
+        },
+        {
+          "localizedValue": "Wonder Pets!"
+        },
+        {
+          "localizedValue": "Wonder Woman"
+        },
+        {
+          "localizedValue": "World of Warcraft"
+        },
+        {
+          "localizedValue": "World Witches"
+        },
+        {
+          "localizedValue": "Wow! Wow! Wubbzy!"
+        },
+        {
+          "localizedValue": "Xena: Warrior Princess"
+        },
+        {
+          "localizedValue": "X-Force"
+        },
+        {
+          "localizedValue": "X-Men"
+        },
+        {
+          "localizedValue": "Yo Gabba Gabba!"
+        },
+        {
+          "localizedValue": "Yogi Bear"
+        },
+        {
+          "localizedValue": "Yo-Kai Watch"
+        },
+        {
+          "localizedValue": "Yomiko"
+        },
+        {
+          "localizedValue": "Yosemite Sam"
+        },
+        {
+          "localizedValue": "You're Under Arrest"
+        },
+        {
+          "localizedValue": "Youngblood"
+        },
+        {
+          "localizedValue": "Yowamushi Pedal"
+        },
+        {
+          "localizedValue": "Yu-Gi-Oh!"
+        },
+        {
+          "localizedValue": "Yu Yu Hakusho"
+        },
+        {
+          "localizedValue": "Ziggy"
+        },
+        {
+          "localizedValue": "Zombie Land Saga"
+        }
+      ]
+    },
+    {
+      "localizedAspectName": "TV Show",
+      "aspectConstraint": {
+        "aspectDataType": "STRING",
+        "itemToAspectCardinality": "SINGLE",
+        "aspectMode": "FREE_TEXT",
+        "aspectRequired": false,
+        "aspectUsage": "RECOMMENDED",
+        "aspectEnabledForVariations": false,
+        "aspectApplicableTo": [
+          "PRODUCT"
+        ]
+      },
+      "aspectValues": [
+        {
+          "localizedValue": "A Certain Scientific Railgun S"
+        },
+        {
+          "localizedValue": "Aladdin"
+        },
+        {
+          "localizedValue": "Alf"
+        },
+        {
+          "localizedValue": "Angel"
+        },
+        {
+          "localizedValue": "Arpeggio Of Blue Steel"
+        },
+        {
+          "localizedValue": "Attack on Titan"
+        },
+        {
+          "localizedValue": "Azur Lane"
+        },
+        {
+          "localizedValue": "Batman and Robin"
+        },
+        {
+          "localizedValue": "Berserk"
+        },
+        {
+          "localizedValue": "Black Clover"
+        },
+        {
+          "localizedValue": "Black Rock Shooter"
+        },
+        {
+          "localizedValue": "Bleach"
+        },
+        {
+          "localizedValue": "Bloodborne"
+        },
+        {
+          "localizedValue": "Boku wa Tomodachi ga Sukunai"
+        },
+        {
+          "localizedValue": "Bungo Stray Dogs"
+        },
+        {
+          "localizedValue": "Card Captor Sakura"
+        },
+        {
+          "localizedValue": "Case Closed"
+        },
+        {
+          "localizedValue": "Castle"
+        },
+        {
+          "localizedValue": "Code Geass"
+        },
+        {
+          "localizedValue": "Cowboy Bebop"
+        },
+        {
+          "localizedValue": "Danganronpa"
+        },
+        {
+          "localizedValue": "Darling In The Franxx"
+        },
+        {
+          "localizedValue": "Death Note"
+        },
+        {
+          "localizedValue": "Demon Slayer: Kimetsu no Yaiba"
+        },
+        {
+          "localizedValue": "Digimon"
+        },
+        {
+          "localizedValue": "Digimon 02"
+        },
+        {
+          "localizedValue": "Digimon Adventure"
+        },
+        {
+          "localizedValue": "Digimon Data Squad"
+        },
+        {
+          "localizedValue": "Digimon Frontier"
+        },
+        {
+          "localizedValue": "Digimon Fusion"
+        },
+        {
+          "localizedValue": "Digimon Tamers"
+        },
+        {
+          "localizedValue": "Digimon Universe Appli Monsters"
+        },
+        {
+          "localizedValue": "Doraemon"
+        },
+        {
+          "localizedValue": "Dororo"
+        },
+        {
+          "localizedValue": "Downton Abbey"
+        },
+        {
+          "localizedValue": "Dr. Stone"
+        },
+        {
+          "localizedValue": "Dragon Ball"
+        },
+        {
+          "localizedValue": "Engie Benjy"
+        },
+        {
+          "localizedValue": "Fairy Tail"
+        },
+        {
+          "localizedValue": "Fate/Grand Order"
+        },
+        {
+          "localizedValue": "Fate/Stay Night"
+        },
+        {
+          "localizedValue": "Fate Apocrypha"
+        },
+        {
+          "localizedValue": "Fate Extella"
+        },
+        {
+          "localizedValue": "Final Fantasy"
+        },
+        {
+          "localizedValue": "Fire Emblem"
+        },
+        {
+          "localizedValue": "Fire Force"
+        },
+        {
+          "localizedValue": "Food Wars"
+        },
+        {
+          "localizedValue": "Forces of Destiny"
+        },
+        {
+          "localizedValue": "Fullmetal Alchemist"
+        },
+        {
+          "localizedValue": "Full Metal Panic!"
+        },
+        {
+          "localizedValue": "Galaxy of Adventures"
+        },
+        {
+          "localizedValue": "Galilei Donna"
+        },
+        {
+          "localizedValue": "Ghost in the Shell"
+        },
+        {
+          "localizedValue": "Gintama"
+        },
+        {
+          "localizedValue": "Girls und Panzer"
+        },
+        {
+          "localizedValue": "Goblin Slayer"
+        },
+        {
+          "localizedValue": "God Eater"
+        },
+        {
+          "localizedValue": "Gundam"
+        },
+        {
+          "localizedValue": "High School DxD"
+        },
+        {
+          "localizedValue": "Higurashi When They Cry"
+        },
+        {
+          "localizedValue": "How Heavy Are the Dumbbells You Lift?"
+        },
+        {
+          "localizedValue": "Hunter X Hunter"
+        },
+        {
+          "localizedValue": "Idolmaster"
+        },
+        {
+          "localizedValue": "Ikki Tousen"
+        },
+        {
+          "localizedValue": "In/Spectre"
+        },
+        {
+          "localizedValue": "Infinite Stratos"
+        },
+        {
+          "localizedValue": "Inuyasha"
+        },
+        {
+          "localizedValue": "Is It Wrong to Try and Pick Up Girls in a Dungeon"
+        },
+        {
+          "localizedValue": "Jojo's Bizarre Adventure"
+        },
+        {
+          "localizedValue": "Jujutsu Kaisen"
+        },
+        {
+          "localizedValue": "Kaguya-sama: Love is War"
+        },
+        {
+          "localizedValue": "Kamen Rider"
+        },
+        {
+          "localizedValue": "KanColle"
+        },
+        {
+          "localizedValue": "Kill la Kill"
+        },
+        {
+          "localizedValue": "Kin-iro Mosaic"
+        },
+        {
+          "localizedValue": "Kino's Journey"
+        },
+        {
+          "localizedValue": "Kirby"
+        },
+        {
+          "localizedValue": "Kizumonogatari"
+        },
+        {
+          "localizedValue": "Kizuna AI"
+        },
+        {
+          "localizedValue": "Konosuba"
+        },
+        {
+          "localizedValue": "Kuroko's Basketball"
+        },
+        {
+          "localizedValue": "Kyoukaisenjou no Horizon"
+        },
+        {
+          "localizedValue": "Little Einsteins"
+        },
+        {
+          "localizedValue": "Love Live!"
+        },
+        {
+          "localizedValue": "Madoka Magica"
+        },
+        {
+          "localizedValue": "Magical Girl Lyrical Nanoha"
+        },
+        {
+          "localizedValue": "Makai Tensho"
+        },
+        {
+          "localizedValue": "Maken-Ki!"
+        },
+        {
+          "localizedValue": "Miss Kobayashi's Dragon Maid"
+        },
+        {
+          "localizedValue": "Mob Psycho 100"
+        },
+        {
+          "localizedValue": "Monster Girl Doctor"
+        },
+        {
+          "localizedValue": "Monster Hunter"
+        },
+        {
+          "localizedValue": "Muse Dash"
+        },
+        {
+          "localizedValue": "My Hero Academia"
+        },
+        {
+          "localizedValue": "My Teen Romantic Comedy"
+        },
+        {
+          "localizedValue": "Naruto"
+        },
+        {
+          "localizedValue": "Naruto Shippuden"
+        },
+        {
+          "localizedValue": "Negima!?"
+        },
+        {
+          "localizedValue": "Nekopara"
+        },
+        {
+          "localizedValue": "Neon Genesis Evangelion"
+        },
+        {
+          "localizedValue": "Nier:Automata"
+        },
+        {
+          "localizedValue": "No Game No Life"
+        },
+        {
+          "localizedValue": "Okami"
+        },
+        {
+          "localizedValue": "One Piece"
+        },
+        {
+          "localizedValue": "One Punch Man"
+        },
+        {
+          "localizedValue": "Oreimo"
+        },
+        {
+          "localizedValue": "Pinky and the Brain"
+        },
+        {
+          "localizedValue": "Pokémon"
+        },
+        {
+          "localizedValue": "Project Sakura Wars"
+        },
+        {
+          "localizedValue": "Promare"
+        },
+        {
+          "localizedValue": "Puella Magi Madoka Magica"
+        },
+        {
+          "localizedValue": "Rascal Does Not Dream of Bunny Girl Senpai"
+        },
+        {
+          "localizedValue": "Re:Zero"
+        },
+        {
+          "localizedValue": "Rent A Girlfriend"
+        },
+        {
+          "localizedValue": "Saekano: How To Raise A Boring Girlfriend"
+        },
+        {
+          "localizedValue": "Sailor Moon"
+        },
+        {
+          "localizedValue": "Saturday Night Live"
+        },
+        {
+          "localizedValue": "Shining Hearts"
+        },
+        {
+          "localizedValue": "Silent Hill"
+        },
+        {
+          "localizedValue": "Soul Eater"
+        },
+        {
+          "localizedValue": "Spider-Man"
+        },
+        {
+          "localizedValue": "Splatoon"
+        },
+        {
+          "localizedValue": "Ssss Gridman"
+        },
+        {
+          "localizedValue": "Star Trek: Deep Space Nine"
+        },
+        {
+          "localizedValue": "Star Trek: Discovery"
+        },
+        {
+          "localizedValue": "Star Trek: Enterprise"
+        },
+        {
+          "localizedValue": "Star Trek: Picard"
+        },
+        {
+          "localizedValue": "Star Trek: The Next Generation"
+        },
+        {
+          "localizedValue": "Star Trek: The Original Series"
+        },
+        {
+          "localizedValue": "Star Trek: Voyager"
+        },
+        {
+          "localizedValue": "Star Wars: Blips"
+        },
+        {
+          "localizedValue": "Star Wars: Clone Wars"
+        },
+        {
+          "localizedValue": "Star Wars: Droids"
+        },
+        {
+          "localizedValue": "Star Wars: Ewoks"
+        },
+        {
+          "localizedValue": "Star Wars: Rebels"
+        },
+        {
+          "localizedValue": "Star Wars: Resistance"
+        },
+        {
+          "localizedValue": "Star Wars: Roll Out"
+        },
+        {
+          "localizedValue": "Star Wars: The Clone Wars"
+        },
+        {
+          "localizedValue": "Star Wars Holiday Special"
+        },
+        {
+          "localizedValue": "Steins Gate"
+        },
+        {
+          "localizedValue": "Sweethearts"
+        },
+        {
+          "localizedValue": "Sword Art Online"
+        },
+        {
+          "localizedValue": "Tekken"
+        },
+        {
+          "localizedValue": "That Time I Got Reincarnated As A Slime"
+        },
+        {
+          "localizedValue": "The Big Bang Theory"
+        },
+        {
+          "localizedValue": "The Mandalorian"
+        },
+        {
+          "localizedValue": "The Quintessential Quintuplets"
+        },
+        {
+          "localizedValue": "The Rising Of The Shield Hero"
+        },
+        {
+          "localizedValue": "The Umbrella Academy"
+        },
+        {
+          "localizedValue": "The Witcher"
+        },
+        {
+          "localizedValue": "To Heart"
+        },
+        {
+          "localizedValue": "Tokyo Ghoul"
+        },
+        {
+          "localizedValue": "Toradora!"
+        },
+        {
+          "localizedValue": "Touhou Project"
+        },
+        {
+          "localizedValue": "Urusei Yatsura"
+        },
+        {
+          "localizedValue": "Uzaki-chan Wants to Hang Out!"
+        },
+        {
+          "localizedValue": "Vivid Red Operation"
+        },
+        {
+          "localizedValue": "We Never Learn"
+        },
+        {
+          "localizedValue": "World Witches"
+        },
+        {
+          "localizedValue": "You're Under Arrest"
+        },
+        {
+          "localizedValue": "Yowamushi Pedal"
+        },
+        {
+          "localizedValue": "Yu-Gi-Oh!"
+        },
+        {
+          "localizedValue": "Yu-Gi-Oh! 5D's"
+        },
+        {
+          "localizedValue": "Yu-Gi-Oh! ARC-V"
+        },
+        {
+          "localizedValue": "Yu-Gi-Oh! GX"
+        },
+        {
+          "localizedValue": "Yu-Gi-Oh! VRAINS"
+        },
+        {
+          "localizedValue": "Yu-Gi-Oh! Zexal"
+        },
+        {
+          "localizedValue": "Yu-Gi-Oh Capsule Monsters"
+        },
+        {
+          "localizedValue": "Yu-Gi-Oh Duel Monsters"
+        },
+        {
+          "localizedValue": "Yu Yu Hakusho"
+        }
+      ]
+    },
+    {
+      "localizedAspectName": "Brand",
+      "aspectConstraint": {
+        "aspectDataType": "STRING",
+        "itemToAspectCardinality": "SINGLE",
+        "aspectMode": "FREE_TEXT",
+        "aspectRequired": false,
+        "aspectUsage": "RECOMMENDED",
+        "aspectEnabledForVariations": false,
+        "aspectApplicableTo": [
+          "PRODUCT"
+        ]
+      },
+      "aspectValues": [
+        {
+          "localizedValue": "A & R"
+        },
+        {
+          "localizedValue": "Abrams"
+        },
+        {
+          "localizedValue": "Abystyle"
+        },
+        {
+          "localizedValue": "Accessory Innovations"
+        },
+        {
+          "localizedValue": "Acme"
+        },
+        {
+          "localizedValue": "American Greetings"
+        },
+        {
+          "localizedValue": "Anna Sui"
+        },
+        {
+          "localizedValue": "Applause"
+        },
+        {
+          "localizedValue": "Aqua"
+        },
+        {
+          "localizedValue": "Arcturus"
+        },
+        {
+          "localizedValue": "Artisan"
+        },
+        {
+          "localizedValue": "ASA"
+        },
+        {
+          "localizedValue": "ATLUS"
+        },
+        {
+          "localizedValue": "Aurora"
+        },
+        {
+          "localizedValue": "AVAIL"
+        },
+        {
+          "localizedValue": "Avex Trax"
+        },
+        {
+          "localizedValue": "Azumaker"
+        },
+        {
+          "localizedValue": "Baker Books"
+        },
+        {
+          "localizedValue": "Bandai"
+        },
+        {
+          "localizedValue": "BANDAI NAMCO Entertainment"
+        },
+        {
+          "localizedValue": "BANPRESTO"
+        },
+        {
+          "localizedValue": "Barbie"
+        },
+        {
+          "localizedValue": "Barron's Educational Series"
+        },
+        {
+          "localizedValue": "Beattie Outdoor Productions"
+        },
+        {
+          "localizedValue": "Berkley"
+        },
+        {
+          "localizedValue": "Bioworld"
+        },
+        {
+          "localizedValue": "BLACK BUTLER"
+        },
+        {
+          "localizedValue": "Black Cat"
+        },
+        {
+          "localizedValue": "Blade"
+        },
+        {
+          "localizedValue": "Bleach"
+        },
+        {
+          "localizedValue": "Bloomsbury"
+        },
+        {
+          "localizedValue": "Bloomsbury Publishing"
+        },
+        {
+          "localizedValue": "Blueprint Collections Ltd"
+        },
+        {
+          "localizedValue": "Boofle"
+        },
+        {
+          "localizedValue": "Born to Play"
+        },
+        {
+          "localizedValue": "Broccoli"
+        },
+        {
+          "localizedValue": "Browning"
+        },
+        {
+          "localizedValue": "Build-A-Bear Workshop"
+        },
+        {
+          "localizedValue": "Bullyland"
+        },
+        {
+          "localizedValue": "Bushiroad"
+        },
+        {
+          "localizedValue": "C&D Visionary"
+        },
+        {
+          "localizedValue": "C&T Publishing"
+        },
+        {
+          "localizedValue": "Calvin Klein"
+        },
+        {
+          "localizedValue": "Campbell"
+        },
+        {
+          "localizedValue": "CAP"
+        },
+        {
+          "localizedValue": "Capcom"
+        },
+        {
+          "localizedValue": "Carlton Publishing Group"
+        },
+        {
+          "localizedValue": "Cath Kidston"
+        },
+        {
+          "localizedValue": "Celebrate"
+        },
+        {
+          "localizedValue": "Chronicle Books"
+        },
+        {
+          "localizedValue": "CICO Books"
+        },
+        {
+          "localizedValue": "Classic Collection"
+        },
+        {
+          "localizedValue": "Coach"
+        },
+        {
+          "localizedValue": "Coca-Cola"
+        },
+        {
+          "localizedValue": "Colin Baxter Photography Ltd"
+        },
+        {
+          "localizedValue": "Colorata"
+        },
+        {
+          "localizedValue": "COSPA"
+        },
+        {
+          "localizedValue": "Crux"
+        },
+        {
+          "localizedValue": "Daiso"
+        },
+        {
+          "localizedValue": "David Charles"
+        },
+        {
+          "localizedValue": "DC Comics"
+        },
+        {
+          "localizedValue": "Death Note"
+        },
+        {
+          "localizedValue": "Depesche"
+        },
+        {
+          "localizedValue": "DEVICE"
+        },
+        {
+          "localizedValue": "Diamond Head"
+        },
+        {
+          "localizedValue": "Diddl"
+        },
+        {
+          "localizedValue": "Digimon"
+        },
+        {
+          "localizedValue": "Disguise"
+        },
+        {
+          "localizedValue": "Disney"
+        },
+        {
+          "localizedValue": "DK"
+        },
+        {
+          "localizedValue": "Dover Publications"
+        },
+        {
+          "localizedValue": "Dragon Ball Z"
+        },
+        {
+          "localizedValue": "DreamWorks"
+        },
+        {
+          "localizedValue": "Eaglemoss"
+        },
+        {
+          "localizedValue": "Eikoh"
+        },
+        {
+          "localizedValue": "elope"
+        },
+        {
+          "localizedValue": "Ensky"
+        },
+        {
+          "localizedValue": "Equity Toys"
+        },
+        {
+          "localizedValue": "Faber & Faber"
+        },
+        {
+          "localizedValue": "Fab NY"
+        },
+        {
+          "localizedValue": "Falcom"
+        },
+        {
+          "localizedValue": "Falk"
+        },
+        {
+          "localizedValue": "Filofax"
+        },
+        {
+          "localizedValue": "Fisher"
+        },
+        {
+          "localizedValue": "Flame Tree Publishing"
+        },
+        {
+          "localizedValue": "Flammarion"
+        },
+        {
+          "localizedValue": "Flying Dog"
+        },
+        {
+          "localizedValue": "Fox"
+        },
+        {
+          "localizedValue": "Fox Chapel Publishing"
+        },
+        {
+          "localizedValue": "Free Press"
+        },
+        {
+          "localizedValue": "FROM Software"
+        },
+        {
+          "localizedValue": "Frontier Works"
+        },
+        {
+          "localizedValue": "Frozen"
+        },
+        {
+          "localizedValue": "Fun 4 All"
+        },
+        {
+          "localizedValue": "Funko"
+        },
+        {
+          "localizedValue": "Funtastic"
+        },
+        {
+          "localizedValue": "FuRyu"
+        },
+        {
+          "localizedValue": "FUSS"
+        },
+        {
+          "localizedValue": "Gakken"
+        },
+        {
+          "localizedValue": "Galison"
+        },
+        {
+          "localizedValue": "GE Animation"
+        },
+        {
+          "localizedValue": "Gill Athletics"
+        },
+        {
+          "localizedValue": "Golden Bear"
+        },
+        {
+          "localizedValue": "Good Smile Company"
+        },
+        {
+          "localizedValue": "Great Eastern Entertainment"
+        },
+        {
+          "localizedValue": "GUND"
+        },
+        {
+          "localizedValue": "Gundam"
+        },
+        {
+          "localizedValue": "Hallmark"
+        },
+        {
+          "localizedValue": "HAPITAS"
+        },
+        {
+          "localizedValue": "HARIBO"
+        },
+        {
+          "localizedValue": "Harry Potter"
+        },
+        {
+          "localizedValue": "Harvey Comics"
+        },
+        {
+          "localizedValue": "Hasbro"
+        },
+        {
+          "localizedValue": "Haynes"
+        },
+        {
+          "localizedValue": "Hello Kitty"
+        },
+        {
+          "localizedValue": "Heunec"
+        },
+        {
+          "localizedValue": "Heye"
+        },
+        {
+          "localizedValue": "INA"
+        },
+        {
+          "localizedValue": "Insight"
+        },
+        {
+          "localizedValue": "Inuyasha"
+        },
+        {
+          "localizedValue": "Iwaya"
+        },
+        {
+          "localizedValue": "JAKKS Pacific"
+        },
+        {
+          "localizedValue": "Jazwares"
+        },
+        {
+          "localizedValue": "Jemini"
+        },
+        {
+          "localizedValue": "Jim Henson Company"
+        },
+        {
+          "localizedValue": "Jinx"
+        },
+        {
+          "localizedValue": "John Wiley & Sons"
+        },
+        {
+          "localizedValue": "Jurassic World"
+        },
+        {
+          "localizedValue": "Just Play"
+        },
+        {
+          "localizedValue": "Kadokawa"
+        },
+        {
+          "localizedValue": "kaws"
+        },
+        {
+          "localizedValue": "Keel Toys"
+        },
+        {
+          "localizedValue": "KEW"
+        },
+        {
+          "localizedValue": "King Record"
+        },
+        {
+          "localizedValue": "Knock Knock"
+        },
+        {
+          "localizedValue": "Kohl's Cares"
+        },
+        {
+          "localizedValue": "Konami"
+        },
+        {
+          "localizedValue": "Korimco"
+        },
+        {
+          "localizedValue": "KOTOBUKIYA"
+        },
+        {
+          "localizedValue": "Kowa"
+        },
+        {
+          "localizedValue": "Lantis"
+        },
+        {
+          "localizedValue": "Laurence King"
+        },
+        {
+          "localizedValue": "Learning Curve"
+        },
+        {
+          "localizedValue": "LEGO"
+        },
+        {
+          "localizedValue": "Licensing Essentials"
+        },
+        {
+          "localizedValue": "Lidl"
+        },
+        {
+          "localizedValue": "Living Dead Dolls"
+        },
+        {
+          "localizedValue": "Llewellyn"
+        },
+        {
+          "localizedValue": "Looney Tunes"
+        },
+        {
+          "localizedValue": "Loungefly"
+        },
+        {
+          "localizedValue": "Maisendo"
+        },
+        {
+          "localizedValue": "Maison de Fleur"
+        },
+        {
+          "localizedValue": "Manning"
+        },
+        {
+          "localizedValue": "Marimo Craft"
+        },
+        {
+          "localizedValue": "Martin"
+        },
+        {
+          "localizedValue": "Marushin"
+        },
+        {
+          "localizedValue": "Marvelous Entertainment"
+        },
+        {
+          "localizedValue": "Master Creations"
+        },
+        {
+          "localizedValue": "Mattel"
+        },
+        {
+          "localizedValue": "McDonald's"
+        },
+        {
+          "localizedValue": "MEGAMAN"
+        },
+        {
+          "localizedValue": "Mezco"
+        },
+        {
+          "localizedValue": "Microsoft"
+        },
+        {
+          "localizedValue": "Minecraft"
+        },
+        {
+          "localizedValue": "Mix & Match"
+        },
+        {
+          "localizedValue": "Moleskine"
+        },
+        {
+          "localizedValue": "Moomin"
+        },
+        {
+          "localizedValue": "Mr. Men"
+        },
+        {
+          "localizedValue": "My Little Pony"
+        },
+        {
+          "localizedValue": "Nakajima Corporation"
+        },
+        {
+          "localizedValue": "Namco"
+        },
+        {
+          "localizedValue": "National Trust"
+        },
+        {
+          "localizedValue": "Nemesis Now"
+        },
+        {
+          "localizedValue": "Nendoroid"
+        },
+        {
+          "localizedValue": "New Holland"
+        },
+        {
+          "localizedValue": "NICI"
+        },
+        {
+          "localizedValue": "Nickelodeon"
+        },
+        {
+          "localizedValue": "Nintendo"
+        },
+        {
+          "localizedValue": "Nippon Columbia"
+        },
+        {
+          "localizedValue": "Nippon Ichi Software"
+        },
+        {
+          "localizedValue": "Octopus"
+        },
+        {
+          "localizedValue": "Onepiece"
+        },
+        {
+          "localizedValue": "One World"
+        },
+        {
+          "localizedValue": "Opium"
+        },
+        {
+          "localizedValue": "Oracal"
+        },
+        {
+          "localizedValue": "Orion Publishing Group"
+        },
+        {
+          "localizedValue": "Otter House"
+        },
+        {
+          "localizedValue": "Panini"
+        },
+        {
+          "localizedValue": "Paperblanks"
+        },
+        {
+          "localizedValue": "Peanuts"
+        },
+        {
+          "localizedValue": "Pearson"
+        },
+        {
+          "localizedValue": "Penguin"
+        },
+        {
+          "localizedValue": "Peppa Pig"
+        },
+        {
+          "localizedValue": "PETER PAUPER PRESS"
+        },
+        {
+          "localizedValue": "Play by Play"
+        },
+        {
+          "localizedValue": "Play Imaginative"
+        },
+        {
+          "localizedValue": "Plex"
+        },
+        {
+          "localizedValue": "Pocket Books"
+        },
+        {
+          "localizedValue": "Pokémon"
+        },
+        {
+          "localizedValue": "Pokémon Center"
+        },
+        {
+          "localizedValue": "Pomegranate"
+        },
+        {
+          "localizedValue": "Pony Canyon"
+        },
+        {
+          "localizedValue": "Princeton Tec"
+        },
+        {
+          "localizedValue": "Pusheen"
+        },
+        {
+          "localizedValue": "QUADRILLE"
+        },
+        {
+          "localizedValue": "Quantum Mechanix"
+        },
+        {
+          "localizedValue": "Random House"
+        },
+        {
+          "localizedValue": "Recorded Books"
+        },
+        {
+          "localizedValue": "Rilakkuma"
+        },
+        {
+          "localizedValue": "RMS Communications"
+        },
+        {
+          "localizedValue": "Robert Frederick"
+        },
+        {
+          "localizedValue": "Robinson"
+        },
+        {
+          "localizedValue": "Rock Paper Pencils"
+        },
+        {
+          "localizedValue": "Rock Point"
+        },
+        {
+          "localizedValue": "ROOTOTE"
+        },
+        {
+          "localizedValue": "Rovio Entertainment"
+        },
+        {
+          "localizedValue": "Rubie's"
+        },
+        {
+          "localizedValue": "Running Press"
+        },
+        {
+          "localizedValue": "SACRA MUSIC"
+        },
+        {
+          "localizedValue": "Sailor Moon"
+        },
+        {
+          "localizedValue": "Samantha Thavasa"
+        },
+        {
+          "localizedValue": "SAMBRO"
+        },
+        {
+          "localizedValue": "Sanei"
+        },
+        {
+          "localizedValue": "Sankei"
+        },
+        {
+          "localizedValue": "Sanrio"
+        },
+        {
+          "localizedValue": "Sansei"
+        },
+        {
+          "localizedValue": "San-X"
+        },
+        {
+          "localizedValue": "Schildkröt Fitness"
+        },
+        {
+          "localizedValue": "SCOTT"
+        },
+        {
+          "localizedValue": "SEGA"
+        },
+        {
+          "localizedValue": "Sekiguchi"
+        },
+        {
+          "localizedValue": "Sesame Street"
+        },
+        {
+          "localizedValue": "SHEEPWORLD"
+        },
+        {
+          "localizedValue": "SHOBIDO"
+        },
+        {
+          "localizedValue": "Shueisha"
+        },
+        {
+          "localizedValue": "Simba"
+        },
+        {
+          "localizedValue": "Simon & Schuster"
+        },
+        {
+          "localizedValue": "Skansen"
+        },
+        {
+          "localizedValue": "Skaters"
+        },
+        {
+          "localizedValue": "SK Japan"
+        },
+        {
+          "localizedValue": "SNK"
+        },
+        {
+          "localizedValue": "Sony Music"
+        },
+        {
+          "localizedValue": "Soul Eater"
+        },
+        {
+          "localizedValue": "Sound"
+        },
+        {
+          "localizedValue": "Spiegelburg"
+        },
+        {
+          "localizedValue": "Spin Master"
+        },
+        {
+          "localizedValue": "Square Enix"
+        },
+        {
+          "localizedValue": "Starbucks"
+        },
+        {
+          "localizedValue": "Steiff"
+        },
+        {
+          "localizedValue": "Sterling Publishing"
+        },
+        {
+          "localizedValue": "Studio Ghibli"
+        },
+        {
+          "localizedValue": "Sun Arrow"
+        },
+        {
+          "localizedValue": "SunKid"
+        },
+        {
+          "localizedValue": "Sun-Star Stationery Co."
+        },
+        {
+          "localizedValue": "Taito"
+        },
+        {
+          "localizedValue": "Takara"
+        },
+        {
+          "localizedValue": "TAKARA TOMY ARTS"
+        },
+        {
+          "localizedValue": "Templar"
+        },
+        {
+          "localizedValue": "teNeues"
+        },
+        {
+          "localizedValue": "Thames & Hudson"
+        },
+        {
+          "localizedValue": "The Natural History Museum"
+        },
+        {
+          "localizedValue": "The Network"
+        },
+        {
+          "localizedValue": "The Noble Collection"
+        },
+        {
+          "localizedValue": "The Wiggles"
+        },
+        {
+          "localizedValue": "tiger tales"
+        },
+        {
+          "localizedValue": "TOHO"
+        },
+        {
+          "localizedValue": "tokidoki"
+        },
+        {
+          "localizedValue": "Tonka"
+        },
+        {
+          "localizedValue": "Torch"
+        },
+        {
+          "localizedValue": "Toy Network"
+        },
+        {
+          "localizedValue": "Trick or Treat Studios"
+        },
+        {
+          "localizedValue": "Tuttle Publishing"
+        },
+        {
+          "localizedValue": "Ty"
+        },
+        {
+          "localizedValue": "Ty Beanie Babies"
+        },
+        {
+          "localizedValue": "Ty Teenie Beanies"
+        },
+        {
+          "localizedValue": "Unbranded"
+        },
+        {
+          "localizedValue": "Uniqlo"
+        },
+        {
+          "localizedValue": "Universal Music"
+        },
+        {
+          "localizedValue": "V&A"
+        },
+        {
+          "localizedValue": "Vadobag"
+        },
+        {
+          "localizedValue": "Viacom"
+        },
+        {
+          "localizedValue": "Victor Entertainment"
+        },
+        {
+          "localizedValue": "Vivid Imaginations"
+        },
+        {
+          "localizedValue": "Walmart"
+        },
+        {
+          "localizedValue": "Walt Disney Records"
+        },
+        {
+          "localizedValue": "Warne"
+        },
+        {
+          "localizedValue": "Warner Bros."
+        },
+        {
+          "localizedValue": "Warner Bros. Home Entertainment"
+        },
+        {
+          "localizedValue": "Whiffer Sniffers"
+        },
+        {
+          "localizedValue": "Whitman's"
+        },
+        {
+          "localizedValue": "Wiley X"
+        },
+        {
+          "localizedValue": "Workman Publishing"
+        },
+        {
+          "localizedValue": "Yu-Gi-Oh!"
+        },
+        {
+          "localizedValue": "Zebra"
+        },
+        {
+          "localizedValue": "Zvezda"
+        }
+      ]
+    },
+    {
+      "localizedAspectName": "Character",
+      "aspectConstraint": {
+        "aspectDataType": "STRING",
+        "itemToAspectCardinality": "MULTI",
+        "aspectMode": "FREE_TEXT",
+        "aspectRequired": false,
+        "aspectUsage": "RECOMMENDED",
+        "aspectEnabledForVariations": false,
+        "aspectApplicableTo": [
+          "PRODUCT"
+        ]
+      },
+      "aspectValues": [
+        {
+          "localizedValue": "Abin Sur"
+        },
+        {
+          "localizedValue": "Abra Kadabra"
+        },
+        {
+          "localizedValue": "Adam Strange"
+        },
+        {
+          "localizedValue": "Airy Ardet"
+        },
+        {
+          "localizedValue": "Alfred Pennyworth"
+        },
+        {
+          "localizedValue": "Alice Cartelet"
+        },
+        {
+          "localizedValue": "Alisa Ilinichina Amiella"
+        },
+        {
+          "localizedValue": "Alisia Heart"
+        },
+        {
+          "localizedValue": "All Might"
+        },
+        {
+          "localizedValue": "Amanda Waller"
+        },
+        {
+          "localizedValue": "Amazo"
+        },
+        {
+          "localizedValue": "Ambush Bug"
+        },
+        {
+          "localizedValue": "America Chavez"
+        },
+        {
+          "localizedValue": "Amethyst"
+        },
+        {
+          "localizedValue": "Andrew Bennett"
+        },
+        {
+          "localizedValue": "Animal Man"
+        },
+        {
+          "localizedValue": "Animal-Vegetable-Mineral Man"
+        },
+        {
+          "localizedValue": "Aoko Aozaki"
+        },
+        {
+          "localizedValue": "Apache Chief"
+        },
+        {
+          "localizedValue": "Aquagirl"
+        },
+        {
+          "localizedValue": "Aqualad"
+        },
+        {
+          "localizedValue": "Aquaman"
+        },
+        {
+          "localizedValue": "Araki Mataemon"
+        },
+        {
+          "localizedValue": "Archer"
+        },
+        {
+          "localizedValue": "Archie"
+        },
+        {
+          "localizedValue": "Ares"
+        },
+        {
+          "localizedValue": "Armin Arlert"
+        },
+        {
+          "localizedValue": "Arsenal"
+        },
+        {
+          "localizedValue": "Artemis"
+        },
+        {
+          "localizedValue": "Asterix"
+        },
+        {
+          "localizedValue": "Astro Boy"
+        },
+        {
+          "localizedValue": "Asuka Langley Sohryu"
+        },
+        {
+          "localizedValue": "Asuna Yuuki"
+        },
+        {
+          "localizedValue": "Atom"
+        },
+        {
+          "localizedValue": "Atrocitus"
+        },
+        {
+          "localizedValue": "Ayase Aragaki"
+        },
+        {
+          "localizedValue": "Azrael"
+        },
+        {
+          "localizedValue": "Azusa Miura"
+        },
+        {
+          "localizedValue": "B'wana Beast"
+        },
+        {
+          "localizedValue": "Baby Face"
+        },
+        {
+          "localizedValue": "Badtz Maru"
+        },
+        {
+          "localizedValue": "Bane"
+        },
+        {
+          "localizedValue": "Batgirl"
+        },
+        {
+          "localizedValue": "Batman"
+        },
+        {
+          "localizedValue": "Bat-Mite"
+        },
+        {
+          "localizedValue": "Batwoman"
+        },
+        {
+          "localizedValue": "Beast Boy"
+        },
+        {
+          "localizedValue": "Betty Boop"
+        },
+        {
+          "localizedValue": "Big Barda"
+        },
+        {
+          "localizedValue": "Billy Numerous"
+        },
+        {
+          "localizedValue": "Bizarro"
+        },
+        {
+          "localizedValue": "Black Adam"
+        },
+        {
+          "localizedValue": "Black Beetle"
+        },
+        {
+          "localizedValue": "Black Canary"
+        },
+        {
+          "localizedValue": "Black Flash"
+        },
+        {
+          "localizedValue": "Black Hand"
+        },
+        {
+          "localizedValue": "Black Lightning"
+        },
+        {
+          "localizedValue": "Black Manta"
+        },
+        {
+          "localizedValue": "Black Mask"
+        },
+        {
+          "localizedValue": "Black Panther"
+        },
+        {
+          "localizedValue": "Black Vulcan"
+        },
+        {
+          "localizedValue": "Black Widow"
+        },
+        {
+          "localizedValue": "Bleez"
+        },
+        {
+          "localizedValue": "Blok"
+        },
+        {
+          "localizedValue": "Blue Beetle"
+        },
+        {
+          "localizedValue": "Blue Devil"
+        },
+        {
+          "localizedValue": "Bookworm"
+        },
+        {
+          "localizedValue": "Booster Gold"
+        },
+        {
+          "localizedValue": "Bouncing Boy"
+        },
+        {
+          "localizedValue": "Brain"
+        },
+        {
+          "localizedValue": "Brainiac"
+        },
+        {
+          "localizedValue": "Brother Blood"
+        },
+        {
+          "localizedValue": "Brother Eye"
+        },
+        {
+          "localizedValue": "Buffy"
+        },
+        {
+          "localizedValue": "Bugs Bunny"
+        },
+        {
+          "localizedValue": "Bumblebee"
+        },
+        {
+          "localizedValue": "Cain"
+        },
+        {
+          "localizedValue": "Calendar Man"
+        },
+        {
+          "localizedValue": "Captain America"
+        },
+        {
+          "localizedValue": "Captain Atom"
+        },
+        {
+          "localizedValue": "Captain Boomerang"
+        },
+        {
+          "localizedValue": "Captain Carrot"
+        },
+        {
+          "localizedValue": "Captain Cold"
+        },
+        {
+          "localizedValue": "Captain Comet"
+        },
+        {
+          "localizedValue": "Captain Marvel"
+        },
+        {
+          "localizedValue": "Carol Ferris"
+        },
+        {
+          "localizedValue": "Cartoon Character"
+        },
+        {
+          "localizedValue": "Catman"
+        },
+        {
+          "localizedValue": "Catwoman"
+        },
+        {
+          "localizedValue": "Cecilia Alcott"
+        },
+        {
+          "localizedValue": "Chameleon Boy"
+        },
+        {
+          "localizedValue": "Channel"
+        },
+        {
+          "localizedValue": "Charlotte Dunois"
+        },
+        {
+          "localizedValue": "Cheetah"
+        },
+        {
+          "localizedValue": "Chemo"
+        },
+        {
+          "localizedValue": "Chihaya Kisaragi"
+        },
+        {
+          "localizedValue": "Chihiro"
+        },
+        {
+          "localizedValue": "Chococat"
+        },
+        {
+          "localizedValue": "Cinnamoroll"
+        },
+        {
+          "localizedValue": "Circe"
+        },
+        {
+          "localizedValue": "Clayface"
+        },
+        {
+          "localizedValue": "Clock King"
+        },
+        {
+          "localizedValue": "Colonel Hardy"
+        },
+        {
+          "localizedValue": "Conan"
+        },
+        {
+          "localizedValue": "Conan Edogawa"
+        },
+        {
+          "localizedValue": "Condiment King"
+        },
+        {
+          "localizedValue": "Constantine"
+        },
+        {
+          "localizedValue": "Copperhead"
+        },
+        {
+          "localizedValue": "Cosmic Boy"
+        },
+        {
+          "localizedValue": "Cosmic King"
+        },
+        {
+          "localizedValue": "Crazy Quilt"
+        },
+        {
+          "localizedValue": "Cyborg"
+        },
+        {
+          "localizedValue": "Cyborg Superman"
+        },
+        {
+          "localizedValue": "Cyril Brooklyn"
+        },
+        {
+          "localizedValue": "Daffy Duck"
+        },
+        {
+          "localizedValue": "Dan Dare"
+        },
+        {
+          "localizedValue": "Daredevil"
+        },
+        {
+          "localizedValue": "Darkness"
+        },
+        {
+          "localizedValue": "Darkseid"
+        },
+        {
+          "localizedValue": "Dawnstar"
+        },
+        {
+          "localizedValue": "Deadpool"
+        },
+        {
+          "localizedValue": "Deadshot"
+        },
+        {
+          "localizedValue": "Deathlok"
+        },
+        {
+          "localizedValue": "Deathstroke"
+        },
+        {
+          "localizedValue": "Denki Kaminari"
+        },
+        {
+          "localizedValue": "Desperaux"
+        },
+        {
+          "localizedValue": "Devil"
+        },
+        {
+          "localizedValue": "Dex-starr"
+        },
+        {
+          "localizedValue": "Doctor Strange"
+        },
+        {
+          "localizedValue": "Dolphin"
+        },
+        {
+          "localizedValue": "Domo"
+        },
+        {
+          "localizedValue": "Donald Duck"
+        },
+        {
+          "localizedValue": "Doomsday"
+        },
+        {
+          "localizedValue": "Dr. Death"
+        },
+        {
+          "localizedValue": "Dr. Fate"
+        },
+        {
+          "localizedValue": "Dr. Light"
+        },
+        {
+          "localizedValue": "Dr. Manhattan"
+        },
+        {
+          "localizedValue": "Dr. Phosphorus"
+        },
+        {
+          "localizedValue": "Dr. Psycho"
+        },
+        {
+          "localizedValue": "Dr. Sivana"
+        },
+        {
+          "localizedValue": "Dream Girl"
+        },
+        {
+          "localizedValue": "Duela Dent"
+        },
+        {
+          "localizedValue": "Duo Damsel"
+        },
+        {
+          "localizedValue": "Edward Elric"
+        },
+        {
+          "localizedValue": "Egghead"
+        },
+        {
+          "localizedValue": "Eijiro Kirishima"
+        },
+        {
+          "localizedValue": "Einhart Stratos"
+        },
+        {
+          "localizedValue": "Elasti-Girl"
+        },
+        {
+          "localizedValue": "Elektra"
+        },
+        {
+          "localizedValue": "Element Lad"
+        },
+        {
+          "localizedValue": "Eli Ayase"
+        },
+        {
+          "localizedValue": "Elina Olegovna Oven"
+        },
+        {
+          "localizedValue": "Elongated Man"
+        },
+        {
+          "localizedValue": "Enchantress"
+        },
+        {
+          "localizedValue": "Eraser"
+        },
+        {
+          "localizedValue": "Eren Jaeger"
+        },
+        {
+          "localizedValue": "Erza Scarlet"
+        },
+        {
+          "localizedValue": "Etrigan the Demon"
+        },
+        {
+          "localizedValue": "False Face"
+        },
+        {
+          "localizedValue": "Fate Testarossa"
+        },
+        {
+          "localizedValue": "Fire"
+        },
+        {
+          "localizedValue": "Firefly"
+        },
+        {
+          "localizedValue": "Firestorm"
+        },
+        {
+          "localizedValue": "Flash"
+        },
+        {
+          "localizedValue": "Flash Gordon"
+        },
+        {
+          "localizedValue": "Francesca Lucchini"
+        },
+        {
+          "localizedValue": "Frankenstein"
+        },
+        {
+          "localizedValue": "Fumikage Tokoyami"
+        },
+        {
+          "localizedValue": "Funny Animal"
+        },
+        {
+          "localizedValue": "G.I. Joe"
+        },
+        {
+          "localizedValue": "Gambit"
+        },
+        {
+          "localizedValue": "Garfield"
+        },
+        {
+          "localizedValue": "General Immortus"
+        },
+        {
+          "localizedValue": "General Zod"
+        },
+        {
+          "localizedValue": "Gentleman Ghost"
+        },
+        {
+          "localizedValue": "Ghost Rider"
+        },
+        {
+          "localizedValue": "Giganta"
+        },
+        {
+          "localizedValue": "Gizmo"
+        },
+        {
+          "localizedValue": "Goofy"
+        },
+        {
+          "localizedValue": "Gorilla Grodd"
+        },
+        {
+          "localizedValue": "Granny Goodness"
+        },
+        {
+          "localizedValue": "Great White Shark"
+        },
+        {
+          "localizedValue": "Green Arrow"
+        },
+        {
+          "localizedValue": "Green Lantern"
+        },
+        {
+          "localizedValue": "Gudetama"
+        },
+        {
+          "localizedValue": "Guy Gardner"
+        },
+        {
+          "localizedValue": "Haggor"
+        },
+        {
+          "localizedValue": "Hanayo Koizumi"
+        },
+        {
+          "localizedValue": "Hanji Zoe"
+        },
+        {
+          "localizedValue": "Harley Quinn"
+        },
+        {
+          "localizedValue": "Haruko Amaya"
+        },
+        {
+          "localizedValue": "Hatsune Miku"
+        },
+        {
+          "localizedValue": "Hawkgirl"
+        },
+        {
+          "localizedValue": "Hawkman"
+        },
+        {
+          "localizedValue": "Hazard"
+        },
+        {
+          "localizedValue": "Heat Wave"
+        },
+        {
+          "localizedValue": "Heiji Hattori"
+        },
+        {
+          "localizedValue": "Hellblazer"
+        },
+        {
+          "localizedValue": "Hellboy"
+        },
+        {
+          "localizedValue": "Hellhound"
+        },
+        {
+          "localizedValue": "Hellraiser"
+        },
+        {
+          "localizedValue": "Hercules"
+        },
+        {
+          "localizedValue": "Himiko Toga"
+        },
+        {
+          "localizedValue": "Hitman"
+        },
+        {
+          "localizedValue": "Homura Akemi"
+        },
+        {
+          "localizedValue": "Honoka Kosaka"
+        },
+        {
+          "localizedValue": "Houki Shinonono"
+        },
+        {
+          "localizedValue": "Hugo Strange"
+        },
+        {
+          "localizedValue": "Hulk"
+        },
+        {
+          "localizedValue": "Humpty Dumpty"
+        },
+        {
+          "localizedValue": "Huntress"
+        },
+        {
+          "localizedValue": "Hush"
+        },
+        {
+          "localizedValue": "Ice"
+        },
+        {
+          "localizedValue": "Illyasviel von Einzbern"
+        },
+        {
+          "localizedValue": "Inertia"
+        },
+        {
+          "localizedValue": "Inosuke Hashibira"
+        },
+        {
+          "localizedValue": "Invisible Boy"
+        },
+        {
+          "localizedValue": "Iori Minase"
+        },
+        {
+          "localizedValue": "Iron Fist"
+        },
+        {
+          "localizedValue": "Iron Man"
+        },
+        {
+          "localizedValue": "Izuku Midoriya"
+        },
+        {
+          "localizedValue": "Jaguar"
+        },
+        {
+          "localizedValue": "Jessica Jones"
+        },
+        {
+          "localizedValue": "Jimmy Olsen"
+        },
+        {
+          "localizedValue": "Jinx"
+        },
+        {
+          "localizedValue": "John Diggle"
+        },
+        {
+          "localizedValue": "Johnny Thunder"
+        },
+        {
+          "localizedValue": "John Stewart"
+        },
+        {
+          "localizedValue": "Joker"
+        },
+        {
+          "localizedValue": "Jonah Hex"
+        },
+        {
+          "localizedValue": "Jonny Logan"
+        },
+        {
+          "localizedValue": "Judge Dredd"
+        },
+        {
+          "localizedValue": "Jughead"
+        },
+        {
+          "localizedValue": "Jun Kazama"
+        },
+        {
+          "localizedValue": "Juvia Lockser"
+        },
+        {
+          "localizedValue": "Kabuki Twin"
+        },
+        {
+          "localizedValue": "Karate Kid"
+        },
+        {
+          "localizedValue": "Karen Kujou"
+        },
+        {
+          "localizedValue": "Kasumi Shiraishi"
+        },
+        {
+          "localizedValue": "Katana"
+        },
+        {
+          "localizedValue": "Kate Bishop"
+        },
+        {
+          "localizedValue": "Katsuki Bakugo"
+        },
+        {
+          "localizedValue": "Ken Shiro"
+        },
+        {
+          "localizedValue": "Keroppi"
+        },
+        {
+          "localizedValue": "Key"
+        },
+        {
+          "localizedValue": "Kid Devil"
+        },
+        {
+          "localizedValue": "Kid Flash"
+        },
+        {
+          "localizedValue": "Killer Croc"
+        },
+        {
+          "localizedValue": "Killer Frost"
+        },
+        {
+          "localizedValue": "Killer Moth"
+        },
+        {
+          "localizedValue": "Kilowog"
+        },
+        {
+          "localizedValue": "Kimi Aoi"
+        },
+        {
+          "localizedValue": "King Shark"
+        },
+        {
+          "localizedValue": "King Tut"
+        },
+        {
+          "localizedValue": "Kirigaya Kazuto"
+        },
+        {
+          "localizedValue": "Kite Man"
+        },
+        {
+          "localizedValue": "Kogoro Mouri"
+        },
+        {
+          "localizedValue": "Kotori Minami"
+        },
+        {
+          "localizedValue": "Krypto"
+        },
+        {
+          "localizedValue": "Kryptonite Man"
+        },
+        {
+          "localizedValue": "Kurisu Makise"
+        },
+        {
+          "localizedValue": "L"
+        },
+        {
+          "localizedValue": "Lady Blackhawk"
+        },
+        {
+          "localizedValue": "Lagoon Boy"
+        },
+        {
+          "localizedValue": "Larfleeze"
+        },
+        {
+          "localizedValue": "Laura Bodewig"
+        },
+        {
+          "localizedValue": "Levi Ackerman"
+        },
+        {
+          "localizedValue": "Lex Luthor"
+        },
+        {
+          "localizedValue": "Libra"
+        },
+        {
+          "localizedValue": "Lightning Lad"
+        },
+        {
+          "localizedValue": "Lightning Lass"
+        },
+        {
+          "localizedValue": "Lightning Lord"
+        },
+        {
+          "localizedValue": "Light Yagami"
+        },
+        {
+          "localizedValue": "Little Twin Stars"
+        },
+        {
+          "localizedValue": "Livewire"
+        },
+        {
+          "localizedValue": "Lobo"
+        },
+        {
+          "localizedValue": "Louie the lilac"
+        },
+        {
+          "localizedValue": "Lucy Heartfilia"
+        },
+        {
+          "localizedValue": "Luke Cage"
+        },
+        {
+          "localizedValue": "Lum Invader"
+        },
+        {
+          "localizedValue": "Lynette Bishop"
+        },
+        {
+          "localizedValue": "Madame Rouge"
+        },
+        {
+          "localizedValue": "Mad Hatter"
+        },
+        {
+          "localizedValue": "Magneto"
+        },
+        {
+          "localizedValue": "Magpie"
+        },
+        {
+          "localizedValue": "Maka Albarn"
+        },
+        {
+          "localizedValue": "Mako Reizei"
+        },
+        {
+          "localizedValue": "Mammoth"
+        },
+        {
+          "localizedValue": "Man-Bat"
+        },
+        {
+          "localizedValue": "March Harriet"
+        },
+        {
+          "localizedValue": "Martian Manhunter"
+        },
+        {
+          "localizedValue": "Mashimaro"
+        },
+        {
+          "localizedValue": "Maxie Zeus"
+        },
+        {
+          "localizedValue": "Mera"
+        },
+        {
+          "localizedValue": "Metallo"
+        },
+        {
+          "localizedValue": "Metal Men"
+        },
+        {
+          "localizedValue": "Metamorpho"
+        },
+        {
+          "localizedValue": "Mickey Mouse"
+        },
+        {
+          "localizedValue": "Mighty Mouse"
+        },
+        {
+          "localizedValue": "Miho Nishizumi"
+        },
+        {
+          "localizedValue": "Mikasa Ackerman"
+        },
+        {
+          "localizedValue": "Miles Morales"
+        },
+        {
+          "localizedValue": "Mime"
+        },
+        {
+          "localizedValue": "Ministrel"
+        },
+        {
+          "localizedValue": "Mio Akane"
+        },
+        {
+          "localizedValue": "Mio Sakamoto"
+        },
+        {
+          "localizedValue": "Mirajane Strauss"
+        },
+        {
+          "localizedValue": "Mirio Togata"
+        },
+        {
+          "localizedValue": "Mirror Master"
+        },
+        {
+          "localizedValue": "Miss Martian"
+        },
+        {
+          "localizedValue": "Miss Monochrome"
+        },
+        {
+          "localizedValue": "Momo Yaoyorozu"
+        },
+        {
+          "localizedValue": "Mon-El"
+        },
+        {
+          "localizedValue": "Mongul"
+        },
+        {
+          "localizedValue": "Monsieur Mallah"
+        },
+        {
+          "localizedValue": "Moon Knight"
+        },
+        {
+          "localizedValue": "Mother Mae Eye"
+        },
+        {
+          "localizedValue": "Mr. Camera"
+        },
+        {
+          "localizedValue": "Mr. Freeze"
+        },
+        {
+          "localizedValue": "Mr. Mind"
+        },
+        {
+          "localizedValue": "Mr. Mxyzsptlk"
+        },
+        {
+          "localizedValue": "Mr. Terrific"
+        },
+        {
+          "localizedValue": "Ms Marvel"
+        },
+        {
+          "localizedValue": "Music Meister"
+        },
+        {
+          "localizedValue": "My Melody"
+        },
+        {
+          "localizedValue": "Namor"
+        },
+        {
+          "localizedValue": "Nana Kozuki"
+        },
+        {
+          "localizedValue": "Naruto Uzumaki"
+        },
+        {
+          "localizedValue": "Nefertari Vivi"
+        },
+        {
+          "localizedValue": "Nezuko Kamado"
+        },
+        {
+          "localizedValue": "Nick Fury"
+        },
+        {
+          "localizedValue": "Nico Yazawa"
+        },
+        {
+          "localizedValue": "Nightwing"
+        },
+        {
+          "localizedValue": "Nozomi Tojo"
+        },
+        {
+          "localizedValue": "Ocean Master"
+        },
+        {
+          "localizedValue": "Ochaco Uraraka"
+        },
+        {
+          "localizedValue": "Oracle"
+        },
+        {
+          "localizedValue": "Orca"
+        },
+        {
+          "localizedValue": "Orion"
+        },
+        {
+          "localizedValue": "Outsider"
+        },
+        {
+          "localizedValue": "Parallax"
+        },
+        {
+          "localizedValue": "Parasite"
+        },
+        {
+          "localizedValue": "Penguin"
+        },
+        {
+          "localizedValue": "Perrine H Clostermann"
+        },
+        {
+          "localizedValue": "Phantom"
+        },
+        {
+          "localizedValue": "Plastic Man"
+        },
+        {
+          "localizedValue": "Plastique"
+        },
+        {
+          "localizedValue": "Pochacco"
+        },
+        {
+          "localizedValue": "Poison Ivy"
+        },
+        {
+          "localizedValue": "Polka-Dot Man"
+        },
+        {
+          "localizedValue": "Popeye"
+        },
+        {
+          "localizedValue": "Power Girl"
+        },
+        {
+          "localizedValue": "Preacher"
+        },
+        {
+          "localizedValue": "Predator"
+        },
+        {
+          "localizedValue": "Princess Projectra"
+        },
+        {
+          "localizedValue": "Prometheus"
+        },
+        {
+          "localizedValue": "Punisher"
+        },
+        {
+          "localizedValue": "Queen Bee"
+        },
+        {
+          "localizedValue": "Question"
+        },
+        {
+          "localizedValue": "Ra's Al Ghul"
+        },
+        {
+          "localizedValue": "Ragdoll"
+        },
+        {
+          "localizedValue": "Ragman"
+        },
+        {
+          "localizedValue": "Ran Mouri"
+        },
+        {
+          "localizedValue": "Ratcatcher"
+        },
+        {
+          "localizedValue": "Ratchet"
+        },
+        {
+          "localizedValue": "Ravager"
+        },
+        {
+          "localizedValue": "Raven"
+        },
+        {
+          "localizedValue": "Razorsharp"
+        },
+        {
+          "localizedValue": "Red Bee"
+        },
+        {
+          "localizedValue": "Red Hood"
+        },
+        {
+          "localizedValue": "Red She-Hulk"
+        },
+        {
+          "localizedValue": "Red Sonja"
+        },
+        {
+          "localizedValue": "Red Tornado"
+        },
+        {
+          "localizedValue": "Red X"
+        },
+        {
+          "localizedValue": "Rei Kuroki"
+        },
+        {
+          "localizedValue": "Reverse-Flash"
+        },
+        {
+          "localizedValue": "Rias Gremory"
+        },
+        {
+          "localizedValue": "Riddler"
+        },
+        {
+          "localizedValue": "Rilakkuma"
+        },
+        {
+          "localizedValue": "Rin Shibuya"
+        },
+        {
+          "localizedValue": "Rin Tohsaka"
+        },
+        {
+          "localizedValue": "Rip Hunter"
+        },
+        {
+          "localizedValue": "Road Runner"
+        },
+        {
+          "localizedValue": "Robin"
+        },
+        {
+          "localizedValue": "RoboCop"
+        },
+        {
+          "localizedValue": "Robotman"
+        },
+        {
+          "localizedValue": "Rocket Red"
+        },
+        {
+          "localizedValue": "Roger Rabbit"
+        },
+        {
+          "localizedValue": "Ryuk"
+        },
+        {
+          "localizedValue": "Ryuko Matoi"
+        },
+        {
+          "localizedValue": "Saber"
+        },
+        {
+          "localizedValue": "Sabrina"
+        },
+        {
+          "localizedValue": "Sailor Jupiter"
+        },
+        {
+          "localizedValue": "Sailor Mars"
+        },
+        {
+          "localizedValue": "Sailor Mercury"
+        },
+        {
+          "localizedValue": "Sailor Moon"
+        },
+        {
+          "localizedValue": "Sailor Venus"
+        },
+        {
+          "localizedValue": "Saint Walker"
+        },
+        {
+          "localizedValue": "Sakura Haruno"
+        },
+        {
+          "localizedValue": "Sakura Kinomoto"
+        },
+        {
+          "localizedValue": "Samurai"
+        },
+        {
+          "localizedValue": "Sandman"
+        },
+        {
+          "localizedValue": "Saori Takebe"
+        },
+        {
+          "localizedValue": "Sasara Kusugawa"
+        },
+        {
+          "localizedValue": "Sasuke Uchiha"
+        },
+        {
+          "localizedValue": "Saturn Girl"
+        },
+        {
+          "localizedValue": "Saturn Queen"
+        },
+        {
+          "localizedValue": "Scarecrow"
+        },
+        {
+          "localizedValue": "Scrooge McDuck"
+        },
+        {
+          "localizedValue": "See-More"
+        },
+        {
+          "localizedValue": "Sgt. Rock"
+        },
+        {
+          "localizedValue": "Shade"
+        },
+        {
+          "localizedValue": "Shadow Lass"
+        },
+        {
+          "localizedValue": "Shadow Thief"
+        },
+        {
+          "localizedValue": "Shame"
+        },
+        {
+          "localizedValue": "Shazam"
+        },
+        {
+          "localizedValue": "Shi"
+        },
+        {
+          "localizedValue": "Shinichi Kudo"
+        },
+        {
+          "localizedValue": "Shinobu Oomiya"
+        },
+        {
+          "localizedValue": "Shota Aizawa"
+        },
+        {
+          "localizedValue": "Shoto Todoroki"
+        },
+        {
+          "localizedValue": "Silk"
+        },
+        {
+          "localizedValue": "Silver Surfer"
+        },
+        {
+          "localizedValue": "Simon"
+        },
+        {
+          "localizedValue": "Sinestro"
+        },
+        {
+          "localizedValue": "Siren"
+        },
+        {
+          "localizedValue": "Skallox"
+        },
+        {
+          "localizedValue": "Snoopy"
+        },
+        {
+          "localizedValue": "Snorlax"
+        },
+        {
+          "localizedValue": "Solomon Grundy"
+        },
+        {
+          "localizedValue": "Spawn"
+        },
+        {
+          "localizedValue": "Spectre"
+        },
+        {
+          "localizedValue": "Speedy"
+        },
+        {
+          "localizedValue": "Spider-Gwen"
+        },
+        {
+          "localizedValue": "Spider-Man"
+        },
+        {
+          "localizedValue": "Spider-Woman"
+        },
+        {
+          "localizedValue": "Spoiler"
+        },
+        {
+          "localizedValue": "Starfire"
+        },
+        {
+          "localizedValue": "Star Girl"
+        },
+        {
+          "localizedValue": "Steel"
+        },
+        {
+          "localizedValue": "Stitch"
+        },
+        {
+          "localizedValue": "Sun Boy"
+        },
+        {
+          "localizedValue": "Superboy"
+        },
+        {
+          "localizedValue": "Supergirl"
+        },
+        {
+          "localizedValue": "Superman"
+        },
+        {
+          "localizedValue": "Swamp Thing"
+        },
+        {
+          "localizedValue": "Sweet Tooth"
+        },
+        {
+          "localizedValue": "Sylvester"
+        },
+        {
+          "localizedValue": "Takane Shijou"
+        },
+        {
+          "localizedValue": "Tamaki Amajiki"
+        },
+        {
+          "localizedValue": "Tanjiro Kamado"
+        },
+        {
+          "localizedValue": "Tarantula"
+        },
+        {
+          "localizedValue": "Tarzan"
+        },
+        {
+          "localizedValue": "Taz"
+        },
+        {
+          "localizedValue": "Tenya Iida"
+        },
+        {
+          "localizedValue": "The Fly"
+        },
+        {
+          "localizedValue": "Thor"
+        },
+        {
+          "localizedValue": "Timber Wolf"
+        },
+        {
+          "localizedValue": "Tintin"
+        },
+        {
+          "localizedValue": "Titans"
+        },
+        {
+          "localizedValue": "Tomo Asama"
+        },
+        {
+          "localizedValue": "Totoro"
+        },
+        {
+          "localizedValue": "Toyman"
+        },
+        {
+          "localizedValue": "Trickster"
+        },
+        {
+          "localizedValue": "Trigon"
+        },
+        {
+          "localizedValue": "Tsuyu Asui"
+        },
+        {
+          "localizedValue": "Turtle"
+        },
+        {
+          "localizedValue": "Tweedledum and Tweedledee"
+        },
+        {
+          "localizedValue": "Tweety"
+        },
+        {
+          "localizedValue": "Tweety Bird"
+        },
+        {
+          "localizedValue": "Two-Face"
+        },
+        {
+          "localizedValue": "Ultra Boy"
+        },
+        {
+          "localizedValue": "Ultra-Humanite"
+        },
+        {
+          "localizedValue": "Umi Kousaka"
+        },
+        {
+          "localizedValue": "Umi Sonoda"
+        },
+        {
+          "localizedValue": "Vampirella"
+        },
+        {
+          "localizedValue": "Vandal Savage"
+        },
+        {
+          "localizedValue": "Venom"
+        },
+        {
+          "localizedValue": "Vibe"
+        },
+        {
+          "localizedValue": "Vixen"
+        },
+        {
+          "localizedValue": "Wasp"
+        },
+        {
+          "localizedValue": "Weather Wizard"
+        },
+        {
+          "localizedValue": "Wendy Marvell"
+        },
+        {
+          "localizedValue": "White Canary"
+        },
+        {
+          "localizedValue": "Wildcat"
+        },
+        {
+          "localizedValue": "Wildebeest"
+        },
+        {
+          "localizedValue": "Wildfire"
+        },
+        {
+          "localizedValue": "Witchblade"
+        },
+        {
+          "localizedValue": "Wolverine"
+        },
+        {
+          "localizedValue": "Wonder Girl"
+        },
+        {
+          "localizedValue": "Wonder Woman"
+        },
+        {
+          "localizedValue": "Yogi Bear"
+        },
+        {
+          "localizedValue": "Yozora Mikazuki"
+        },
+        {
+          "localizedValue": "Yukari Akiyama"
+        },
+        {
+          "localizedValue": "Yuzuki Yukari"
+        },
+        {
+          "localizedValue": "Zarrell"
+        },
+        {
+          "localizedValue": "Zatanna"
+        },
+        {
+          "localizedValue": "Zatara"
+        },
+        {
+          "localizedValue": "Zebra-Man"
+        },
+        {
+          "localizedValue": "Zenitsu Agatsuma"
+        },
+        {
+          "localizedValue": "Zilius Zox"
+        },
+        {
+          "localizedValue": "Zod"
+        },
+        {
+          "localizedValue": "Zodiac Master"
+        },
+        {
+          "localizedValue": "Zoom"
+        }
+      ]
+    },
+    {
+      "localizedAspectName": "Material",
+      "aspectConstraint": {
+        "aspectDataType": "STRING",
+        "itemToAspectCardinality": "MULTI",
+        "aspectMode": "FREE_TEXT",
+        "aspectRequired": false,
+        "aspectUsage": "RECOMMENDED",
+        "aspectEnabledForVariations": false,
+        "aspectApplicableTo": [
+          "PRODUCT"
+        ]
+      },
+      "aspectValues": [
+        {
+          "localizedValue": "100% Cotton"
+        },
+        {
+          "localizedValue": "Acrylic"
+        },
+        {
+          "localizedValue": "Alpaca"
+        },
+        {
+          "localizedValue": "Aluminum"
+        },
+        {
+          "localizedValue": "Beans"
+        },
+        {
+          "localizedValue": "Brass"
+        },
+        {
+          "localizedValue": "Bronze"
+        },
+        {
+          "localizedValue": "Cardboard"
+        },
+        {
+          "localizedValue": "Cashmere"
+        },
+        {
+          "localizedValue": "Chrome"
+        },
+        {
+          "localizedValue": "Clay"
+        },
+        {
+          "localizedValue": "Cloth"
+        },
+        {
+          "localizedValue": "Copper"
+        },
+        {
+          "localizedValue": "Cotton"
+        },
+        {
+          "localizedValue": "Cotton Blend"
+        },
+        {
+          "localizedValue": "Crystal"
+        },
+        {
+          "localizedValue": "Fabric"
+        },
+        {
+          "localizedValue": "Fabric/Canvas"
+        },
+        {
+          "localizedValue": "Fake Fur"
+        },
+        {
+          "localizedValue": "Felt"
+        },
+        {
+          "localizedValue": "Fleece"
+        },
+        {
+          "localizedValue": "Fur"
+        },
+        {
+          "localizedValue": "Gemstone"
+        },
+        {
+          "localizedValue": "Glass"
+        },
+        {
+          "localizedValue": "Horsehair"
+        },
+        {
+          "localizedValue": "Kapok"
+        },
+        {
+          "localizedValue": "Leather"
+        },
+        {
+          "localizedValue": "Metal"
+        },
+        {
+          "localizedValue": "Mohair"
+        },
+        {
+          "localizedValue": "Nickel"
+        },
+        {
+          "localizedValue": "Nylon"
+        },
+        {
+          "localizedValue": "Paper"
+        },
+        {
+          "localizedValue": "Plastic"
+        },
+        {
+          "localizedValue": "Plastic Pellets"
+        },
+        {
+          "localizedValue": "Platinum"
+        },
+        {
+          "localizedValue": "Plush"
+        },
+        {
+          "localizedValue": "Polyester"
+        },
+        {
+          "localizedValue": "Recycled Fabric"
+        },
+        {
+          "localizedValue": "Rhinestone"
+        },
+        {
+          "localizedValue": "Rose Gold"
+        },
+        {
+          "localizedValue": "Satin"
+        },
+        {
+          "localizedValue": "Sawdust"
+        },
+        {
+          "localizedValue": "Shell"
+        },
+        {
+          "localizedValue": "Silver"
+        },
+        {
+          "localizedValue": "Stainless Steel"
+        },
+        {
+          "localizedValue": "Stone"
+        },
+        {
+          "localizedValue": "Straw"
+        },
+        {
+          "localizedValue": "Synthetic Fiber"
+        },
+        {
+          "localizedValue": "Tin"
+        },
+        {
+          "localizedValue": "Velvet"
+        },
+        {
+          "localizedValue": "Wood"
+        },
+        {
+          "localizedValue": "Wood Wool"
+        }
+      ]
+    },
+    {
+      "localizedAspectName": "Color",
+      "aspectConstraint": {
+        "aspectDataType": "STRING",
+        "itemToAspectCardinality": "SINGLE",
+        "aspectMode": "FREE_TEXT",
+        "aspectRequired": false,
+        "aspectUsage": "RECOMMENDED",
+        "aspectEnabledForVariations": true,
+        "aspectApplicableTo": [
+          "PRODUCT"
+        ]
+      },
+      "aspectValues": [
+        {
+          "localizedValue": "Beige"
+        },
+        {
+          "localizedValue": "Black"
+        },
+        {
+          "localizedValue": "Blue"
+        },
+        {
+          "localizedValue": "Brown"
+        },
+        {
+          "localizedValue": "Clear"
+        },
+        {
+          "localizedValue": "Gold"
+        },
+        {
+          "localizedValue": "Gray"
+        },
+        {
+          "localizedValue": "Green"
+        },
+        {
+          "localizedValue": "Multicolor"
+        },
+        {
+          "localizedValue": "Orange"
+        },
+        {
+          "localizedValue": "Pink"
+        },
+        {
+          "localizedValue": "Purple"
+        },
+        {
+          "localizedValue": "Red"
+        },
+        {
+          "localizedValue": "Silver"
+        },
+        {
+          "localizedValue": "White"
+        },
+        {
+          "localizedValue": "Yellow"
+        }
+      ]
+    },
+    {
+      "localizedAspectName": "Country/Region of Manufacture",
+      "aspectConstraint": {
+        "aspectDataType": "STRING",
+        "itemToAspectCardinality": "SINGLE",
+        "aspectMode": "SELECTION_ONLY",
+        "aspectRequired": false,
+        "aspectUsage": "RECOMMENDED",
+        "aspectEnabledForVariations": false,
+        "aspectApplicableTo": [
+          "PRODUCT"
+        ]
+      },
+      "aspectValues": [
+        {
+          "localizedValue": "Afghanistan"
+        },
+        {
+          "localizedValue": "Albania"
+        },
+        {
+          "localizedValue": "Algeria"
+        },
+        {
+          "localizedValue": "American Samoa"
+        },
+        {
+          "localizedValue": "Andorra"
+        },
+        {
+          "localizedValue": "Angola"
+        },
+        {
+          "localizedValue": "Anguilla"
+        },
+        {
+          "localizedValue": "Antarctica"
+        },
+        {
+          "localizedValue": "Antigua and Barbuda"
+        },
+        {
+          "localizedValue": "Argentina"
+        },
+        {
+          "localizedValue": "Armenia"
+        },
+        {
+          "localizedValue": "Aruba"
+        },
+        {
+          "localizedValue": "Australia"
+        },
+        {
+          "localizedValue": "Austria"
+        },
+        {
+          "localizedValue": "Azerbaijan"
+        },
+        {
+          "localizedValue": "Bahamas"
+        },
+        {
+          "localizedValue": "Bahrain"
+        },
+        {
+          "localizedValue": "Bangladesh"
+        },
+        {
+          "localizedValue": "Barbados"
+        },
+        {
+          "localizedValue": "Belarus"
+        },
+        {
+          "localizedValue": "Belgium"
+        },
+        {
+          "localizedValue": "Belize"
+        },
+        {
+          "localizedValue": "Benin"
+        },
+        {
+          "localizedValue": "Bermuda"
+        },
+        {
+          "localizedValue": "Bhutan"
+        },
+        {
+          "localizedValue": "Bolivia"
+        },
+        {
+          "localizedValue": "Bosnia and Herzegovina"
+        },
+        {
+          "localizedValue": "Botswana"
+        },
+        {
+          "localizedValue": "Bouvet Island"
+        },
+        {
+          "localizedValue": "Brazil"
+        },
+        {
+          "localizedValue": "British Indian Ocean Territory"
+        },
+        {
+          "localizedValue": "Brunei Darussalam"
+        },
+        {
+          "localizedValue": "Bulgaria"
+        },
+        {
+          "localizedValue": "Burkina Faso"
+        },
+        {
+          "localizedValue": "Burundi"
+        },
+        {
+          "localizedValue": "Cambodia"
+        },
+        {
+          "localizedValue": "Cameroon"
+        },
+        {
+          "localizedValue": "Canada"
+        },
+        {
+          "localizedValue": "Cape Verde"
+        },
+        {
+          "localizedValue": "Cayman Islands"
+        },
+        {
+          "localizedValue": "Central African Republic"
+        },
+        {
+          "localizedValue": "Chad"
+        },
+        {
+          "localizedValue": "Chile"
+        },
+        {
+          "localizedValue": "China"
+        },
+        {
+          "localizedValue": "Christmas Island"
+        },
+        {
+          "localizedValue": "Cocos (Keeling) Islands"
+        },
+        {
+          "localizedValue": "Colombia"
+        },
+        {
+          "localizedValue": "Comoros"
+        },
+        {
+          "localizedValue": "Congo"
+        },
+        {
+          "localizedValue": "Cook Islands"
+        },
+        {
+          "localizedValue": "Costa Rica"
+        },
+        {
+          "localizedValue": "Côte d'Ivoire"
+        },
+        {
+          "localizedValue": "Croatia"
+        },
+        {
+          "localizedValue": "Cyprus"
+        },
+        {
+          "localizedValue": "Czechia"
+        },
+        {
+          "localizedValue": "Denmark"
+        },
+        {
+          "localizedValue": "Djibouti"
+        },
+        {
+          "localizedValue": "Dominica"
+        },
+        {
+          "localizedValue": "Dominican Republic"
+        },
+        {
+          "localizedValue": "Ecuador"
+        },
+        {
+          "localizedValue": "Egypt"
+        },
+        {
+          "localizedValue": "El Salvador"
+        },
+        {
+          "localizedValue": "Equatorial Guinea"
+        },
+        {
+          "localizedValue": "Eritrea"
+        },
+        {
+          "localizedValue": "Estonia"
+        },
+        {
+          "localizedValue": "Eswatini"
+        },
+        {
+          "localizedValue": "Ethiopia"
+        },
+        {
+          "localizedValue": "Falkland Islands"
+        },
+        {
+          "localizedValue": "Faroe Islands"
+        },
+        {
+          "localizedValue": "Fiji"
+        },
+        {
+          "localizedValue": "Finland"
+        },
+        {
+          "localizedValue": "France"
+        },
+        {
+          "localizedValue": "French Guiana"
+        },
+        {
+          "localizedValue": "French Polynesia Includes Tahiti"
+        },
+        {
+          "localizedValue": "French Southern Territories"
+        },
+        {
+          "localizedValue": "Gabon"
+        },
+        {
+          "localizedValue": "Gambia"
+        },
+        {
+          "localizedValue": "Georgia"
+        },
+        {
+          "localizedValue": "Germany"
+        },
+        {
+          "localizedValue": "Ghana"
+        },
+        {
+          "localizedValue": "Gibraltar"
+        },
+        {
+          "localizedValue": "Greece"
+        },
+        {
+          "localizedValue": "Greenland"
+        },
+        {
+          "localizedValue": "Grenada"
+        },
+        {
+          "localizedValue": "Guadeloupe"
+        },
+        {
+          "localizedValue": "Guam"
+        },
+        {
+          "localizedValue": "Guatemala"
+        },
+        {
+          "localizedValue": "Guernsey"
+        },
+        {
+          "localizedValue": "Guinea"
+        },
+        {
+          "localizedValue": "Guinea-Bissau"
+        },
+        {
+          "localizedValue": "Guyana"
+        },
+        {
+          "localizedValue": "Haiti"
+        },
+        {
+          "localizedValue": "Heard Island and Mcdonald Islands"
+        },
+        {
+          "localizedValue": "Holy See (Vatican City State)"
+        },
+        {
+          "localizedValue": "Honduras"
+        },
+        {
+          "localizedValue": "Hong Kong"
+        },
+        {
+          "localizedValue": "Hungary"
+        },
+        {
+          "localizedValue": "Iceland"
+        },
+        {
+          "localizedValue": "India"
+        },
+        {
+          "localizedValue": "Indonesia"
+        },
+        {
+          "localizedValue": "Iraq"
+        },
+        {
+          "localizedValue": "Ireland"
+        },
+        {
+          "localizedValue": "Israel"
+        },
+        {
+          "localizedValue": "Italy"
+        },
+        {
+          "localizedValue": "Jamaica"
+        },
+        {
+          "localizedValue": "Japan"
+        },
+        {
+          "localizedValue": "Jersey"
+        },
+        {
+          "localizedValue": "Jordan"
+        },
+        {
+          "localizedValue": "Kazakhstan"
+        },
+        {
+          "localizedValue": "Kenya"
+        },
+        {
+          "localizedValue": "Kiribati"
+        },
+        {
+          "localizedValue": "Korea, Republic of"
+        },
+        {
+          "localizedValue": "Kuwait"
+        },
+        {
+          "localizedValue": "Kyrgyzstan"
+        },
+        {
+          "localizedValue": "Lao People's Democratic Republic"
+        },
+        {
+          "localizedValue": "Latvia"
+        },
+        {
+          "localizedValue": "Lebanon"
+        },
+        {
+          "localizedValue": "Lesotho"
+        },
+        {
+          "localizedValue": "Liberia"
+        },
+        {
+          "localizedValue": "Libyan Arab Jamahiriya"
+        },
+        {
+          "localizedValue": "Liechtenstein"
+        },
+        {
+          "localizedValue": "Lithuania"
+        },
+        {
+          "localizedValue": "Luxembourg"
+        },
+        {
+          "localizedValue": "Macao"
+        },
+        {
+          "localizedValue": "Madagascar"
+        },
+        {
+          "localizedValue": "Malawi"
+        },
+        {
+          "localizedValue": "Malaysia"
+        },
+        {
+          "localizedValue": "Maldives"
+        },
+        {
+          "localizedValue": "Mali"
+        },
+        {
+          "localizedValue": "Malta"
+        },
+        {
+          "localizedValue": "Marshall Islands"
+        },
+        {
+          "localizedValue": "Martinique"
+        },
+        {
+          "localizedValue": "Mauritania"
+        },
+        {
+          "localizedValue": "Mauritius"
+        },
+        {
+          "localizedValue": "Mayotte"
+        },
+        {
+          "localizedValue": "Mexico"
+        },
+        {
+          "localizedValue": "Micronesia, Federated States of"
+        },
+        {
+          "localizedValue": "Moldova, Republic of"
+        },
+        {
+          "localizedValue": "Monaco"
+        },
+        {
+          "localizedValue": "Mongolia"
+        },
+        {
+          "localizedValue": "Montenegro"
+        },
+        {
+          "localizedValue": "Montserrat"
+        },
+        {
+          "localizedValue": "Morocco"
+        },
+        {
+          "localizedValue": "Mozambique"
+        },
+        {
+          "localizedValue": "Namibia"
+        },
+        {
+          "localizedValue": "Nauru"
+        },
+        {
+          "localizedValue": "Nepal"
+        },
+        {
+          "localizedValue": "Netherlands"
+        },
+        {
+          "localizedValue": "Netherlands Antilles"
+        },
+        {
+          "localizedValue": "New Caledonia"
+        },
+        {
+          "localizedValue": "New Zealand"
+        },
+        {
+          "localizedValue": "Nicaragua"
+        },
+        {
+          "localizedValue": "Niger"
+        },
+        {
+          "localizedValue": "Nigeria"
+        },
+        {
+          "localizedValue": "Niue"
+        },
+        {
+          "localizedValue": "Norfolk Island"
+        },
+        {
+          "localizedValue": "Northern Mariana Islands"
+        },
+        {
+          "localizedValue": "North Macedonia"
+        },
+        {
+          "localizedValue": "Norway"
+        },
+        {
+          "localizedValue": "Oman"
+        },
+        {
+          "localizedValue": "Pakistan"
+        },
+        {
+          "localizedValue": "Palau"
+        },
+        {
+          "localizedValue": "Palestinian Territories"
+        },
+        {
+          "localizedValue": "Panama"
+        },
+        {
+          "localizedValue": "Papua New Guinea"
+        },
+        {
+          "localizedValue": "Paraguay"
+        },
+        {
+          "localizedValue": "Peru"
+        },
+        {
+          "localizedValue": "Philippines"
+        },
+        {
+          "localizedValue": "Pitcairn"
+        },
+        {
+          "localizedValue": "Poland"
+        },
+        {
+          "localizedValue": "Portugal"
+        },
+        {
+          "localizedValue": "Puerto Rico"
+        },
+        {
+          "localizedValue": "Qatar"
+        },
+        {
+          "localizedValue": "Reunion"
+        },
+        {
+          "localizedValue": "Romania"
+        },
+        {
+          "localizedValue": "Russian Federation"
+        },
+        {
+          "localizedValue": "Rwanda"
+        },
+        {
+          "localizedValue": "Saint Helena"
+        },
+        {
+          "localizedValue": "Saint Kitts and Nevis"
+        },
+        {
+          "localizedValue": "Saint Lucia"
+        },
+        {
+          "localizedValue": "Saint Pierre and Miquelon"
+        },
+        {
+          "localizedValue": "Saint Vincent and the Grenadines"
+        },
+        {
+          "localizedValue": "Samoa"
+        },
+        {
+          "localizedValue": "San Marino"
+        },
+        {
+          "localizedValue": "Sao Tome and Principe"
+        },
+        {
+          "localizedValue": "Saudi Arabia"
+        },
+        {
+          "localizedValue": "Senegal"
+        },
+        {
+          "localizedValue": "Serbia"
+        },
+        {
+          "localizedValue": "Seychelles"
+        },
+        {
+          "localizedValue": "Sierra Leone"
+        },
+        {
+          "localizedValue": "Singapore"
+        },
+        {
+          "localizedValue": "Slovakia"
+        },
+        {
+          "localizedValue": "Slovenia"
+        },
+        {
+          "localizedValue": "Solomon Islands"
+        },
+        {
+          "localizedValue": "Somalia"
+        },
+        {
+          "localizedValue": "South Africa"
+        },
+        {
+          "localizedValue": "South Georgia and the South Sandwich Islands"
+        },
+        {
+          "localizedValue": "Spain"
+        },
+        {
+          "localizedValue": "Sri Lanka"
+        },
+        {
+          "localizedValue": "Suriname"
+        },
+        {
+          "localizedValue": "Svalbard and Jan Mayen"
+        },
+        {
+          "localizedValue": "Sweden"
+        },
+        {
+          "localizedValue": "Switzerland"
+        },
+        {
+          "localizedValue": "Taiwan"
+        },
+        {
+          "localizedValue": "Tajikistan"
+        },
+        {
+          "localizedValue": "Tanzania, United Republic of"
+        },
+        {
+          "localizedValue": "Thailand"
+        },
+        {
+          "localizedValue": "Togo"
+        },
+        {
+          "localizedValue": "Tokelau"
+        },
+        {
+          "localizedValue": "Tonga"
+        },
+        {
+          "localizedValue": "Trinidad and Tobago"
+        },
+        {
+          "localizedValue": "Tunisia"
+        },
+        {
+          "localizedValue": "Türkiye"
+        },
+        {
+          "localizedValue": "Turkmenistan"
+        },
+        {
+          "localizedValue": "Turks and Caicos Islands"
+        },
+        {
+          "localizedValue": "Tuvalu"
+        },
+        {
+          "localizedValue": "Uganda"
+        },
+        {
+          "localizedValue": "Ukraine"
+        },
+        {
+          "localizedValue": "United Arab Emirates"
+        },
+        {
+          "localizedValue": "United Kingdom"
+        },
+        {
+          "localizedValue": "United States"
+        },
+        {
+          "localizedValue": "Unknown"
+        },
+        {
+          "localizedValue": "Uruguay"
+        },
+        {
+          "localizedValue": "Uzbekistan"
+        },
+        {
+          "localizedValue": "Vanuatu"
+        },
+        {
+          "localizedValue": "Venezuela"
+        },
+        {
+          "localizedValue": "Vietnam"
+        },
+        {
+          "localizedValue": "Virgin Islands, British"
+        },
+        {
+          "localizedValue": "Virgin Islands, U S"
+        },
+        {
+          "localizedValue": "Wallis and Futuna"
+        },
+        {
+          "localizedValue": "Western Sahara"
+        },
+        {
+          "localizedValue": "Yemen"
+        },
+        {
+          "localizedValue": "Zambia"
+        },
+        {
+          "localizedValue": "Zimbabwe"
+        }
+      ]
+    },
+    {
+      "localizedAspectName": "Year Manufactured",
+      "aspectConstraint": {
+        "aspectDataType": "STRING",
+        "itemToAspectCardinality": "SINGLE",
+        "aspectMode": "SELECTION_ONLY",
+        "aspectRequired": false,
+        "aspectUsage": "RECOMMENDED",
+        "aspectEnabledForVariations": false,
+        "aspectApplicableTo": [
+          "PRODUCT"
+        ]
+      },
+      "aspectValues": [
+        {
+          "localizedValue": "2024"
+        },
+        {
+          "localizedValue": "2023"
+        },
+        {
+          "localizedValue": "2022"
+        },
+        {
+          "localizedValue": "2021"
+        },
+        {
+          "localizedValue": "2020"
+        },
+        {
+          "localizedValue": "2019"
+        },
+        {
+          "localizedValue": "2018"
+        },
+        {
+          "localizedValue": "2017"
+        },
+        {
+          "localizedValue": "2016"
+        },
+        {
+          "localizedValue": "2015"
+        },
+        {
+          "localizedValue": "2014"
+        },
+        {
+          "localizedValue": "2013"
+        },
+        {
+          "localizedValue": "2012"
+        },
+        {
+          "localizedValue": "2011"
+        },
+        {
+          "localizedValue": "2010"
+        },
+        {
+          "localizedValue": "2009"
+        },
+        {
+          "localizedValue": "2008"
+        },
+        {
+          "localizedValue": "2007"
+        },
+        {
+          "localizedValue": "2006"
+        },
+        {
+          "localizedValue": "2005"
+        },
+        {
+          "localizedValue": "2004"
+        },
+        {
+          "localizedValue": "2003"
+        },
+        {
+          "localizedValue": "2002"
+        },
+        {
+          "localizedValue": "2001"
+        },
+        {
+          "localizedValue": "2000"
+        },
+        {
+          "localizedValue": "1999"
+        },
+        {
+          "localizedValue": "1998"
+        },
+        {
+          "localizedValue": "1997"
+        },
+        {
+          "localizedValue": "1996"
+        },
+        {
+          "localizedValue": "1995"
+        },
+        {
+          "localizedValue": "1994"
+        },
+        {
+          "localizedValue": "1993"
+        },
+        {
+          "localizedValue": "1992"
+        },
+        {
+          "localizedValue": "1991"
+        },
+        {
+          "localizedValue": "1990"
+        },
+        {
+          "localizedValue": "1989"
+        },
+        {
+          "localizedValue": "1988"
+        },
+        {
+          "localizedValue": "1987"
+        },
+        {
+          "localizedValue": "1986"
+        },
+        {
+          "localizedValue": "1985"
+        },
+        {
+          "localizedValue": "1984"
+        },
+        {
+          "localizedValue": "1983"
+        },
+        {
+          "localizedValue": "1982"
+        },
+        {
+          "localizedValue": "1981"
+        },
+        {
+          "localizedValue": "1980"
+        }
+      ]
+    },
+    {
+      "localizedAspectName": "Type",
+      "aspectConstraint": {
+        "aspectDataType": "STRING",
+        "itemToAspectCardinality": "SINGLE",
+        "aspectMode": "FREE_TEXT",
+        "aspectRequired": false,
+        "aspectUsage": "RECOMMENDED",
+        "aspectEnabledForVariations": false,
+        "aspectApplicableTo": [
+          "PRODUCT"
+        ]
+      }
+    },
+    {
+      "localizedAspectName": "California Prop 65 Warning",
+      "aspectConstraint": {
+        "aspectDataType": "STRING",
+        "itemToAspectCardinality": "SINGLE",
+        "aspectMode": "FREE_TEXT",
+        "aspectRequired": false,
+        "aspectUsage": "RECOMMENDED",
+        "aspectEnabledForVariations": false,
+        "aspectMaxLength": 800,
+        "aspectApplicableTo": [
+          "PRODUCT"
+        ]
+      }
+    },
+    {
+      "localizedAspectName": "Theme",
+      "aspectConstraint": {
+        "aspectDataType": "STRING",
+        "itemToAspectCardinality": "MULTI",
+        "aspectMode": "FREE_TEXT",
+        "aspectRequired": false,
+        "aspectUsage": "OPTIONAL",
+        "aspectEnabledForVariations": false,
+        "aspectApplicableTo": [
+          "PRODUCT"
+        ]
+      },
+      "aspectValues": [
+        {
+          "localizedValue": "Advertising"
+        },
+        {
+          "localizedValue": "Angels"
+        },
+        {
+          "localizedValue": "Animals & Dinosaurs"
+        },
+        {
+          "localizedValue": "Animation"
+        },
+        {
+          "localizedValue": "Anime & Manga"
+        },
+        {
+          "localizedValue": "Area 51"
+        },
+        {
+          "localizedValue": "Art"
+        },
+        {
+          "localizedValue": "Barware"
+        },
+        {
+          "localizedValue": "Cars"
+        },
+        {
+          "localizedValue": "Cars & Vehicles"
+        },
+        {
+          "localizedValue": "Cartoon & TV Characters"
+        },
+        {
+          "localizedValue": "Celebrity"
+        },
+        {
+          "localizedValue": "Circus"
+        },
+        {
+          "localizedValue": "Comic Book Heroes"
+        },
+        {
+          "localizedValue": "Cowboys & Western"
+        },
+        {
+          "localizedValue": "Designer & Urban Vinyl"
+        },
+        {
+          "localizedValue": "Fairy Tales"
+        },
+        {
+          "localizedValue": "Fantasy"
+        },
+        {
+          "localizedValue": "Film & TV"
+        },
+        {
+          "localizedValue": "Floral"
+        },
+        {
+          "localizedValue": "Food"
+        },
+        {
+          "localizedValue": "Food & Drink"
+        },
+        {
+          "localizedValue": "Football"
+        },
+        {
+          "localizedValue": "Historical Figures"
+        },
+        {
+          "localizedValue": "Military"
+        },
+        {
+          "localizedValue": "Motorcycles"
+        },
+        {
+          "localizedValue": "Music"
+        },
+        {
+          "localizedValue": "Mystical"
+        },
+        {
+          "localizedValue": "Nautical"
+        },
+        {
+          "localizedValue": "Olympics"
+        },
+        {
+          "localizedValue": "Patriotic"
+        },
+        {
+          "localizedValue": "Periods & Styles"
+        },
+        {
+          "localizedValue": "Racing Cars"
+        },
+        {
+          "localizedValue": "Racing Flag"
+        },
+        {
+          "localizedValue": "Religious"
+        },
+        {
+          "localizedValue": "Romantic"
+        },
+        {
+          "localizedValue": "Seasonal"
+        },
+        {
+          "localizedValue": "Skyline"
+        },
+        {
+          "localizedValue": "Soccer"
+        },
+        {
+          "localizedValue": "Sport"
+        },
+        {
+          "localizedValue": "Topographical & Souvenir"
+        },
+        {
+          "localizedValue": "Transformers & Robots"
+        },
+        {
+          "localizedValue": "Transportation"
+        },
+        {
+          "localizedValue": "Video Games"
+        }
+      ]
+    },
+    {
+      "localizedAspectName": "Movie",
+      "aspectConstraint": {
+        "aspectDataType": "STRING",
+        "itemToAspectCardinality": "SINGLE",
+        "aspectMode": "FREE_TEXT",
+        "aspectRequired": false,
+        "aspectUsage": "OPTIONAL",
+        "aspectEnabledForVariations": false,
+        "aspectApplicableTo": [
+          "PRODUCT"
+        ]
+      },
+      "aspectValues": [
+        {
+          "localizedValue": "101 Dalmatians"
+        },
+        {
+          "localizedValue": "102 Dalmatians"
+        },
+        {
+          "localizedValue": "20,000 Leagues Under the Sea"
+        },
+        {
+          "localizedValue": "A Bug's Life"
+        },
+        {
+          "localizedValue": "Aladdin"
+        },
+        {
+          "localizedValue": "Alice in Wonderland"
+        },
+        {
+          "localizedValue": "Ant-Man"
+        },
+        {
+          "localizedValue": "Ant-Man and the Wasp"
+        },
+        {
+          "localizedValue": "Around the World in 80 Days"
+        },
+        {
+          "localizedValue": "Avengers: Age of Ultron"
+        },
+        {
+          "localizedValue": "Avengers: Endgame"
+        },
+        {
+          "localizedValue": "Avengers: Infinity War"
+        },
+        {
+          "localizedValue": "Bambi"
+        },
+        {
+          "localizedValue": "Batman"
+        },
+        {
+          "localizedValue": "Batman: Mask of the Phantasm"
+        },
+        {
+          "localizedValue": "Batman & Robin"
+        },
+        {
+          "localizedValue": "Batman Begins"
+        },
+        {
+          "localizedValue": "Batman Forever"
+        },
+        {
+          "localizedValue": "Batman Returns"
+        },
+        {
+          "localizedValue": "Batman v Superman: Dawn of Justice"
+        },
+        {
+          "localizedValue": "Beauty and the Beast"
+        },
+        {
+          "localizedValue": "Big Hero 6"
+        },
+        {
+          "localizedValue": "Black Panther"
+        },
+        {
+          "localizedValue": "Bolt"
+        },
+        {
+          "localizedValue": "Brother Bear"
+        },
+        {
+          "localizedValue": "Captain America: Civil War"
+        },
+        {
+          "localizedValue": "Captain America: The First Avenger"
+        },
+        {
+          "localizedValue": "Captain America: The Winter Soldier"
+        },
+        {
+          "localizedValue": "Captain Marvel"
+        },
+        {
+          "localizedValue": "Cars"
+        },
+        {
+          "localizedValue": "Chicken Little"
+        },
+        {
+          "localizedValue": "Chip ’n’ Dale"
+        },
+        {
+          "localizedValue": "Chronicles of Narnia"
+        },
+        {
+          "localizedValue": "Cinderella"
+        },
+        {
+          "localizedValue": "Deadpool"
+        },
+        {
+          "localizedValue": "Digimon - The Movie"
+        },
+        {
+          "localizedValue": "Doctor Strange"
+        },
+        {
+          "localizedValue": "Dumbo"
+        },
+        {
+          "localizedValue": "Fantasia"
+        },
+        {
+          "localizedValue": "Finding Nemo"
+        },
+        {
+          "localizedValue": "Frozen"
+        },
+        {
+          "localizedValue": "Guardians of the Galaxy"
+        },
+        {
+          "localizedValue": "Guardians of the Galaxy Vol. 2"
+        },
+        {
+          "localizedValue": "Harry Potter and the Chamber of Secrets"
+        },
+        {
+          "localizedValue": "Harry Potter and the Deathly Hallows - Part 1"
+        },
+        {
+          "localizedValue": "Harry Potter and the Deathly Hallows - Part 2"
+        },
+        {
+          "localizedValue": "Harry Potter and the Goblet of Fire"
+        },
+        {
+          "localizedValue": "Harry Potter and the Half-Blood Prince"
+        },
+        {
+          "localizedValue": "Harry Potter and the Order of the Phoenix"
+        },
+        {
+          "localizedValue": "Harry Potter and the Prisoner of Azkaban"
+        },
+        {
+          "localizedValue": "Harry Potter and the Sorcerer's Stone"
+        },
+        {
+          "localizedValue": "Haunted Mansion"
+        },
+        {
+          "localizedValue": "Hercules"
+        },
+        {
+          "localizedValue": "Howl's Moving Castle"
+        },
+        {
+          "localizedValue": "Inside Out"
+        },
+        {
+          "localizedValue": "Iron Man"
+        },
+        {
+          "localizedValue": "Iron Man 2"
+        },
+        {
+          "localizedValue": "Iron Man 3"
+        },
+        {
+          "localizedValue": "Joker"
+        },
+        {
+          "localizedValue": "Justice League"
+        },
+        {
+          "localizedValue": "Lady and the Tramp"
+        },
+        {
+          "localizedValue": "Lilo & Stitch"
+        },
+        {
+          "localizedValue": "Logan"
+        },
+        {
+          "localizedValue": "Maleficent"
+        },
+        {
+          "localizedValue": "Mars Attacks!"
+        },
+        {
+          "localizedValue": "Marvel's The Avengers"
+        },
+        {
+          "localizedValue": "Mary Poppins"
+        },
+        {
+          "localizedValue": "Moana"
+        },
+        {
+          "localizedValue": "Monsters, Inc."
+        },
+        {
+          "localizedValue": "Mulan"
+        },
+        {
+          "localizedValue": "Peter Pan"
+        },
+        {
+          "localizedValue": "Pinocchio"
+        },
+        {
+          "localizedValue": "Pocahontas"
+        },
+        {
+          "localizedValue": "Pokémon: Arceus and the Jewel of Life"
+        },
+        {
+          "localizedValue": "Pokémon: Destiny Deoxys"
+        },
+        {
+          "localizedValue": "Pokémon: Giratina and Sky Warrior"
+        },
+        {
+          "localizedValue": "Pokémon: Jirachi Wish Maker"
+        },
+        {
+          "localizedValue": "Pokémon: Lucario and the Mystery of Mew"
+        },
+        {
+          "localizedValue": "Pokémon: Mewtwo Strikes Back - Evolution"
+        },
+        {
+          "localizedValue": "Pokémon: Temple in the Sea"
+        },
+        {
+          "localizedValue": "Pokémon: The First Movie: Mewtwo Strikes Back"
+        },
+        {
+          "localizedValue": "Pokémon: The Movie: Spell of the Unown"
+        },
+        {
+          "localizedValue": "Pokémon: The Movie 2000: The Power of One"
+        },
+        {
+          "localizedValue": "Pokémon: The Rise of Darkrai"
+        },
+        {
+          "localizedValue": "Pokémon: Zoroark: Master of Illusions"
+        },
+        {
+          "localizedValue": "Pokémon 4Ever: Celebi - Voice of the Forest"
+        },
+        {
+          "localizedValue": "Pokémon Heroes: Latios and Latias"
+        },
+        {
+          "localizedValue": "Pokémon the Movie: Black - Victini and Reshiram"
+        },
+        {
+          "localizedValue": "Pokémon the Movie: Diancie and the Cocoon of Destruction"
+        },
+        {
+          "localizedValue": "Pokémon the Movie: Genesect and the Legend Awakened"
+        },
+        {
+          "localizedValue": "Pokémon the Movie: Hoopa and the Clash of Ages"
+        },
+        {
+          "localizedValue": "Pokémon the Movie: I Choose You!"
+        },
+        {
+          "localizedValue": "Pokémon the Movie: Kyurem VS the Sword of Justice"
+        },
+        {
+          "localizedValue": "Pokémon the Movie: The Power of Us"
+        },
+        {
+          "localizedValue": "Pokémon the Movie: Volcanion and the Mechanical Marvel"
+        },
+        {
+          "localizedValue": "Pokémon the Movie: White - Victini and Zekrom"
+        },
+        {
+          "localizedValue": "Popeye"
+        },
+        {
+          "localizedValue": "Rapunzel"
+        },
+        {
+          "localizedValue": "Ratatouille"
+        },
+        {
+          "localizedValue": "Robin Hood"
+        },
+        {
+          "localizedValue": "RoboCop"
+        },
+        {
+          "localizedValue": "Rogue One: A Star Wars Story"
+        },
+        {
+          "localizedValue": "Silver Surfer"
+        },
+        {
+          "localizedValue": "Sleeping Beauty"
+        },
+        {
+          "localizedValue": "Snow White and the Seven Dwarfs"
+        },
+        {
+          "localizedValue": "Solo: A Star Wars Story"
+        },
+        {
+          "localizedValue": "Spider-Man"
+        },
+        {
+          "localizedValue": "Spider-Man: Far From Home"
+        },
+        {
+          "localizedValue": "Spider-Man: Homecoming"
+        },
+        {
+          "localizedValue": "Spider-Man 2"
+        },
+        {
+          "localizedValue": "Spider-Man 3"
+        },
+        {
+          "localizedValue": "Spirited Away"
+        },
+        {
+          "localizedValue": "Star Trek"
+        },
+        {
+          "localizedValue": "Star Trek: First Contact"
+        },
+        {
+          "localizedValue": "Star Trek: Generations"
+        },
+        {
+          "localizedValue": "Star Trek: Insurrection"
+        },
+        {
+          "localizedValue": "Star Trek: Into Darkness"
+        },
+        {
+          "localizedValue": "Star Trek: Nemesis"
+        },
+        {
+          "localizedValue": "Star Trek: The Motion Picture"
+        },
+        {
+          "localizedValue": "Star Trek Beyond"
+        },
+        {
+          "localizedValue": "Star Trek II: The Wrath of Khan"
+        },
+        {
+          "localizedValue": "Star Trek III: The Search for Spock"
+        },
+        {
+          "localizedValue": "Star Trek IV: The Voyage Home"
+        },
+        {
+          "localizedValue": "Star Trek V: The Final Frontier"
+        },
+        {
+          "localizedValue": "Star Trek VI: The Undiscovered Country"
+        },
+        {
+          "localizedValue": "Star Wars: Episode II – Attack of the Clones"
+        },
+        {
+          "localizedValue": "Star Wars: Episode III – Revenge of the Sith"
+        },
+        {
+          "localizedValue": "Star Wars: Episode I – The Phantom Menace"
+        },
+        {
+          "localizedValue": "Star Wars: Episode IV – A New Hope"
+        },
+        {
+          "localizedValue": "Star Wars: Episode IX – The Rise of Skywalker"
+        },
+        {
+          "localizedValue": "Star Wars: Episode VIII – The Last Jedi"
+        },
+        {
+          "localizedValue": "Star Wars: Episode VII – The Force Awakens"
+        },
+        {
+          "localizedValue": "Star Wars: Episode VI – Return of the Jedi"
+        },
+        {
+          "localizedValue": "Star Wars: Episode V – The Empire Strikes Back"
+        },
+        {
+          "localizedValue": "Star Wars: The Clone Wars"
+        },
+        {
+          "localizedValue": "Tarzan"
+        },
+        {
+          "localizedValue": "The Amazing Spider-Man"
+        },
+        {
+          "localizedValue": "The Amazing Spider-Man 2"
+        },
+        {
+          "localizedValue": "The Dark Knight"
+        },
+        {
+          "localizedValue": "The Dark Knight Rises"
+        },
+        {
+          "localizedValue": "The Hobbit: An Unexpected Journey"
+        },
+        {
+          "localizedValue": "The Hobbit: The Battle of the Five Armies"
+        },
+        {
+          "localizedValue": "The Hobbit: The Desolation of Smaug"
+        },
+        {
+          "localizedValue": "The Hunchback of Notre Dame"
+        },
+        {
+          "localizedValue": "The Hunger Games"
+        },
+        {
+          "localizedValue": "The Incredible Hulk"
+        },
+        {
+          "localizedValue": "The Incredibles"
+        },
+        {
+          "localizedValue": "The Jungle Book"
+        },
+        {
+          "localizedValue": "The Jungle Book 2"
+        },
+        {
+          "localizedValue": "The Lego Batman Movie"
+        },
+        {
+          "localizedValue": "The Lion King"
+        },
+        {
+          "localizedValue": "The Little Mermaid"
+        },
+        {
+          "localizedValue": "The Lone Ranger"
+        },
+        {
+          "localizedValue": "The Lord of the Rings - The Fellowship of the Ring"
+        },
+        {
+          "localizedValue": "The Lord of the Rings - The Return of the King"
+        },
+        {
+          "localizedValue": "The Lord of the Rings - The Two Towers"
+        },
+        {
+          "localizedValue": "The Muppets"
+        },
+        {
+          "localizedValue": "The Nightmare Before Christmas"
+        },
+        {
+          "localizedValue": "The Parent Trap"
+        },
+        {
+          "localizedValue": "The Rescuers"
+        },
+        {
+          "localizedValue": "The Rescuers Down Under"
+        },
+        {
+          "localizedValue": "The Suicide Squad"
+        },
+        {
+          "localizedValue": "Thor"
+        },
+        {
+          "localizedValue": "Thor: Ragnarok"
+        },
+        {
+          "localizedValue": "Thor: The Dark World"
+        },
+        {
+          "localizedValue": "Toy Story"
+        },
+        {
+          "localizedValue": "Toy Story 2"
+        },
+        {
+          "localizedValue": "Toy Story 3"
+        },
+        {
+          "localizedValue": "Toy Story 4"
+        },
+        {
+          "localizedValue": "WALL-E"
+        },
+        {
+          "localizedValue": "Who Framed Roger Rabbit"
+        },
+        {
+          "localizedValue": "Winnie the Pooh"
+        },
+        {
+          "localizedValue": "X2"
+        },
+        {
+          "localizedValue": "X-Men"
+        },
+        {
+          "localizedValue": "X-Men: Days of Future Past"
+        },
+        {
+          "localizedValue": "X-Men: First Class"
+        },
+        {
+          "localizedValue": "X-Men: The Last Stand"
+        },
+        {
+          "localizedValue": "X-Men Origins: Wolverine"
+        },
+        {
+          "localizedValue": "Yu-Gi-Oh!"
+        },
+        {
+          "localizedValue": "Yu-Gi-Oh! Bonds Beyond Time"
+        },
+        {
+          "localizedValue": "Yu-Gi-Oh! Duel Monsters: Hikaro no Pyramid"
+        },
+        {
+          "localizedValue": "Yu-Gi-Oh! The Dark Side of Dimensions"
+        },
+        {
+          "localizedValue": "Zootopia"
+        }
+      ]
+    },
+    {
+      "localizedAspectName": "Animation Studio",
+      "aspectConstraint": {
+        "aspectDataType": "STRING",
+        "itemToAspectCardinality": "SINGLE",
+        "aspectMode": "FREE_TEXT",
+        "aspectRequired": false,
+        "aspectUsage": "OPTIONAL",
+        "aspectEnabledForVariations": false,
+        "aspectApplicableTo": [
+          "PRODUCT"
+        ]
+      },
+      "aspectValues": [
+        {
+          "localizedValue": "20th Century Animation"
+        },
+        {
+          "localizedValue": "Aardman Animations"
+        },
+        {
+          "localizedValue": "Blue Sky Studios"
+        },
+        {
+          "localizedValue": "Bones Animation Studio"
+        },
+        {
+          "localizedValue": "Disney"
+        },
+        {
+          "localizedValue": "DreamWorks Animation"
+        },
+        {
+          "localizedValue": "Hanna-Barbera"
+        },
+        {
+          "localizedValue": "Illumination"
+        },
+        {
+          "localizedValue": "Kyoto Animation"
+        },
+        {
+          "localizedValue": "Lucasfilm Animation"
+        },
+        {
+          "localizedValue": "Nickelodeon Animation Studio"
+        },
+        {
+          "localizedValue": "Nippon Animation"
+        },
+        {
+          "localizedValue": "Paramount Animation"
+        },
+        {
+          "localizedValue": "Pixar"
+        },
+        {
+          "localizedValue": "Sony Pictures Animation"
+        },
+        {
+          "localizedValue": "Studio Ghibli"
+        },
+        {
+          "localizedValue": "Studio Pierrot"
+        },
+        {
+          "localizedValue": "Toei Animation"
+        },
+        {
+          "localizedValue": "Universal Animation Studios"
+        },
+        {
+          "localizedValue": "Warner Bros. Animation"
+        },
+        {
+          "localizedValue": "Wit Studio"
+        }
+      ]
+    },
+    {
+      "localizedAspectName": "Signed",
+      "aspectConstraint": {
+        "aspectDataType": "STRING",
+        "itemToAspectCardinality": "SINGLE",
+        "aspectMode": "SELECTION_ONLY",
+        "aspectRequired": false,
+        "aspectUsage": "OPTIONAL",
+        "aspectEnabledForVariations": false,
+        "aspectApplicableTo": [
+          "ITEM"
+        ]
+      },
+      "aspectValues": [
+        {
+          "localizedValue": "Yes"
+        },
+        {
+          "localizedValue": "No"
+        }
+      ]
+    },
+    {
+      "localizedAspectName": "Language",
+      "aspectConstraint": {
+        "aspectDataType": "STRING",
+        "itemToAspectCardinality": "SINGLE",
+        "aspectMode": "FREE_TEXT",
+        "aspectRequired": false,
+        "aspectUsage": "OPTIONAL",
+        "aspectEnabledForVariations": false,
+        "aspectApplicableTo": [
+          "PRODUCT"
+        ]
+      },
+      "aspectValues": [
+        {
+          "localizedValue": "Arabic"
+        },
+        {
+          "localizedValue": "Basque"
+        },
+        {
+          "localizedValue": "Bengali"
+        },
+        {
+          "localizedValue": "Bulgarian"
+        },
+        {
+          "localizedValue": "Catalan"
+        },
+        {
+          "localizedValue": "Chinese"
+        },
+        {
+          "localizedValue": "Czech"
+        },
+        {
+          "localizedValue": "Danish"
+        },
+        {
+          "localizedValue": "Dutch"
+        },
+        {
+          "localizedValue": "English"
+        },
+        {
+          "localizedValue": "Finnish"
+        },
+        {
+          "localizedValue": "French"
+        },
+        {
+          "localizedValue": "Galician"
+        },
+        {
+          "localizedValue": "German"
+        },
+        {
+          "localizedValue": "Greek"
+        },
+        {
+          "localizedValue": "Hebrew"
+        },
+        {
+          "localizedValue": "Hindi/Urdu"
+        },
+        {
+          "localizedValue": "Hungarian"
+        },
+        {
+          "localizedValue": "Irish"
+        },
+        {
+          "localizedValue": "Italian"
+        },
+        {
+          "localizedValue": "Japanese"
+        },
+        {
+          "localizedValue": "Korean"
+        },
+        {
+          "localizedValue": "Latin"
+        },
+        {
+          "localizedValue": "Malay"
+        },
+        {
+          "localizedValue": "Norwegian"
+        },
+        {
+          "localizedValue": "Polish"
+        },
+        {
+          "localizedValue": "Portuguese"
+        },
+        {
+          "localizedValue": "Russian"
+        },
+        {
+          "localizedValue": "Scottish Gaelic"
+        },
+        {
+          "localizedValue": "Serbian"
+        },
+        {
+          "localizedValue": "Slovak"
+        },
+        {
+          "localizedValue": "Slovenian"
+        },
+        {
+          "localizedValue": "Spanish"
+        },
+        {
+          "localizedValue": "Swedish"
+        },
+        {
+          "localizedValue": "Thai"
+        },
+        {
+          "localizedValue": "Turkish"
+        },
+        {
+          "localizedValue": "Vietnamese"
+        },
+        {
+          "localizedValue": "Welsh"
+        }
+      ]
+    },
+    {
+      "localizedAspectName": "Signed By",
+      "aspectConstraint": {
+        "aspectDataType": "STRING",
+        "itemToAspectCardinality": "MULTI",
+        "aspectMode": "FREE_TEXT",
+        "aspectRequired": false,
+        "aspectUsage": "OPTIONAL",
+        "aspectEnabledForVariations": false,
+        "aspectApplicableTo": [
+          "ITEM"
+        ]
+      },
+      "aspectValues": [
+        {
+          "localizedValue": "Abec"
+        },
+        {
+          "localizedValue": "AidaIro"
+        },
+        {
+          "localizedValue": "Ai Morinaga"
+        },
+        {
+          "localizedValue": "Ai Yazawa"
+        },
+        {
+          "localizedValue": "Ajichika"
+        },
+        {
+          "localizedValue": "Akihiro Yamada"
+        },
+        {
+          "localizedValue": "Akihisa Ikeda"
+        },
+        {
+          "localizedValue": "Akihito Yoshitomi"
+        },
+        {
+          "localizedValue": "Akiko Higashimura"
+        },
+        {
+          "localizedValue": "Akimine Kamijyo"
+        },
+        {
+          "localizedValue": "Akimi Yoshida"
+        },
+        {
+          "localizedValue": "Akio Chiba"
+        },
+        {
+          "localizedValue": "Akira Amano"
+        },
+        {
+          "localizedValue": "Akira Kanbe"
+        },
+        {
+          "localizedValue": "Akira Miyashita"
+        },
+        {
+          "localizedValue": "Alan Moore"
+        },
+        {
+          "localizedValue": "Albert Monteys"
+        },
+        {
+          "localizedValue": "Alfredo Castelli"
+        },
+        {
+          "localizedValue": "Allan Dye"
+        },
+        {
+          "localizedValue": "Ambrós"
+        },
+        {
+          "localizedValue": "Ana Miralles"
+        },
+        {
+          "localizedValue": "Anant Pai"
+        },
+        {
+          "localizedValue": "Andrea Bresciani"
+        },
+        {
+          "localizedValue": "Andrea Lavezzolo"
+        },
+        {
+          "localizedValue": "An Nakahara"
+        },
+        {
+          "localizedValue": "Antonio Segura"
+        },
+        {
+          "localizedValue": "Antonio Serra"
+        },
+        {
+          "localizedValue": "Aoi Nanase"
+        },
+        {
+          "localizedValue": "Arakawa Shoji"
+        },
+        {
+          "localizedValue": "Asa Higuchi"
+        },
+        {
+          "localizedValue": "Atsushi Kase"
+        },
+        {
+          "localizedValue": "Atsushi Okubo"
+        },
+        {
+          "localizedValue": "Atsushi Suzumi"
+        },
+        {
+          "localizedValue": "Aurelio Galleppini"
+        },
+        {
+          "localizedValue": "Aya Nakahara"
+        },
+        {
+          "localizedValue": "Ayuko Hatta"
+        },
+        {
+          "localizedValue": "Ayumi Komura"
+        },
+        {
+          "localizedValue": "Benito Jacovitti"
+        },
+        {
+          "localizedValue": "Bepi Vigna"
+        },
+        {
+          "localizedValue": "Boichi"
+        },
+        {
+          "localizedValue": "Bonvi"
+        },
+        {
+          "localizedValue": "Boulet"
+        },
+        {
+          "localizedValue": "Brian Azzarello"
+        },
+        {
+          "localizedValue": "Brian K. Vaughan"
+        },
+        {
+          "localizedValue": "Brian Michael Bendis"
+        },
+        {
+          "localizedValue": "Bryan Johnson"
+        },
+        {
+          "localizedValue": "Buichi Terasawa"
+        },
+        {
+          "localizedValue": "Calpurnio"
+        },
+        {
+          "localizedValue": "Carlos Conti"
+        },
+        {
+          "localizedValue": "Carlos Giménez"
+        },
+        {
+          "localizedValue": "Carlos Pacheco"
+        },
+        {
+          "localizedValue": "Carlos Trillo"
+        },
+        {
+          "localizedValue": "Carmen Barbará"
+        },
+        {
+          "localizedValue": "Cels Piñol"
+        },
+        {
+          "localizedValue": "Chandra Free"
+        },
+        {
+          "localizedValue": "Chester Brown"
+        },
+        {
+          "localizedValue": "Chiaki Kawamata"
+        },
+        {
+          "localizedValue": "Chica Umino"
+        },
+        {
+          "localizedValue": "Chieko Hosokawa"
+        },
+        {
+          "localizedValue": "Chie Shinohara"
+        },
+        {
+          "localizedValue": "Chiho Saito"
+        },
+        {
+          "localizedValue": "Chika Aji"
+        },
+        {
+          "localizedValue": "Chitose Yagami"
+        },
+        {
+          "localizedValue": "Choi Kyung-ah"
+        },
+        {
+          "localizedValue": "Chris Claremont"
+        },
+        {
+          "localizedValue": "Christina Plaka"
+        },
+        {
+          "localizedValue": "Christopher Priest"
+        },
+        {
+          "localizedValue": "Chuya Koyama"
+        },
+        {
+          "localizedValue": "Cliff Chiang"
+        },
+        {
+          "localizedValue": "Cyril Pedrosa"
+        },
+        {
+          "localizedValue": "Daisuke Ashihara"
+        },
+        {
+          "localizedValue": "Daisuke Higuchi"
+        },
+        {
+          "localizedValue": "Daisuke Igarashi"
+        },
+        {
+          "localizedValue": "Dan Fogel"
+        },
+        {
+          "localizedValue": "Daniel Torres"
+        },
+        {
+          "localizedValue": "Dan Slott"
+        },
+        {
+          "localizedValue": "Daromeon"
+        },
+        {
+          "localizedValue": "Dave McKean"
+        },
+        {
+          "localizedValue": "David Aja"
+        },
+        {
+          "localizedValue": "David Kirk"
+        },
+        {
+          "localizedValue": "David Walker"
+        },
+        {
+          "localizedValue": "Dexter Vines"
+        },
+        {
+          "localizedValue": "Dilraj Mann"
+        },
+        {
+          "localizedValue": "Doug Wildey"
+        },
+        {
+          "localizedValue": "Dwayne McDuffie"
+        },
+        {
+          "localizedValue": "Ed Brubaker"
+        },
+        {
+          "localizedValue": "Edgardo Dell'Acqua"
+        },
+        {
+          "localizedValue": "Eduardo Maicas"
+        },
+        {
+          "localizedValue": "Eiki Eiki"
+        },
+        {
+          "localizedValue": "Eita Mizuno"
+        },
+        {
+          "localizedValue": "Ema Toyama"
+        },
+        {
+          "localizedValue": "Emura"
+        },
+        {
+          "localizedValue": "Enki Bilal"
+        },
+        {
+          "localizedValue": "Enrico Teodorani"
+        },
+        {
+          "localizedValue": "Enrique Sánchez Abulí"
+        },
+        {
+          "localizedValue": "Eretto"
+        },
+        {
+          "localizedValue": "Etorouji Shiono"
+        },
+        {
+          "localizedValue": "Etsumi Haruki"
+        },
+        {
+          "localizedValue": "Eugenio Giner"
+        },
+        {
+          "localizedValue": "Francesco Francavilla"
+        },
+        {
+          "localizedValue": "Francesco Gamba"
+        },
+        {
+          "localizedValue": "Francisco Darnís"
+        },
+        {
+          "localizedValue": "Francisco Ibáñez"
+        },
+        {
+          "localizedValue": "Franco Saudelli"
+        },
+        {
+          "localizedValue": "Fujio Akatsuka"
+        },
+        {
+          "localizedValue": "Fumiyo Kono"
+        },
+        {
+          "localizedValue": "Futaba Aoi"
+        },
+        {
+          "localizedValue": "Futago Kamikita"
+        },
+        {
+          "localizedValue": "Futaro Yamada"
+        },
+        {
+          "localizedValue": "Fuyumi Soryo"
+        },
+        {
+          "localizedValue": "G. Willow Wilson"
+        },
+        {
+          "localizedValue": "Gail Simone"
+        },
+        {
+          "localizedValue": "Gaku Tsugano"
+        },
+        {
+          "localizedValue": "Gamon Sakurai"
+        },
+        {
+          "localizedValue": "Gardner Fox"
+        },
+        {
+          "localizedValue": "Garon Tsuchiya"
+        },
+        {
+          "localizedValue": "Gege Akutami"
+        },
+        {
+          "localizedValue": "Geoff Johns"
+        },
+        {
+          "localizedValue": "George Akiyama"
+        },
+        {
+          "localizedValue": "Giancarlo Alessandrini"
+        },
+        {
+          "localizedValue": "Giancarlo Berardi"
+        },
+        {
+          "localizedValue": "Gianfranco Manfredi"
+        },
+        {
+          "localizedValue": "Gian Luigi Bonelli"
+        },
+        {
+          "localizedValue": "Gianni Bono"
+        },
+        {
+          "localizedValue": "Go Ikeyamada"
+        },
+        {
+          "localizedValue": "Goseki Kojima"
+        },
+        {
+          "localizedValue": "Gosho Aoyama"
+        },
+        {
+          "localizedValue": "Grant Morrison"
+        },
+        {
+          "localizedValue": "Greg Rucka"
+        },
+        {
+          "localizedValue": "Guido Crepax"
+        },
+        {
+          "localizedValue": "Guillermo Cifré"
+        },
+        {
+          "localizedValue": "Hagio Moto"
+        },
+        {
+          "localizedValue": "Hajime Kanzaka"
+        },
+        {
+          "localizedValue": "Hans Steinbach"
+        },
+        {
+          "localizedValue": "Hari Tokeino"
+        },
+        {
+          "localizedValue": "Haro Aso"
+        },
+        {
+          "localizedValue": "Haruhiko Mikimoto"
+        },
+        {
+          "localizedValue": "Haruka Fukushima"
+        },
+        {
+          "localizedValue": "Hidekaz Himaruya"
+        },
+        {
+          "localizedValue": "Hideyuki Furuhashi"
+        },
+        {
+          "localizedValue": "Hinako Ashihara"
+        },
+        {
+          "localizedValue": "Hinako Takanaga"
+        },
+        {
+          "localizedValue": "Hiroaki Samura"
+        },
+        {
+          "localizedValue": "Hiro Fujiwara"
+        },
+        {
+          "localizedValue": "Hiroji Mishima"
+        },
+        {
+          "localizedValue": "Hiroki Endo"
+        },
+        {
+          "localizedValue": "Hiroki Yagami"
+        },
+        {
+          "localizedValue": "Hiromi Morishita"
+        },
+        {
+          "localizedValue": "Hiroshi Hirata"
+        },
+        {
+          "localizedValue": "Hiroshi Motomiya"
+        },
+        {
+          "localizedValue": "Hiroshi Takahashi"
+        },
+        {
+          "localizedValue": "Hirotaka Kisaragi"
+        },
+        {
+          "localizedValue": "Hiroto Saki"
+        },
+        {
+          "localizedValue": "Hiroyuki"
+        },
+        {
+          "localizedValue": "Hiroyuki Asada"
+        },
+        {
+          "localizedValue": "Hiroyuki Nishimori"
+        },
+        {
+          "localizedValue": "Hiroyuki Takei"
+        },
+        {
+          "localizedValue": "Hiroyuki Tamakoshi"
+        },
+        {
+          "localizedValue": "Hisashi Eguchi"
+        },
+        {
+          "localizedValue": "Hisashi Sakaguchi"
+        },
+        {
+          "localizedValue": "Hisaya Nakajo"
+        },
+        {
+          "localizedValue": "Hitoshi Ashinano"
+        },
+        {
+          "localizedValue": "Hitoshi Iwaaki"
+        },
+        {
+          "localizedValue": "Hitoshi Okuda"
+        },
+        {
+          "localizedValue": "Hokusei Katsushika"
+        },
+        {
+          "localizedValue": "Housui Yamazaki"
+        },
+        {
+          "localizedValue": "Hugo Pratt"
+        },
+        {
+          "localizedValue": "Ikki Kajiwara"
+        },
+        {
+          "localizedValue": "Io Sakisaka"
+        },
+        {
+          "localizedValue": "Isami Ishii"
+        },
+        {
+          "localizedValue": "Ivá"
+        },
+        {
+          "localizedValue": "Ivo Milazzo"
+        },
+        {
+          "localizedValue": "Izumi Matsumoto"
+        },
+        {
+          "localizedValue": "Izumi Todo"
+        },
+        {
+          "localizedValue": "Jack Kirby"
+        },
+        {
+          "localizedValue": "Jack T. Chick"
+        },
+        {
+          "localizedValue": "Jamie McKelvie"
+        },
+        {
+          "localizedValue": "Jan"
+        },
+        {
+          "localizedValue": "Jason Aaron"
+        },
+        {
+          "localizedValue": "Jeff Lemire"
+        },
+        {
+          "localizedValue": "Jeph Loeb"
+        },
+        {
+          "localizedValue": "Jesse Blaze Snider"
+        },
+        {
+          "localizedValue": "Jesús Yugo"
+        },
+        {
+          "localizedValue": "Jhonen Vasquez"
+        },
+        {
+          "localizedValue": "Jin Kobayashi"
+        },
+        {
+          "localizedValue": "Jiro Kuwata"
+        },
+        {
+          "localizedValue": "Joann Sfar"
+        },
+        {
+          "localizedValue": "Joaquín Cera"
+        },
+        {
+          "localizedValue": "Jody Houser"
+        },
+        {
+          "localizedValue": "Joe Quesada"
+        },
+        {
+          "localizedValue": "Joe Vigil"
+        },
+        {
+          "localizedValue": "Johji Manabe"
+        },
+        {
+          "localizedValue": "John Romita Jr."
+        },
+        {
+          "localizedValue": "John Romita Sr."
+        },
+        {
+          "localizedValue": "Jordi Bernet"
+        },
+        {
+          "localizedValue": "Jorge Gosset Rubio"
+        },
+        {
+          "localizedValue": "José Escobar Saliente"
+        },
+        {
+          "localizedValue": "José Peñarroya"
+        },
+        {
+          "localizedValue": "José Sanchis Grau"
+        },
+        {
+          "localizedValue": "Juan Bautista Puerto"
+        },
+        {
+          "localizedValue": "Juan Carlos Ramis"
+        },
+        {
+          "localizedValue": "Juan Diaz Canales"
+        },
+        {
+          "localizedValue": "Judal"
+        },
+        {
+          "localizedValue": "Judith Park"
+        },
+        {
+          "localizedValue": "Julietta Suzuki"
+        },
+        {
+          "localizedValue": "Junji Koyanagi"
+        },
+        {
+          "localizedValue": "Junko Mizuno"
+        },
+        {
+          "localizedValue": "Juri Misaki"
+        },
+        {
+          "localizedValue": "Juzo Yamasaki"
+        },
+        {
+          "localizedValue": "Kaare Andrews"
+        },
+        {
+          "localizedValue": "Kagami Yoshimizu"
+        },
+        {
+          "localizedValue": "Kaiji Kawaguchi"
+        },
+        {
+          "localizedValue": "Kakifly"
+        },
+        {
+          "localizedValue": "Kamui Fujiwara"
+        },
+        {
+          "localizedValue": "Kanan Minami"
+        },
+        {
+          "localizedValue": "Kanehito Yamada"
+        },
+        {
+          "localizedValue": "Kaneyoshi Izumi"
+        },
+        {
+          "localizedValue": "Kanoko Sakurakoji"
+        },
+        {
+          "localizedValue": "Kaori Ozaki"
+        },
+        {
+          "localizedValue": "Kaori Yuki"
+        },
+        {
+          "localizedValue": "Kaoru Shintani"
+        },
+        {
+          "localizedValue": "Kaoru Tada"
+        },
+        {
+          "localizedValue": "Kara"
+        },
+        {
+          "localizedValue": "Karuho Shiina"
+        },
+        {
+          "localizedValue": "Katsu Aki"
+        },
+        {
+          "localizedValue": "Kaworu Watashiya"
+        },
+        {
+          "localizedValue": "Kayoru"
+        },
+        {
+          "localizedValue": "Kazue Kato"
+        },
+        {
+          "localizedValue": "Kazuhiro Fujita"
+        },
+        {
+          "localizedValue": "Kazuhiro Kiuchi"
+        },
+        {
+          "localizedValue": "Kazuka Minami"
+        },
+        {
+          "localizedValue": "Kazuma Kodaka"
+        },
+        {
+          "localizedValue": "Kazune Kawahara"
+        },
+        {
+          "localizedValue": "Kazuo Koike"
+        },
+        {
+          "localizedValue": "Kazuo Umezu"
+        },
+        {
+          "localizedValue": "Kazuya Minekura"
+        },
+        {
+          "localizedValue": "Keiko Nishi"
+        },
+        {
+          "localizedValue": "Keiko Suenobu"
+        },
+        {
+          "localizedValue": "Keiko Takemiya"
+        },
+        {
+          "localizedValue": "Keiko Yamada"
+        },
+        {
+          "localizedValue": "Kelly Sue DeConnick"
+        },
+        {
+          "localizedValue": "Kelly Thompson"
+        },
+        {
+          "localizedValue": "Kenichi Kitami"
+        },
+        {
+          "localizedValue": "Kenichi Sonoda"
+        },
+        {
+          "localizedValue": "Kenichi Tachibana"
+        },
+        {
+          "localizedValue": "Kenji Hamaoka"
+        },
+        {
+          "localizedValue": "Kenji Tsuruta"
+        },
+        {
+          "localizedValue": "Kenshi Hirokane"
+        },
+        {
+          "localizedValue": "Kentaro Yabuki"
+        },
+        {
+          "localizedValue": "Ken Wakui"
+        },
+        {
+          "localizedValue": "Kia Asamiya"
+        },
+        {
+          "localizedValue": "Kieron Gillen"
+        },
+        {
+          "localizedValue": "Kintetsu Yamada"
+        },
+        {
+          "localizedValue": "Kiseki Himura"
+        },
+        {
+          "localizedValue": "Koge-Donbo"
+        },
+        {
+          "localizedValue": "Koi Ikeno"
+        },
+        {
+          "localizedValue": "Koji Kumeta"
+        },
+        {
+          "localizedValue": "Kosuke Fujishima"
+        },
+        {
+          "localizedValue": "Kota Kodama"
+        },
+        {
+          "localizedValue": "Kotomi Aoki"
+        },
+        {
+          "localizedValue": "Kotoyama"
+        },
+        {
+          "localizedValue": "Kou Fumizuki"
+        },
+        {
+          "localizedValue": "Koushun Takami"
+        },
+        {
+          "localizedValue": "Kouta Hirano"
+        },
+        {
+          "localizedValue": "Kouyu Shurei"
+        },
+        {
+          "localizedValue": "Kozue Chiba"
+        },
+        {
+          "localizedValue": "Kurt Busiek"
+        },
+        {
+          "localizedValue": "Kyle Baker"
+        },
+        {
+          "localizedValue": "Kyoko Ariyoshi"
+        },
+        {
+          "localizedValue": "Kyoko Kumagai"
+        },
+        {
+          "localizedValue": "Kyo Shirodaira"
+        },
+        {
+          "localizedValue": "Larry Lieber"
+        },
+        {
+          "localizedValue": "Lee Kohse"
+        },
+        {
+          "localizedValue": "Lee Myung-jin"
+        },
+        {
+          "localizedValue": "Lee So-Young"
+        },
+        {
+          "localizedValue": "Lee Young-You"
+        },
+        {
+          "localizedValue": "Leiji Matsumoto"
+        },
+        {
+          "localizedValue": "Leo Ortolani"
+        },
+        {
+          "localizedValue": "Leopoldo Sanchez"
+        },
+        {
+          "localizedValue": "Lewis Trondheim"
+        },
+        {
+          "localizedValue": "Luis Bermejo"
+        },
+        {
+          "localizedValue": "Magnus"
+        },
+        {
+          "localizedValue": "Mai Ando"
+        },
+        {
+          "localizedValue": "Maikel"
+        },
+        {
+          "localizedValue": "Mai Tsurugina"
+        },
+        {
+          "localizedValue": "Maki Keigo"
+        },
+        {
+          "localizedValue": "Maki Minami"
+        },
+        {
+          "localizedValue": "Makoto Mizuno"
+        },
+        {
+          "localizedValue": "Makoto Ogino"
+        },
+        {
+          "localizedValue": "Makoto Raiku"
+        },
+        {
+          "localizedValue": "Makoto Tateno"
+        },
+        {
+          "localizedValue": "Makoto Yukimura"
+        },
+        {
+          "localizedValue": "Malcolm Wheeler-Nicholson"
+        },
+        {
+          "localizedValue": "Mamoru Nagano"
+        },
+        {
+          "localizedValue": "Manel Fontdevila"
+        },
+        {
+          "localizedValue": "Manfred Sommer"
+        },
+        {
+          "localizedValue": "Manuel Bartual"
+        },
+        {
+          "localizedValue": "Manuel Gago García"
+        },
+        {
+          "localizedValue": "Manuel Vázquez"
+        },
+        {
+          "localizedValue": "Margaret Stohl"
+        },
+        {
+          "localizedValue": "Marguerite Abouet"
+        },
+        {
+          "localizedValue": "Marjane Satrapi"
+        },
+        {
+          "localizedValue": "Marjorie Liu"
+        },
+        {
+          "localizedValue": "Martz Schmidt"
+        },
+        {
+          "localizedValue": "Masahiro Anbe"
+        },
+        {
+          "localizedValue": "Masahiro Itabashi"
+        },
+        {
+          "localizedValue": "Masahito Soda"
+        },
+        {
+          "localizedValue": "Masakazu Katsura"
+        },
+        {
+          "localizedValue": "Masakazu Yamaguchi"
+        },
+        {
+          "localizedValue": "Masaki Segawa"
+        },
+        {
+          "localizedValue": "Masami Kurumada"
+        },
+        {
+          "localizedValue": "Masami Tsuda"
+        },
+        {
+          "localizedValue": "Masami Yuki"
+        },
+        {
+          "localizedValue": "Masamune Shirow"
+        },
+        {
+          "localizedValue": "Masao Ōtake"
+        },
+        {
+          "localizedValue": "Masatoshi Kawahara"
+        },
+        {
+          "localizedValue": "Masayuki Taguchi"
+        },
+        {
+          "localizedValue": "Massimo Perissinotto"
+        },
+        {
+          "localizedValue": "Mato"
+        },
+        {
+          "localizedValue": "Matra Milan"
+        },
+        {
+          "localizedValue": "Matsuri Akino"
+        },
+        {
+          "localizedValue": "Matt Fraction"
+        },
+        {
+          "localizedValue": "Maurizio Ercole"
+        },
+        {
+          "localizedValue": "Mauro Entrialgo"
+        },
+        {
+          "localizedValue": "Max Bunker"
+        },
+        {
+          "localizedValue": "Mayumi Azuma"
+        },
+        {
+          "localizedValue": "Mayumi Muroyama"
+        },
+        {
+          "localizedValue": "Mayu Sakai"
+        },
+        {
+          "localizedValue": "Mayu Shinjo"
+        },
+        {
+          "localizedValue": "Megumi Morino"
+        },
+        {
+          "localizedValue": "Megumi Tachikawa"
+        },
+        {
+          "localizedValue": "Mengo Yokoyari"
+        },
+        {
+          "localizedValue": "Mia Ikumi"
+        },
+        {
+          "localizedValue": "Michele Medda"
+        },
+        {
+          "localizedValue": "Miguelanxo Prado"
+        },
+        {
+          "localizedValue": "Miho Obana"
+        },
+        {
+          "localizedValue": "Mike Mignola"
+        },
+        {
+          "localizedValue": "Miki Aihara"
+        },
+        {
+          "localizedValue": "Mikio Ikemoto"
+        },
+        {
+          "localizedValue": "Milk Morinaga"
+        },
+        {
+          "localizedValue": "Milk Morizono"
+        },
+        {
+          "localizedValue": "Milo Manara"
+        },
+        {
+          "localizedValue": "Mineko Ohkami"
+        },
+        {
+          "localizedValue": "Mineo Maya"
+        },
+        {
+          "localizedValue": "Mine Yoshizaki"
+        },
+        {
+          "localizedValue": "Minoru Furuya"
+        },
+        {
+          "localizedValue": "Mique Beltrán"
+        },
+        {
+          "localizedValue": "Mitsuo Hashimoto"
+        },
+        {
+          "localizedValue": "Mitsuru Hattori"
+        },
+        {
+          "localizedValue": "Mitsuru Miura"
+        },
+        {
+          "localizedValue": "Mitsutoshi Shimabukuro"
+        },
+        {
+          "localizedValue": "Miwa Ueda"
+        },
+        {
+          "localizedValue": "Miyoshi Tomori"
+        },
+        {
+          "localizedValue": "Miyuki Kobayashi"
+        },
+        {
+          "localizedValue": "Mizuki Kawashita"
+        },
+        {
+          "localizedValue": "Moe Yukimaru"
+        },
+        {
+          "localizedValue": "Mohiro Kitoh"
+        },
+        {
+          "localizedValue": "Momoko Sakura"
+        },
+        {
+          "localizedValue": "Morishige"
+        },
+        {
+          "localizedValue": "Moto Hagio"
+        },
+        {
+          "localizedValue": "Moyoco Anno"
+        },
+        {
+          "localizedValue": "Muneyuki Kaneshiro"
+        },
+        {
+          "localizedValue": "Nacho Moreno"
+        },
+        {
+          "localizedValue": "Nakaba Suzuki"
+        },
+        {
+          "localizedValue": "Nanae Haruno"
+        },
+        {
+          "localizedValue": "Nana Haruta"
+        },
+        {
+          "localizedValue": "Nanpei Yamada"
+        },
+        {
+          "localizedValue": "Naoya Matsumoto"
+        },
+        {
+          "localizedValue": "Nari Kusakawa"
+        },
+        {
+          "localizedValue": "Narumi Kakinouchi"
+        },
+        {
+          "localizedValue": "Natsumi Itsuki"
+        },
+        {
+          "localizedValue": "Nekojiru"
+        },
+        {
+          "localizedValue": "Nicolás Martínez Cerezo"
+        },
+        {
+          "localizedValue": "Nobuaki Minegishi"
+        },
+        {
+          "localizedValue": "Nobuyuki Anzai"
+        },
+        {
+          "localizedValue": "Nobuyuki Fukumoto"
+        },
+        {
+          "localizedValue": "Nobuyuki Takagi"
+        },
+        {
+          "localizedValue": "Noelle Stevenson"
+        },
+        {
+          "localizedValue": "Noizi Ito"
+        },
+        {
+          "localizedValue": "Norifusa Mita"
+        },
+        {
+          "localizedValue": "Noriko Sasaki"
+        },
+        {
+          "localizedValue": "Oh! Great"
+        },
+        {
+          "localizedValue": "Ola Fogelberg"
+        },
+        {
+          "localizedValue": "Osamu Nishi"
+        },
+        {
+          "localizedValue": "Ozelui"
+        },
+        {
+          "localizedValue": "Paco Roca"
+        },
+        {
+          "localizedValue": "Paolo Eleuteri Serpieri"
+        },
+        {
+          "localizedValue": "Patton Oswalt"
+        },
+        {
+          "localizedValue": "Pink Hanamori"
+        },
+        {
+          "localizedValue": "Posuka Demizu"
+        },
+        {
+          "localizedValue": "Puyo"
+        },
+        {
+          "localizedValue": "Q Hayashida"
+        },
+        {
+          "localizedValue": "Raf"
+        },
+        {
+          "localizedValue": "Rafael Marín"
+        },
+        {
+          "localizedValue": "Rafael Ramos"
+        },
+        {
+          "localizedValue": "Rafa Fronteriz"
+        },
+        {
+          "localizedValue": "Raina Telgemeier"
+        },
+        {
+          "localizedValue": "Ralf König"
+        },
+        {
+          "localizedValue": "Rando Ayamine"
+        },
+        {
+          "localizedValue": "Raymond Miller"
+        },
+        {
+          "localizedValue": "Rei Hiroe"
+        },
+        {
+          "localizedValue": "Reiji Miyajima"
+        },
+        {
+          "localizedValue": "Reiji Saiga"
+        },
+        {
+          "localizedValue": "Reiko Okano"
+        },
+        {
+          "localizedValue": "Reiko Shimizu"
+        },
+        {
+          "localizedValue": "Reiko Yoshida"
+        },
+        {
+          "localizedValue": "Reno"
+        },
+        {
+          "localizedValue": "Riad Sattouf"
+        },
+        {
+          "localizedValue": "Ricardo Martinez"
+        },
+        {
+          "localizedValue": "Rie Takada"
+        },
+        {
+          "localizedValue": "Rifujin na Magonote"
+        },
+        {
+          "localizedValue": "Riichi Ueshiba"
+        },
+        {
+          "localizedValue": "Rinko Ueda"
+        },
+        {
+          "localizedValue": "Rino Mizuho"
+        },
+        {
+          "localizedValue": "Robert L. Washington III"
+        },
+        {
+          "localizedValue": "Robert M. Overstreet"
+        },
+        {
+          "localizedValue": "Roberto Segura"
+        },
+        {
+          "localizedValue": "Rob Schrab"
+        },
+        {
+          "localizedValue": "Rubén Fdez."
+        },
+        {
+          "localizedValue": "Ryoichi Ikegami"
+        },
+        {
+          "localizedValue": "Ryoko Fukuyama"
+        },
+        {
+          "localizedValue": "Ryu Fujisaki"
+        },
+        {
+          "localizedValue": "Ryusuke Hamamoto"
+        },
+        {
+          "localizedValue": "Sakura Kinoshita"
+        },
+        {
+          "localizedValue": "Sakura Tsukuba"
+        },
+        {
+          "localizedValue": "Saladin Ahmed"
+        },
+        {
+          "localizedValue": "Satomi Ikezawa"
+        },
+        {
+          "localizedValue": "Satoru Akahori"
+        },
+        {
+          "localizedValue": "Satoshi Kon"
+        },
+        {
+          "localizedValue": "Satoshi Shiki"
+        },
+        {
+          "localizedValue": "Satoshi Urushihara"
+        },
+        {
+          "localizedValue": "Satoshi Yamamoto"
+        },
+        {
+          "localizedValue": "Scott Snyder"
+        },
+        {
+          "localizedValue": "Seiji Matsuyama"
+        },
+        {
+          "localizedValue": "Seimu Yoshizaki"
+        },
+        {
+          "localizedValue": "Seishi Kishimoto"
+        },
+        {
+          "localizedValue": "Sergio Bonelli"
+        },
+        {
+          "localizedValue": "Setona Mizushiro"
+        },
+        {
+          "localizedValue": "Shigeru Sugiura"
+        },
+        {
+          "localizedValue": "Shiho Sugiura"
+        },
+        {
+          "localizedValue": "Shimoku Kio"
+        },
+        {
+          "localizedValue": "Shinichiro Otsuka"
+        },
+        {
+          "localizedValue": "Shinji Mizushima"
+        },
+        {
+          "localizedValue": "Shinji Wada"
+        },
+        {
+          "localizedValue": "Shin Takahashi"
+        },
+        {
+          "localizedValue": "Shinya Kuwahara"
+        },
+        {
+          "localizedValue": "Shinya Umemura"
+        },
+        {
+          "localizedValue": "Shizuru Hayashiya"
+        },
+        {
+          "localizedValue": "Shoji Sato"
+        },
+        {
+          "localizedValue": "Shoko Conami"
+        },
+        {
+          "localizedValue": "Sho Makura"
+        },
+        {
+          "localizedValue": "Shuichi Shigeno"
+        },
+        {
+          "localizedValue": "Shungiku Nakamura"
+        },
+        {
+          "localizedValue": "Shun Saeki"
+        },
+        {
+          "localizedValue": "Skottie Young"
+        },
+        {
+          "localizedValue": "Sōsuke Tōka"
+        },
+        {
+          "localizedValue": "Stan Lee"
+        },
+        {
+          "localizedValue": "Stefano Tamburini"
+        },
+        {
+          "localizedValue": "Steve Ditko"
+        },
+        {
+          "localizedValue": "Suehiro Maruo"
+        },
+        {
+          "localizedValue": "Suzuhito Yasuda"
+        },
+        {
+          "localizedValue": "Tachibana Higuchi"
+        },
+        {
+          "localizedValue": "Tachihara Ayumi"
+        },
+        {
+          "localizedValue": "Tadashi Katou"
+        },
+        {
+          "localizedValue": "Tadatoshi Fujimaki"
+        },
+        {
+          "localizedValue": "Taiki Kawakami"
+        },
+        {
+          "localizedValue": "Taishi Mori"
+        },
+        {
+          "localizedValue": "Taishi Zao"
+        },
+        {
+          "localizedValue": "Taiyo Matsumoto"
+        },
+        {
+          "localizedValue": "Takao Aoki"
+        },
+        {
+          "localizedValue": "Takao Yaguchi"
+        },
+        {
+          "localizedValue": "Takashi Hashiguchi"
+        },
+        {
+          "localizedValue": "Takashi Nagasaki"
+        },
+        {
+          "localizedValue": "Takehiko Ito"
+        },
+        {
+          "localizedValue": "Takeshi Hinata"
+        },
+        {
+          "localizedValue": "Takeshi Okano"
+        },
+        {
+          "localizedValue": "Taku Kuwabara"
+        },
+        {
+          "localizedValue": "Takumi Fukui"
+        },
+        {
+          "localizedValue": "Takuya Fujima"
+        },
+        {
+          "localizedValue": "Tamiki Wakaki"
+        },
+        {
+          "localizedValue": "Tanino Liberatore"
+        },
+        {
+          "localizedValue": "Tatsuhiko Yamagami"
+        },
+        {
+          "localizedValue": "Tatsuki Fujimoto"
+        },
+        {
+          "localizedValue": "Tatsuo Nitta"
+        },
+        {
+          "localizedValue": "Tatsuya Egawa"
+        },
+        {
+          "localizedValue": "Tatsuya Hamazaki"
+        },
+        {
+          "localizedValue": "Temari Matsumoto"
+        },
+        {
+          "localizedValue": "Terumi Fujiki"
+        },
+        {
+          "localizedValue": "Tetsuya Chiba"
+        },
+        {
+          "localizedValue": "Tillie Walden"
+        },
+        {
+          "localizedValue": "Tiziano Sclavi"
+        },
+        {
+          "localizedValue": "Tochi Ueyama"
+        },
+        {
+          "localizedValue": "Tohru Fujisawa"
+        },
+        {
+          "localizedValue": "Tokihiko Matsuura"
+        },
+        {
+          "localizedValue": "Tokuo Yokota"
+        },
+        {
+          "localizedValue": "Tomoko Hayakawa"
+        },
+        {
+          "localizedValue": "Tomoko Ninomiya"
+        },
+        {
+          "localizedValue": "Tony DeZuniga"
+        },
+        {
+          "localizedValue": "Tony DiPreta"
+        },
+        {
+          "localizedValue": "Toshie Kihara"
+        },
+        {
+          "localizedValue": "Toshihiko Kobayashi"
+        },
+        {
+          "localizedValue": "Toshiki Yui"
+        },
+        {
+          "localizedValue": "Tsubasa Fukuchi"
+        },
+        {
+          "localizedValue": "Tsubasa Yamaguchi"
+        },
+        {
+          "localizedValue": "Tsutomu Nihei"
+        },
+        {
+          "localizedValue": "Ukyō Kodachi"
+        },
+        {
+          "localizedValue": "Vaughn Bodē"
+        },
+        {
+          "localizedValue": "Víctor Mora"
+        },
+        {
+          "localizedValue": "Waki Yamato"
+        },
+        {
+          "localizedValue": "Warren Ellis"
+        },
+        {
+          "localizedValue": "Wataru Murayama"
+        },
+        {
+          "localizedValue": "Wataru Yoshizumi"
+        },
+        {
+          "localizedValue": "Yamato Yamamoto"
+        },
+        {
+          "localizedValue": "Yashichiro Takahashi"
+        },
+        {
+          "localizedValue": "Yasuhiro Kano"
+        },
+        {
+          "localizedValue": "Yasuhiro Nightow"
+        },
+        {
+          "localizedValue": "Yasuhisa Hara"
+        },
+        {
+          "localizedValue": "Yasuko Aoike"
+        },
+        {
+          "localizedValue": "Yasuko Uchiyama"
+        },
+        {
+          "localizedValue": "Yasunori Mitsunaga"
+        },
+        {
+          "localizedValue": "Yoko Maki"
+        },
+        {
+          "localizedValue": "Yoko Shoji"
+        },
+        {
+          "localizedValue": "Yoshiharu Tsuge"
+        },
+        {
+          "localizedValue": "Yoshihiro Takahashi"
+        },
+        {
+          "localizedValue": "Yoshihiro Tatsumi"
+        },
+        {
+          "localizedValue": "Yoshikazu Yasuhiko"
+        },
+        {
+          "localizedValue": "Yoshiki Tonogai"
+        },
+        {
+          "localizedValue": "Yoshinobu Nishizaki"
+        },
+        {
+          "localizedValue": "Yoshio Sawai"
+        },
+        {
+          "localizedValue": "Yoshitari Iizuka"
+        },
+        {
+          "localizedValue": "Yoshito Usui"
+        },
+        {
+          "localizedValue": "Yoshiyuki Nishi"
+        },
+        {
+          "localizedValue": "Yoshiyuki Sadamoto"
+        },
+        {
+          "localizedValue": "You Higuri"
+        },
+        {
+          "localizedValue": "Youka Nitta"
+        },
+        {
+          "localizedValue": "Yu Asagiri"
+        },
+        {
+          "localizedValue": "Yugo Ishikawa"
+        },
+        {
+          "localizedValue": "Yuhki Kamatani"
+        },
+        {
+          "localizedValue": "Yuichi Kumakura"
+        },
+        {
+          "localizedValue": "Yui Kikuta"
+        },
+        {
+          "localizedValue": "Yuji Aoki"
+        },
+        {
+          "localizedValue": "Yuji Shiozaki"
+        },
+        {
+          "localizedValue": "Yuji Terajima"
+        },
+        {
+          "localizedValue": "Yuka Fujikawa"
+        },
+        {
+          "localizedValue": "Yukari Ichijo"
+        },
+        {
+          "localizedValue": "Yuki Kure"
+        },
+        {
+          "localizedValue": "Yukinobu Hoshino"
+        },
+        {
+          "localizedValue": "Yuki Shimizu"
+        },
+        {
+          "localizedValue": "Yuki Suetsugu"
+        },
+        {
+          "localizedValue": "Yuki Urushibara"
+        },
+        {
+          "localizedValue": "Yumi Hotta"
+        },
+        {
+          "localizedValue": "Yumiko Kawahara"
+        },
+        {
+          "localizedValue": "Yu Minamoto"
+        },
+        {
+          "localizedValue": "Yumi Tamura"
+        },
+        {
+          "localizedValue": "Yuna Kagesaki"
+        },
+        {
+          "localizedValue": "Yun Mi-Kyung"
+        },
+        {
+          "localizedValue": "Yu Sasuga"
+        },
+        {
+          "localizedValue": "Yusei Matsui"
+        },
+        {
+          "localizedValue": "Yusuke Murata"
+        },
+        {
+          "localizedValue": "Yutaka Nanten"
+        },
+        {
+          "localizedValue": "Yutori Hojo"
+        },
+        {
+          "localizedValue": "Yuu Kamiya"
+        },
+        {
+          "localizedValue": "Yuu Watase"
+        },
+        {
+          "localizedValue": "Yuya Aoki"
+        },
+        {
+          "localizedValue": "Yuzo Takada"
+        }
+      ]
+    },
+    {
+      "localizedAspectName": "Convention/Event",
+      "aspectConstraint": {
+        "aspectDataType": "STRING",
+        "itemToAspectCardinality": "SINGLE",
+        "aspectMode": "FREE_TEXT",
+        "aspectRequired": false,
+        "aspectUsage": "OPTIONAL",
+        "aspectEnabledForVariations": false,
+        "aspectApplicableTo": [
+          "PRODUCT"
+        ]
+      },
+      "aspectValues": [
+        {
+          "localizedValue": "AlienCon"
+        },
+        {
+          "localizedValue": "Anime Expo"
+        },
+        {
+          "localizedValue": "Awesome Con"
+        },
+        {
+          "localizedValue": "Barcelona International Comic Fair"
+        },
+        {
+          "localizedValue": "Cartophilic Society Annual Convention"
+        },
+        {
+          "localizedValue": "Chicago Sports Spectacular"
+        },
+        {
+          "localizedValue": "Comic Market Japan (Comiket)"
+        },
+        {
+          "localizedValue": "D23 Expo"
+        },
+        {
+          "localizedValue": "Dallas Card Show"
+        },
+        {
+          "localizedValue": "Destination Star Trek"
+        },
+        {
+          "localizedValue": "Doctor Who Event"
+        },
+        {
+          "localizedValue": "DragonCon"
+        },
+        {
+          "localizedValue": "E3 Expo"
+        },
+        {
+          "localizedValue": "Edinburgh Comic Con"
+        },
+        {
+          "localizedValue": "Emerald City Comic Con"
+        },
+        {
+          "localizedValue": "Famous Monsters Convention"
+        },
+        {
+          "localizedValue": "Fan Expo Canada"
+        },
+        {
+          "localizedValue": "Glasgow Comic Con"
+        },
+        {
+          "localizedValue": "Greater Boston Sports Collectors Club Show"
+        },
+        {
+          "localizedValue": "Hawaii Trade Conference"
+        },
+        {
+          "localizedValue": "Heroes Convention"
+        },
+        {
+          "localizedValue": "International Comic Expo"
+        },
+        {
+          "localizedValue": "Japan Expo"
+        },
+        {
+          "localizedValue": "JP Sports East Coast National"
+        },
+        {
+          "localizedValue": "London Comic Con (MCM)"
+        },
+        {
+          "localizedValue": "London Film & Comic Con"
+        },
+        {
+          "localizedValue": "Long Beach Coin, Currency, Stamp & Sports Collectible Expo"
+        },
+        {
+          "localizedValue": "Los Angeles Comic Con"
+        },
+        {
+          "localizedValue": "Lucca Comics & Games"
+        },
+        {
+          "localizedValue": "MCM Scotland"
+        },
+        {
+          "localizedValue": "MegaCon"
+        },
+        {
+          "localizedValue": "New York Comic Con"
+        },
+        {
+          "localizedValue": "Nor Con"
+        },
+        {
+          "localizedValue": "Official Xena Convention"
+        },
+        {
+          "localizedValue": "Paley Festival"
+        },
+        {
+          "localizedValue": "Philadelphia Sportscard & Memorabilia Show"
+        },
+        {
+          "localizedValue": "Portsmouth Comic Con"
+        },
+        {
+          "localizedValue": "Rich Altman's Boston Show"
+        },
+        {
+          "localizedValue": "Saló del Manga de Barcelona"
+        },
+        {
+          "localizedValue": "San Diego Comic Con"
+        },
+        {
+          "localizedValue": "Star Wars Celebration"
+        },
+        {
+          "localizedValue": "Star Wars Galactic Nights"
+        },
+        {
+          "localizedValue": "Star Wars Weekends"
+        },
+        {
+          "localizedValue": "The Chantilly Show"
+        },
+        {
+          "localizedValue": "The National Sports Collectors Convention"
+        },
+        {
+          "localizedValue": "Toronto Card Show"
+        },
+        {
+          "localizedValue": "Wondercon"
+        },
+        {
+          "localizedValue": "Wonder Festival"
+        },
+        {
+          "localizedValue": "World Fantasy Convention"
+        },
+        {
+          "localizedValue": "World Science Fiction Convention"
+        }
+      ]
+    },
+    {
+      "localizedAspectName": "Features",
+      "aspectConstraint": {
+        "aspectDataType": "STRING",
+        "itemToAspectCardinality": "MULTI",
+        "aspectMode": "FREE_TEXT",
+        "aspectRequired": false,
+        "aspectUsage": "OPTIONAL",
+        "aspectEnabledForVariations": false,
+        "aspectApplicableTo": [
+          "PRODUCT"
+        ]
+      },
+      "aspectValues": [
+        {
+          "localizedValue": "Battery-Operated"
+        },
+        {
+          "localizedValue": "Interactive"
+        },
+        {
+          "localizedValue": "Limited Edition"
+        }
+      ]
+    },
+    {
+      "localizedAspectName": "Item Height",
+      "aspectConstraint": {
+        "aspectDataType": "STRING",
+        "itemToAspectCardinality": "SINGLE",
+        "aspectMode": "FREE_TEXT",
+        "aspectRequired": false,
+        "aspectUsage": "OPTIONAL",
+        "aspectEnabledForVariations": true,
+        "aspectApplicableTo": [
+          "PRODUCT"
+        ]
+      }
+    },
+    {
+      "localizedAspectName": "Item Length",
+      "aspectConstraint": {
+        "aspectDataType": "STRING",
+        "itemToAspectCardinality": "SINGLE",
+        "aspectMode": "FREE_TEXT",
+        "aspectRequired": false,
+        "aspectUsage": "OPTIONAL",
+        "aspectEnabledForVariations": true,
+        "aspectApplicableTo": [
+          "PRODUCT"
+        ]
+      }
+    },
+    {
+      "localizedAspectName": "Item Weight",
+      "aspectConstraint": {
+        "aspectDataType": "STRING",
+        "itemToAspectCardinality": "SINGLE",
+        "aspectMode": "FREE_TEXT",
+        "aspectRequired": false,
+        "aspectUsage": "OPTIONAL",
+        "aspectEnabledForVariations": true,
+        "aspectApplicableTo": [
+          "PRODUCT"
+        ]
+      }
+    },
+    {
+      "localizedAspectName": "Item Width",
+      "aspectConstraint": {
+        "aspectDataType": "STRING",
+        "itemToAspectCardinality": "SINGLE",
+        "aspectMode": "FREE_TEXT",
+        "aspectRequired": false,
+        "aspectUsage": "OPTIONAL",
+        "aspectEnabledForVariations": true,
+        "aspectApplicableTo": [
+          "PRODUCT"
+        ]
+      }
+    },
+    {
+      "localizedAspectName": "MPN",
+      "aspectConstraint": {
+        "aspectDataType": "STRING",
+        "itemToAspectCardinality": "MULTI",
+        "aspectMode": "FREE_TEXT",
+        "aspectRequired": false,
+        "aspectUsage": "OPTIONAL",
+        "aspectEnabledForVariations": true,
+        "aspectApplicableTo": [
+          "PRODUCT"
+        ]
+      }
+    },
+    {
+      "localizedAspectName": "Unit Quantity",
+      "aspectConstraint": {
+        "aspectDataType": "STRING",
+        "itemToAspectCardinality": "SINGLE",
+        "aspectMode": "FREE_TEXT",
+        "aspectRequired": false,
+        "aspectUsage": "OPTIONAL",
+        "aspectEnabledForVariations": false,
+        "aspectApplicableTo": [
+          "ITEM"
+        ]
+      }
+    },
+    {
+      "localizedAspectName": "Unit Type",
+      "aspectConstraint": {
+        "aspectDataType": "STRING",
+        "itemToAspectCardinality": "SINGLE",
+        "aspectMode": "SELECTION_ONLY",
+        "aspectRequired": false,
+        "aspectUsage": "OPTIONAL",
+        "aspectEnabledForVariations": false,
+        "aspectApplicableTo": [
+          "PRODUCT"
+        ]
+      },
+      "aspectValues": [
+        {
+          "localizedValue": "Unit"
+        },
+        {
+          "localizedValue": "oz"
+        },
+        {
+          "localizedValue": "lb"
+        },
+        {
+          "localizedValue": "fl oz"
+        },
+        {
+          "localizedValue": "gal"
+        },
+        {
+          "localizedValue": "ft"
+        },
+        {
+          "localizedValue": "ft²"
+        },
+        {
+          "localizedValue": "ft³"
+        }
+      ]
+    }
+  ]
+}
