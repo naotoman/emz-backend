@@ -267,7 +267,13 @@ export const transformAspects = (aspects: Aspect[]) => {
   return aspects.reduce((acc: FormattedAspects, aspect: Aspect) => {
     if (
       aspect.localizedAspectName === "MPN" ||
-      aspect.localizedAspectName === "California Prop 65 Warning"
+      aspect.localizedAspectName === "California Prop 65 Warning" ||
+      aspect.localizedAspectName === "Unit Type" ||
+      aspect.localizedAspectName === "Unit Quantity" ||
+      aspect.localizedAspectName === "Item Width" ||
+      aspect.localizedAspectName === "Item Height" ||
+      aspect.localizedAspectName === "Item Weight" ||
+      aspect.localizedAspectName === "Item Length"
     ) {
       return acc;
     }
