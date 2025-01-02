@@ -2,7 +2,6 @@ import { getSecureSsmParam } from "common/ssmParamExtension";
 import { log } from "common/utils";
 import fs from "fs";
 import OpenAI from "openai";
-import { ResponseFormatJSONSchema } from "openai/resources/shared.mjs";
 
 interface AspectConstraint {
   aspectDataType: "STRING" | "NUMBER" | "DATE";
@@ -56,127 +55,138 @@ interface Event {
 }
 
 interface ChatGptResponse {
-  violates_ebay_policy: boolean;
-  violation_reason: string | null;
-  listing_title: string;
-  item_condition: string;
-  item_specifics: {
-    [key: string]: string | string[] | number | number[] | null;
+  risk_checklist: {
+    violates_ebay_policies: boolean;
+    requires_comment_before_purchase: boolean;
+    not_japanese_product: boolean;
+    explanation: string;
   };
-  promotional_text: string;
-  weight: number;
-  box_size: {
-    width: number;
-    height: number;
-    depth: number;
+  shipping_weight_and_box_dimensions: {
+    weight: number;
+    box_dimensions: {
+      length: number;
+      width: number;
+      height: number;
+    };
+  };
+  reselling_information: {
+    listing_title: string;
+    item_condition: string;
+    item_specifics: {
+      [key: string]: string | string[] | number | number[] | null;
+    };
+    promotional_text: string;
   };
 }
 
-const chatgpt = async (event: Event, formattedAspects: FormattedAspects) => {
-  const response_format = {
-    type: "json_schema",
-    json_schema: {
-      name: "information_for_ebay_listing",
-      schema: {
+const checklistSchema = {
+  type: "object",
+  properties: {
+    violates_ebay_policies: {
+      type: "boolean",
+      description:
+        "Whether the item may violate eBay's policies on prohibited and restricted items.",
+    },
+    requires_comment_before_purchase: {
+      type: "boolean",
+      description:
+        "Whether the seller explicitly states that a comment is unconditionally required before purchasing.",
+    },
+    not_japanese_product: {
+      type: "boolean",
+      description:
+        "Whether the seller explicitly states that the item originates from outside Japan.",
+    },
+    explanation: {
+      type: "string",
+      description: "Explanation of the checklist items.",
+    },
+  },
+  required: [
+    "violates_ebay_policies",
+    "requires_comment_before_purchase",
+    "not_japanese_product",
+    "explanation",
+  ],
+  additionalProperties: false,
+};
+
+const shippingWeightAndBoxDimensionsSchema = {
+  type: "object",
+  properties: {
+    weight: { type: "number" },
+    box_dimensions: {
+      type: "object",
+      properties: {
+        length: { type: "number" },
+        width: { type: "number" },
+        height: { type: "number" },
+      },
+      required: ["length", "width", "height"],
+      additionalProperties: false,
+    },
+  },
+  required: ["weight", "box_dimensions"],
+  additionalProperties: false,
+};
+
+const resellingInformationSchema = (aspectsFormatted: FormattedAspects) => {
+  return {
+    type: "object",
+    properties: {
+      listing_title: {
+        type: "string",
+        description:
+          "A concise and descriptive title optimized for eBay's search engine (within 80 characters, including spaces).",
+      },
+      item_condition: {
+        type: "string",
+        description: "Brief explatation of the item's current condition.",
+      },
+      item_specifics: {
         type: "object",
-        properties: {
-          violates_ebay_policy: {
-            type: "boolean",
-            description:
-              "Whether the item violates eBay's policies on prohibited or restricted items.",
-          },
-          violation_reason: {
-            type: ["string", "null"],
-            description:
-              "If the item violates eBay's policies on prohibited or restricted items, explain the reason why the item cannot be listed.",
-          },
-          listing_title: {
-            type: "string",
-            description:
-              "A concise and descriptive title optimized for eBay's search engine (within 80 characters, including spaces).",
-          },
-          item_condition: {
-            type: "string",
-            description: "Brief explatation of the item's current condition.",
-          },
-          item_specifics: {
-            type: "object",
-            description: "Item specifics.",
-            properties: formattedAspects,
-            required: Object.keys(formattedAspects),
-            additionalProperties: false,
-          },
-          promotional_text: {
-            type: "string",
-            description: "Promotional text for the listing.",
-          },
-          weight: {
-            type: "number",
-            description: "An estimated weight (in grams) for shipping.",
-          },
-          box_size: {
-            type: "object",
-            description:
-              "An estimated box size (in centimeters) for packaging.",
-            properties: {
-              width: {
-                type: "number",
-                description: "width",
-              },
-              height: {
-                type: "number",
-                description: "height",
-              },
-              depth: {
-                type: "number",
-                description: "depth",
-              },
-            },
-            required: ["width", "height", "depth"],
-            additionalProperties: false,
-          },
-        },
-        required: [
-          "violates_ebay_policy",
-          "violation_reason",
-          "listing_title",
-          "item_condition",
-          "item_specifics",
-          "promotional_text",
-          "weight",
-          "box_size",
-        ],
+        description: "Item specifics.",
+        properties: aspectsFormatted,
+        required: Object.keys(aspectsFormatted),
         additionalProperties: false,
       },
+      promotional_text: {
+        type: "string",
+        description:
+          "Promotional text for the item. It should be a short and concise description of the item's features and benefits.",
+      },
     },
+    required: [
+      "listing_title",
+      "item_condition",
+      "item_specifics",
+      "promotional_text",
+    ],
+    additionalProperties: false,
   };
+};
 
-  const apiKey = await getSecureSsmParam(
-    event.appParams.chatGptKeySsmParamName
-  );
-
-  const client = new OpenAI({ apiKey: apiKey });
-
-  const completion = await client.beta.chat.completions.parse({
+const chatgpt = async (event: Event, formattedAspects: FormattedAspects) => {
+  const prompt = {
     model: "gpt-4o",
     messages: [
       {
         role: "developer",
-        content: `You assist users in reselling Japanese Mercari items on eBay. Based on the provided item's image, title, and description, generate the information for an eBay listing:
-- Assume all items are pre-owned and avoid using phrases like "like new" or similar terms to prevent confusion for buyers.
-- Ensure the response complies with eBay's platform requirements.
-
-Additionally, assess whether the item violates eBay's policies on prohibited or restricted items, and if so, explain the reason why the item cannot be listed.`,
+        content: `You assist users in reselling items from Mercari Japan to international customers on eBay. Assume all items are pre-owned unless otherwise specified. Based on the provided item information from Mercari, perform the following tasks:
+1. Determine if the item is suitable for reselling on eBay using the risk checklist.
+2. Estimate the total shipping weight (in grams) and the dimensions of the packaging box (in centimeters). Be cautious and aim slightly higher to avoid underestimation.
+3. Generate the information for listing the item on eBay in English. Avoid using phrases like "like new" or similar terms to prevent confusion for buyers.`,
       },
       {
         role: "user",
         content: [
-          {
-            type: "image_url",
+          ...event.item.orgImageUrls.map((url, index) => ({
+            type: "image_url" as const,
             image_url: {
-              url: event.item.orgImageUrls[0] as string,
+              url: url as string,
+              ...(index > 0 ? { detail: "low" as const } : {}),
             },
-          },
+          })),
           {
             type: "text",
             text: `<title>
@@ -189,8 +199,38 @@ ${event.item.orgDescription}
         ],
       },
     ],
-    response_format: response_format as ResponseFormatJSONSchema,
-  });
+    response_format: {
+      type: "json_schema",
+      json_schema: {
+        strict: true,
+        name: "help_me_resell",
+        schema: {
+          type: "object",
+          properties: {
+            risk_checklist: checklistSchema,
+            shipping_weight_and_box_dimensions:
+              shippingWeightAndBoxDimensionsSchema,
+            reselling_information: resellingInformationSchema(formattedAspects),
+          },
+          required: [
+            "risk_checklist",
+            "shipping_weight_and_box_dimensions",
+            "reselling_information",
+          ],
+          additionalProperties: false,
+        },
+      },
+    },
+  };
+  log(prompt);
+
+  const apiKey = await getSecureSsmParam(
+    event.appParams.chatGptKeySsmParamName
+  );
+
+  const client = new OpenAI({ apiKey: apiKey });
+
+  const completion = await client.beta.chat.completions.parse(prompt);
 
   const message = completion.choices[0]?.message;
   log(message);
@@ -243,7 +283,7 @@ export const transformAspects = (aspects: Aspect[]) => {
 
   const createDescription = (aspect: Aspect) => {
     let desc = "";
-    if (aspect.aspectConstraint.aspectMode === "SELECTION_ONLY") {
+    if (aspect.aspectConstraint.itemToAspectCardinality === "SINGLE") {
       desc += `A value for '${aspect.localizedAspectName}'. `;
     } else {
       desc += `Values for '${aspect.localizedAspectName}'. `;
@@ -260,6 +300,9 @@ export const transformAspects = (aspects: Aspect[]) => {
           .map((v: AspectValue) => v.localizedValue)
           .join(", ") +
         ")";
+    }
+    if (!aspect.aspectConstraint.aspectRequired) {
+      desc += " Return null if not applicable.";
     }
     return desc;
   };
@@ -315,15 +358,19 @@ export const handler = async (event: Event) => {
   log(formattedAspects);
   //   chatgptで処理
   const gptResult = await chatgpt(event, formattedAspects);
-  if (gptResult.violates_ebay_policy) {
-    throw new Error(gptResult.violation_reason || "unknown");
+  if (
+    gptResult.risk_checklist.violates_ebay_policies ||
+    gptResult.risk_checklist.requires_comment_before_purchase ||
+    gptResult.risk_checklist.not_japanese_product
+  ) {
+    throw new Error(gptResult.risk_checklist.explanation);
   }
   // 入力を整形
   const shippingYen = calcShippingFee(
-    gptResult.box_size.width,
-    gptResult.box_size.height,
-    gptResult.box_size.depth,
-    gptResult.weight,
+    gptResult.shipping_weight_and_box_dimensions.box_dimensions.length,
+    gptResult.shipping_weight_and_box_dimensions.box_dimensions.width,
+    gptResult.shipping_weight_and_box_dimensions.box_dimensions.height,
+    gptResult.shipping_weight_and_box_dimensions.weight,
     event.item.orgPrice
   );
 
@@ -332,14 +379,14 @@ export const handler = async (event: Event) => {
     ...filteredItem,
     ebayFulfillmentPolicy: event.user.fulfillmentPolicy,
     shippingYen,
-    weightGram: gptResult.weight,
+    weightGram: gptResult.shipping_weight_and_box_dimensions.weight,
     boxSizeCm: [
-      gptResult.box_size.width,
-      gptResult.box_size.height,
-      gptResult.box_size.depth,
+      gptResult.shipping_weight_and_box_dimensions.box_dimensions.length,
+      gptResult.shipping_weight_and_box_dimensions.box_dimensions.width,
+      gptResult.shipping_weight_and_box_dimensions.box_dimensions.height,
     ],
-    ebayTitle: gptResult.listing_title,
-    ebayDescription: `<div style="color: rgb(51, 51, 51); font-family: Arial;"><p>${gptResult.promotional_text}</p><h3 style="margin-top: 1.6em;">Condition</h3><p>${gptResult.item_condition}</p><h3 style="margin-top: 1.6em;">Shipping</h3><p>Tracking numbers are provided to all orders. The item will be carefully packed to ensure it arrives safely.</p><h3 style="margin-top: 1.6em;">Customs and import charges</h3><p>Import duties, taxes, and charges are not included in the item price or shipping cost. Buyers are responsible for these charges. These charges may be collected by the carrier when you receive the item.</p></div>`,
+    ebayTitle: gptResult.reselling_information.listing_title,
+    ebayDescription: `<div style="color: rgb(51, 51, 51); font-family: Arial;"><p>${gptResult.reselling_information.promotional_text}</p><h3 style="margin-top: 1.6em;">Condition</h3><p>${gptResult.reselling_information.item_condition}</p><h3 style="margin-top: 1.6em;">Shipping</h3><p>Tracking numbers are provided to all orders. The item will be carefully packed to ensure it arrives safely.</p><h3 style="margin-top: 1.6em;">Customs and import charges</h3><p>Import duties, taxes, and charges are not included in the item price or shipping cost. Buyers are responsible for these charges. These charges may be collected by the carrier when you receive the item.</p></div>`,
     ebayCategorySrc: [
       "Collectibles",
       "Animation Art & Merchandise",
@@ -348,9 +395,9 @@ export const handler = async (event: Event) => {
     ],
     ebayStoreCategorySrc: ["Anime Merchandise"],
     ebayConditionSrc: "Used",
-    ebayConditionDescription: gptResult.item_condition,
+    ebayConditionDescription: gptResult.reselling_information.item_condition,
     ebayAspectParam: Object.fromEntries(
-      Object.entries(gptResult.item_specifics)
+      Object.entries(gptResult.reselling_information.item_specifics)
         .filter(([_, value]) => {
           if (value == null || value === "") return false;
           if (Array.isArray(value)) {

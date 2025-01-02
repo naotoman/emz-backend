@@ -71,7 +71,7 @@ export class Sfn extends Construct {
         buildArgs: { lambda: "sfnChatGpt" },
       }),
       memorySize: 256,
-      timeout: Duration.seconds(20),
+      timeout: Duration.seconds(40),
       layers: [awsSsmExtensionLayer],
       logGroup: new logs.LogGroup(this, `ChatgptFnLog`, {
         retention: logs.RetentionDays.THREE_MONTHS,
