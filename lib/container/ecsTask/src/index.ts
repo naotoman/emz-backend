@@ -55,9 +55,7 @@ export const shouldDelete = (item: Item): boolean =>
   !item.isListed && dateGap(getFormattedDate(new Date()), item.createdAt) > 180;
 
 export const shouldScrape = (item: Item): boolean =>
-  item.isOrgLive &&
-  !item.isImageChanged &&
-  (item.isListed || Math.random() < 0.1);
+  item.isOrgLive && !item.isImageChanged && item.isListed;
 
 // TODO ブラックリストセラーIDの実装
 export const shouldList = (item: Item, user: User): boolean => {
