@@ -57,7 +57,7 @@ interface Event {
 interface ChatGptResponse {
   risk_checklist: {
     violates_ebay_policies: boolean;
-    requires_comment_before_purchase: boolean;
+    is_scam: boolean;
     not_japanese_product: boolean;
     explanation: string;
   };
@@ -87,10 +87,10 @@ const checklistSchema = {
       description:
         "Whether the item may violate eBay's policies on prohibited and restricted items.",
     },
-    requires_comment_before_purchase: {
+    is_scam: {
       type: "boolean",
       description:
-        "Whether the seller explicitly states that a comment is unconditionally required before purchasing.",
+        "Whether the seller is intentionally attempting to scam buyers by displaying an item that is completely different from the description.",
     },
     not_japanese_product: {
       type: "boolean",
@@ -104,7 +104,7 @@ const checklistSchema = {
   },
   required: [
     "violates_ebay_policies",
-    "requires_comment_before_purchase",
+    "is_scam",
     "not_japanese_product",
     "explanation",
   ],
@@ -360,7 +360,7 @@ export const handler = async (event: Event) => {
   const gptResult = await chatgpt(event, formattedAspects);
   if (
     gptResult.risk_checklist.violates_ebay_policies ||
-    gptResult.risk_checklist.requires_comment_before_purchase ||
+    gptResult.risk_checklist.is_scam ||
     gptResult.risk_checklist.not_japanese_product
   ) {
     throw new Error(gptResult.risk_checklist.explanation);
