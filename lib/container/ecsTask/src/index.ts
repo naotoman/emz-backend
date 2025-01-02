@@ -30,11 +30,13 @@ export interface Item {
     shippedFrom?: string;
     shippedWithin?: string;
     shippingMethod?: string;
+    sellerId?: string;
   };
 }
 
 export interface User {
   id: string;
+  sellerBlacklist: string[];
 }
 
 export interface AppParams {
@@ -58,8 +60,7 @@ export const shouldScrape = (item: Item): boolean =>
   (item.isListed || Math.random() < 0.1);
 
 // TODO ブラックリストセラーIDの実装
-export const shouldList = (item: Item): boolean => {
-  const currentTime = Math.floor(Date.now() / 1000);
+export const shouldList = (item: Item, user: User): boolean => {
   return (
     item.isOrgLive &&
     !item.isImageChanged &&
@@ -70,6 +71,7 @@ export const shouldList = (item: Item): boolean => {
     (item.orgExtraParam.rateCount == null ||
       item.orgExtraParam.rateCount > 10) &&
     item.orgExtraParam.shippedFrom !== "沖縄県" &&
+    item.orgExtraParam.shippedFrom !== "海外" &&
     !(
       item.orgExtraParam.shippedWithin === "4~7日で発送" &&
       item.orgExtraParam.shippingMethod?.includes("普通郵便")
@@ -77,7 +79,8 @@ export const shouldList = (item: Item): boolean => {
     !(
       item.orgExtraParam.shippedWithin === "4~7日で発送" &&
       item.orgExtraParam.shippingMethod === "未定"
-    )
+    ) &&
+    !user.sellerBlacklist.includes(item.orgExtraParam.sellerId || "tmp")
     // item.lastUpdated !== "半年以上前" &&
     // 該当商品が売れた場合、売れてから仕入れるまでのラグを考慮して48時間経過するまでは再出品しない。
     // 売れた後、より安い商品が見つかった場合など必ずしも同一商品を仕入れない可能性があるので、再出品できる余地を残す。
@@ -158,7 +161,7 @@ export const processItem = async (
   }
 
   //   実際にebayに出品するか
-  if (shouldList(item)) {
+  if (shouldList(item, user)) {
     console.log(`list item: ${item.id}`);
     await runListLambda(item, user, appParams);
     // jest Mockテスト用

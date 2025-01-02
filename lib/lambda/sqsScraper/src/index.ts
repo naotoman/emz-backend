@@ -8,6 +8,7 @@ import { randomUserAgent } from "./useragent";
 
 interface User {
   username: string;
+  sellerBlacklist: string[];
 }
 
 interface Item {
@@ -159,7 +160,11 @@ export const handler = async (event: Event) => {
   }
   if (
     scrapeResult.stockStatus === "outofstock" ||
-    scrapeResult.stockData?.extra.itemCondition === "新品、未使用"
+    scrapeResult.stockData?.extra.itemCondition === "新品、未使用" ||
+    scrapeResult.stockData?.extra.shippedFrom === "海外" ||
+    body.user.sellerBlacklist.includes(
+      scrapeResult.stockData?.extra.sellerId || "tmp"
+    )
   ) {
     return;
   } else if (scrapeResult.stockStatus === "instock") {
