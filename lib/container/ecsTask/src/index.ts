@@ -9,6 +9,7 @@ export interface Item {
   orgPlatform: string;
   shippingYen: number;
   isListed: boolean;
+  isDraft?: boolean;
   createdAt: string;
   isOrgLive: boolean;
   isImageChanged: boolean;
@@ -197,7 +198,7 @@ const scanInventory = async (): Promise<void> => {
   while (scanner.hasNext()) {
     const items: Item[] = await scanner.next();
     for (const item of items) {
-      if (!item.id.startsWith("ITEM#")) {
+      if (!item.id.startsWith("ITEM#") || item.isDraft) {
         continue;
       }
       try {

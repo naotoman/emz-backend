@@ -1,5 +1,6 @@
 import {
   Duration,
+  aws_dynamodb as dynamodb,
   aws_iam as iam,
   aws_lambda as lambda,
   aws_logs as logs,
@@ -13,6 +14,7 @@ export interface Props {
   stateMachine: sfn.IStateMachine;
   chromiumLayerArn: string;
   r2Queue: sqs.Queue;
+  table: dynamodb.ITableV2;
 }
 
 export class SqsScraper extends Construct {
@@ -73,6 +75,7 @@ export class SqsScraper extends Construct {
         SFN_ARN: props.stateMachine.stateMachineArn,
         R2_QUEUE_URL: props.r2Queue.queueUrl,
         QUEUE_ID: "1",
+        TABLE_NAME: props.table.tableName,
       },
       layers: [chromiumLayer],
       logGroup: new logs.LogGroup(this, `SqsScraperLog1`, {
@@ -84,6 +87,9 @@ export class SqsScraper extends Construct {
     );
     sqsScraper1.role?.addManagedPolicy(
       iam.ManagedPolicy.fromAwsManagedPolicyName("AmazonSQSFullAccess")
+    );
+    sqsScraper1.role?.addManagedPolicy(
+      iam.ManagedPolicy.fromAwsManagedPolicyName("AmazonDynamoDBFullAccess")
     );
 
     sqsScraper1.addEventSource(
@@ -106,6 +112,7 @@ export class SqsScraper extends Construct {
         SFN_ARN: props.stateMachine.stateMachineArn,
         R2_QUEUE_URL: props.r2Queue.queueUrl,
         QUEUE_ID: "2",
+        TABLE_NAME: props.table.tableName,
       },
       layers: [chromiumLayer],
       logGroup: new logs.LogGroup(this, `SqsScraperLog2`, {
@@ -117,6 +124,9 @@ export class SqsScraper extends Construct {
     );
     sqsScraper2.role?.addManagedPolicy(
       iam.ManagedPolicy.fromAwsManagedPolicyName("AmazonSQSFullAccess")
+    );
+    sqsScraper2.role?.addManagedPolicy(
+      iam.ManagedPolicy.fromAwsManagedPolicyName("AmazonDynamoDBFullAccess")
     );
 
     sqsScraper2.addEventSource(

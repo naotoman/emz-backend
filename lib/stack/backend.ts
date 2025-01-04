@@ -28,6 +28,7 @@ export class BackendStack extends Stack {
     const sqsScraper = new SqsScraper(this, "SqsScraper", {
       chromiumLayerArn: props.chromiumLayerArn,
       stateMachine: stateMachine.stateMachine,
+      table: storage.table,
       r2Queue: sqsR2.queue,
     });
 

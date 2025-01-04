@@ -151,6 +151,7 @@ export const makeDbInput = (
   attrs: Record<string, unknown>
 ) => {
   const toUpdate = {
+    isDraft: false,
     createdAt: getFormattedDate(new Date()),
     isImageChanged: false,
     ...attrs,

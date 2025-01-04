@@ -72,6 +72,9 @@ export class Sfn extends Construct {
       }),
       memorySize: 256,
       timeout: Duration.seconds(40),
+      environment: {
+        TABLE_NAME: props.table.tableName,
+      },
       layers: [awsSsmExtensionLayer],
       logGroup: new logs.LogGroup(this, `ChatgptFnLog`, {
         retention: logs.RetentionDays.THREE_MONTHS,
@@ -79,6 +82,9 @@ export class Sfn extends Construct {
     });
     chatgptFn.role?.addManagedPolicy(
       iam.ManagedPolicy.fromAwsManagedPolicyName("AmazonSSMReadOnlyAccess")
+    );
+    chatgptFn.role?.addManagedPolicy(
+      iam.ManagedPolicy.fromAwsManagedPolicyName("AmazonDynamoDBFullAccess")
     );
 
     this.stateMachine = new sfn.StateMachine(this, "RegisterItem", {

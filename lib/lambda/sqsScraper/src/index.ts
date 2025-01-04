@@ -1,7 +1,8 @@
+import { DynamoDBClient, UpdateItemCommand } from "@aws-sdk/client-dynamodb";
 import { SFNClient, StartExecutionCommand } from "@aws-sdk/client-sfn";
 import { SendMessageCommand, SQSClient } from "@aws-sdk/client-sqs";
 import chromium from "@sparticuz/chromium";
-import { log } from "common/utils";
+import { getFormattedDate, log } from "common/utils";
 import { BrowserContext, Page, chromium as playwright } from "playwright-core";
 import { Merc, Mshop, scrapeMerc, scrapeMshop, ScrapeResult } from "./scraper";
 import { randomUserAgent } from "./useragent";
@@ -160,12 +161,48 @@ export const handler = async (event: Event) => {
   }
   if (
     scrapeResult.stockStatus === "outofstock" ||
-    scrapeResult.stockData?.extra.itemCondition === "新品、未使用" ||
-    scrapeResult.stockData?.extra.shippedFrom === "海外" ||
-    body.user.sellerBlacklist.includes(
-      scrapeResult.stockData?.extra.sellerId || "tmp"
-    )
+    scrapeResult.stockData == null ||
+    scrapeResult.stockData.core.price >= 100000 ||
+    scrapeResult.stockData.extra.isPayOnDelivery ||
+    scrapeResult.stockData.extra.rateScore < 4.8 ||
+    scrapeResult.stockData.extra.rateCount < 10 ||
+    scrapeResult.stockData.extra.shippedFrom === "沖縄県" ||
+    scrapeResult.stockData.extra.shippedFrom === "海外" ||
+    (scrapeResult.stockData.extra.shippedWithin === "4~7日で発送" &&
+      scrapeResult.stockData.extra.shippingMethod.includes("普通郵便")) ||
+    (scrapeResult.stockData.extra.shippedWithin === "4~7日で発送" &&
+      scrapeResult.stockData.extra.shippingMethod === "未定") ||
+    scrapeResult.stockData.extra.itemCondition === "新品、未使用" ||
+    [
+      "即購入禁止",
+      "即購入不可",
+      "コメント必須",
+      "海外製",
+      "海外から発送",
+      "海外からの発送",
+    ].some((keyword) =>
+      scrapeResult.stockData?.core.description.includes(keyword)
+    ) ||
+    body.user.sellerBlacklist.includes(scrapeResult.stockData.extra.sellerId)
   ) {
+    const ddbClient = new DynamoDBClient({});
+    const command = new UpdateItemCommand({
+      TableName: process.env.TABLE_NAME,
+      Key: {
+        id: { S: `ITEM#${body.user.username}#${body.item.ebaySku}` },
+      },
+      UpdateExpression:
+        "set isDraft = :isDraft, createdAt = :createdAt, username = :username, orgUrl = :orgUrl, orgPlatform = :orgPlatform",
+      ExpressionAttributeValues: {
+        ":isDraft": { BOOL: true },
+        ":createdAt": { S: getFormattedDate(new Date()) },
+        ":username": { S: body.user.username },
+        ":orgUrl": { S: body.item.orgUrl },
+        ":orgPlatform": { S: body.item.orgPlatform },
+      },
+      ConditionExpression: "attribute_not_exists(id)",
+    });
+    await ddbClient.send(command);
     return;
   } else if (scrapeResult.stockStatus === "instock") {
     const timestamp = Date.now().toString();

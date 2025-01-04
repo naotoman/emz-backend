@@ -5,6 +5,7 @@
     "playwright-core": "^1.49.1"
   },
   "devDependencies": {
+    "@aws-sdk/client-dynamodb": "^3.721.0",
     "@aws-sdk/client-sfn": "^3.716.0",
     "@aws-sdk/client-sqs": "^3.716.0",
     "@sparticuz/chromium": "^131.0.1"

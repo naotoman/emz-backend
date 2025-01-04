@@ -7,8 +7,9 @@ input BatchGetItemInput {
 }
 
 type Item {
-  isListed: Boolean!
-  isImageChanged: Boolean!
+  isListed: Boolean
+  isImageChanged: Boolean
+  isDraft: Boolean
 }
 
 type Mutation {

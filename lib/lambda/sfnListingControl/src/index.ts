@@ -105,27 +105,6 @@ export const cacheGetAccessToken = async (
   return mintedToken.access_token;
 };
 
-export const toBeListed = (event: Event) => {
-  const item = event.item;
-  return (
-    item.orgPrice < 100000 &&
-    !item.orgExtraParam.isPayOnDelivery &&
-    (item.orgExtraParam.rateScore == null ||
-      item.orgExtraParam.rateScore > 4.8) &&
-    (item.orgExtraParam.rateCount == null ||
-      item.orgExtraParam.rateCount > 10) &&
-    item.orgExtraParam.shippedFrom !== "沖縄県" &&
-    !(
-      item.orgExtraParam.shippedWithin === "4~7日で発送" &&
-      item.orgExtraParam.shippingMethod?.includes("普通郵便")
-    ) &&
-    !(
-      item.orgExtraParam.shippedWithin === "4~7日で発送" &&
-      item.orgExtraParam.shippingMethod === "未定"
-    )
-  );
-};
-
 export const listItem = async (event: Event) => {
   const item = event.item;
   const user = event.user;
@@ -214,9 +193,6 @@ export const listItem = async (event: Event) => {
 
 export const handler = async (event: Event) => {
   log(event);
-  if (toBeListed(event)) {
-    const listingId = await listItem(event);
-    return { isListed: true, listingId };
-  }
-  return { isListed: false, listingId: "" };
+  const listingId = await listItem(event);
+  return { isListed: true, listingId };
 };

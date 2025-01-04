@@ -1,5 +1,6 @@
+import { DynamoDBClient, UpdateItemCommand } from "@aws-sdk/client-dynamodb";
 import { getSecureSsmParam } from "common/ssmParamExtension";
-import { log } from "common/utils";
+import { getFormattedDate, log } from "common/utils";
 import fs from "fs";
 import OpenAI from "openai";
 
@@ -34,10 +35,13 @@ interface FormattedAspects {
 }
 
 interface Item {
+  ebaySku: string;
   orgImageUrls: string[];
   orgTitle: string;
   orgDescription: string;
   orgPrice: number;
+  orgUrl: string;
+  orgPlatform: string;
 }
 
 interface AppParams {
@@ -46,6 +50,7 @@ interface AppParams {
 
 interface User {
   fulfillmentPolicy: string;
+  username: string;
 }
 
 interface Event {
@@ -58,7 +63,7 @@ interface ChatGptResponse {
   risk_checklist: {
     violates_ebay_policies: boolean;
     is_scam: boolean;
-    not_japanese_product: boolean;
+    takes_more_than_a_week_to_ship: boolean;
     result_explanation: string;
   };
   shipping_weight_and_box_dimensions: {
@@ -92,10 +97,10 @@ const checklistSchema = {
       description:
         "Whether the seller is intentionally attempting to scam buyers by displaying an item that is completely different from the description.",
     },
-    not_japanese_product: {
+    takes_more_than_a_week_to_ship: {
       type: "boolean",
       description:
-        "Whether the seller explicitly states that the item originates from outside Japan.",
+        "Whether the seller explicitly states that it takes more than a week to ship.",
     },
     result_explanation: {
       type: "string",
@@ -105,7 +110,7 @@ const checklistSchema = {
   required: [
     "violates_ebay_policies",
     "is_scam",
-    "not_japanese_product",
+    "takes_more_than_a_week_to_ship",
     "result_explanation",
   ],
   additionalProperties: false,
@@ -245,6 +250,27 @@ const resellingInformationSchema = (aspects: Aspect[]) => {
   };
 };
 
+const putDraft = async (event: Event) => {
+  const ddbClient = new DynamoDBClient({});
+  const command = new UpdateItemCommand({
+    TableName: process.env.TABLE_NAME,
+    Key: {
+      id: { S: `ITEM#${event.user.username}#${event.item.ebaySku}` },
+    },
+    UpdateExpression:
+      "set isDraft = :isDraft, createdAt = :createdAt, username = :username, orgUrl = :orgUrl, orgPlatform = :orgPlatform",
+    ExpressionAttributeValues: {
+      ":isDraft": { BOOL: true },
+      ":createdAt": { S: getFormattedDate(new Date()) },
+      ":username": { S: event.user.username },
+      ":orgUrl": { S: event.item.orgUrl },
+      ":orgPlatform": { S: event.item.orgPlatform },
+    },
+    ConditionExpression: "attribute_not_exists(id)",
+  });
+  await ddbClient.send(command);
+};
+
 const chatgpt = async (event: Event, aspects: Aspect[]) => {
   const prompt = {
     model: "gpt-4o",
@@ -336,7 +362,8 @@ const calcShippingFee = (
     (width * height * depth) / 5000
   );
   if (fedexVolumeWeight > 12 || Math.max(width, height, depth) > 120) {
-    throw new Error("too big");
+    // throw new Error("too big");
+    return null;
   }
   const fedexFee = Math.max(2700, (11300 * fedexVolumeWeight + 25400) / 11.5);
   const emsFee = Math.max(4000, 2800 + Math.ceil(2.4 * weight));
@@ -360,8 +387,9 @@ export const handler = async (event: Event) => {
   if (
     gptResult.risk_checklist.violates_ebay_policies ||
     gptResult.risk_checklist.is_scam ||
-    gptResult.risk_checklist.not_japanese_product
+    gptResult.risk_checklist.takes_more_than_a_week_to_ship
   ) {
+    await putDraft(event);
     throw new Error(gptResult.risk_checklist.result_explanation);
   }
   // 入力を整形
@@ -372,6 +400,10 @@ export const handler = async (event: Event) => {
     gptResult.shipping_weight_and_box_dimensions.weight,
     event.item.orgPrice
   );
+  if (shippingYen == null) {
+    await putDraft(event);
+    throw new Error("too big");
+  }
 
   const { orgDescription, ...filteredItem } = event.item;
   return {
